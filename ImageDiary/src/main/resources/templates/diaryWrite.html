@@ -18,26 +18,26 @@
 		</div>
 		<div>
 		<p>오늘의 날씨</p>
-			<input type="checkbox" id="clear">
+			<input type="checkbox" id="clear" name="clear">
 	  		<label for="scales">맑음</label>
-			<input type="checkbox" id="cloudy">
+			<input type="checkbox" id="cloudy" name="cloudy">
 	  		<label for="scales">흐림</label>
-			<input type="checkbox" id="rainy">
+			<input type="checkbox" id="rainy" name="rainy">
 	  		<label for="scales">비</label>
-			<input type="checkbox" id="snowy">
+			<input type="checkbox" id="snowy" name="snowy">
 	  		<label for="scales">눈</label>
 		</div>
+		<div>
 		<p>오늘의 기분</p>
-			<input type="checkbox" id="good">
+			<input type="checkbox" id="good" name="good">
 	  		<label for="scales">좋음</label>
-			<input type="checkbox" id="soso">
+			<input type="checkbox" id="soso" name="soso">
 	  		<label for="scales">보통</label>
-			<input type="checkbox" id="sad">
+			<input type="checkbox" id="sad" name="sad">
 	  		<label for="scales">슬픔</label>
-			<input type="checkbox" id="angry">
+			<input type="checkbox" id="angry" name="angry">
 	  		<label for="scales">화남</label>
 		</div>
-		
 		<div class="col-1">
 			<label>사진 선택</label>
 			<input type="file" id="사진선택" accept="image/*" multiple> <!--multiple 다중선택-->
@@ -58,28 +58,24 @@
 			<img id="이미지5번" src="#" class="d-none img-fluid">
 		</div>
 		<script>
-            // 이미지 딱 2장
             $(document).ready(function(){
                 $("#사진선택").change(function(){ //input 태그 바라보기
                     const files = this.files; // 선택된 파일들 가져오기
 
                     // 만약에 이미지를 가져올 경우
                     if(files){
-                        const 파일읽기1 = new FileReader(); // 파일 읽기
+                        const 파일읽기1 = new FileReader();
                         파일읽기1.onload = function(e) {
-                            // 이미지1번 태그 이미지에 1번째로 선택한 이미지 보여주기
                             $("#이미지1번").attr('src', e.target.result).removeClass('d-none');
                         }
                         파일읽기1.readAsDataURL(files[0]);
 
-                        //두번째 파일 가져와서 보여주기
                         const 파일읽기2 = new FileReader();
                         파일읽기2.onload = function(e){
                             $("#이미지2번").attr('src', e.target.result).removeClass('d-none');
                         }
                         파일읽기2.readAsDataURL(files[1]);
 
-                        //세번째 파일 가져오기
                         const 파일읽기3 = new FileReader();
                         파일읽기3.onload = function(e){
                             $("#이미지3번").attr('src', e.target.result).removeClass('d-none');
@@ -102,11 +98,12 @@
                 })
             })
         </script>
-	
-		<form>
+
+		<form action="/diaryView">
 	      <p><textarea cols="100" rows="20" placeholder="일기를 작성하세요"></textarea></p>
-	      <p><input type="submit" value="저장"></p>
+	      <p><button type="submit">저장</button></p>
 	    </form>
+		
 	</div>
 </body>
 </html>
