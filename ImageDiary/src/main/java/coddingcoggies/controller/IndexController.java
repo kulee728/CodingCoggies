@@ -25,12 +25,14 @@ public class IndexController {
 	public String toSignUp() {
 		return "signUp";
 	}
-	@GetMapping("/specialDate")
-	public String toSpecialDate() {
-		return "specialDate";
-	}
+
 	@GetMapping("/TeachersGift")
 	public String TeachersGift() {
 		return "TeachersGift";
+	}
+	
+	@GetMapping("/specialDate")
+	public String specialDate() {
+		return "specialDate";
 	}
 }

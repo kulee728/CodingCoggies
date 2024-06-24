@@ -1,5 +1,12 @@
 package com.coddingcoggies.dto;
 
+import lombok.*;
+
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 public class SpecialDate {
 	private int specialDate_id;
 	private int specialDate_type; // type (1:디데이, 2:지정기념일)
