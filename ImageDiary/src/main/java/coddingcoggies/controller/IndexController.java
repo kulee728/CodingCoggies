@@ -25,12 +25,25 @@ public class IndexController {
 	public String toSignUp() {
 		return "signUp";
 	}
+<<<<<<< Updated upstream
 	@GetMapping("/specialDate")
 	public String toSpecialDate() {
 		return "specialDate";
 	}
+=======
+/*
+ * MainPageController로 이양
+>>>>>>> Stashed changes
 	@GetMapping("/TeachersGift")
 	public String TeachersGift() {
 		return "TeachersGift";
 	}
+<<<<<<< Updated upstream
+=======
+*/
+	@GetMapping("/specialDate")
+	public String specialDate() {
+		return "specialDate";
+	}
+>>>>>>> Stashed changes
 }

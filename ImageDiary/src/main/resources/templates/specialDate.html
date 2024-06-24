@@ -22,10 +22,36 @@ crossorigin="anonymous">
 </head>
 
 <body>
+<<<<<<< Updated upstream
 
 <div class='container'> <!-- container : 전체 감싸기 용 (footer,header 제외) -->
 	<div class='specialDateHeader'> <!-- calander : 달력 영역 -->
 		[thymeleaf사용자명]의 기념일 목록
+=======
+	<div class="container">
+        <form class="Dday-form">
+		<div class="Dday-Anniv">
+			<input type="radio" name="specialDate"class="selectType">D-day &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="specialDate"class="selectType">기념일
+		</div>
+		<br>
+		
+		<div class="selectDate">
+			<label>날짜선택 : </label>
+			<input type="date" class="DdaySelect">
+		</div>
+		<br>
+		
+		<div class="contentArea">
+		<label>내용 : </label>
+		<input type="text" class="DdayContent">
+		</div>
+		<br>
+		
+		<button type="submit" class="save-Btn" onclick="">저   장</button>
+		<button type="submit" class="delete-Btn" onclick="">삭   제</button>
+        </form>
+>>>>>>> Stashed changes
 	</div>
 	<ul > <!-- 추후 thymeleaf th:each="sd : ${specialDateList}" -->
 		<li th:style="${sd.style"></li>
