@@ -85,14 +85,12 @@
             })
         </script>
 
-		<form action="/diaryWriter">
-	      <p><textarea cols="100" rows="20" placeholder="일기를 작성하세요"></textarea></p>
-	      <p><button type="submit">수정</button></p>
-	    </form>
-	    		<form action="/diaryView">
-	      <p><textarea cols="100" rows="20" placeholder="일기를 작성하세요"></textarea></p>
-	      <p><button type="submit">삭제</button></p>
-	    </form>
+		<textarea cols="100" rows="20" placeholder="일기를 작성하세요"></textarea>
+		<div class="btn" style="display:flex">
+			<button type="submit" class="btn btn-secondary btn-lg" style="margin:10px">수정</button>
+		    <button type="submit" class="btn btn-secondary btn-lg" style="margin:10px">삭제</button>
+		</div>
+
 		
 	</div>
 </body>
