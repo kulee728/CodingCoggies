@@ -21,9 +21,16 @@ public class IndexController {
 		return "diaryWrite";
 	}
 	
-	
 	@GetMapping("/signUp")
 	public String toSignUp() {
 		return "signUp";
+	}
+	@GetMapping("/specialDate")
+	public String toSpecialDate() {
+		return "specialDate";
+	}
+	@GetMapping("/TeachersGift")
+	public String TeachersGift() {
+		return "TeachersGift";
 	}
 }
