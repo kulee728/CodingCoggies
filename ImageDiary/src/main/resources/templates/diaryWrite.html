@@ -58,7 +58,7 @@
 			</div>
 		</div>
 		<div class="col-1">
-			<label>사진 선택</label> <input type="file" id="사진선택" accept="image/*"
+			<input type="file" id="사진선택" accept="image/*"
 				multiple>
 			<!--multiple 다중선택-->
 			<br><br>
@@ -78,7 +78,8 @@
 		<div class="col-1">
 			<img id="이미지5번" src="#" class="d-none img-fluid">
 		</div>
-
+</form>
+		
 		<textarea cols="100" rows="20" id="contents" placeholder="일기를 작성하세요"></textarea>
 
 
@@ -94,52 +95,52 @@
 	</footer>
 </body>
 <script>
-	$(document).ready(
-			function() {
-				$("#사진선택").change(
-						function() { //input 태그 바라보기
-							const files = this.files; // 선택된 파일들 가져오기
+$(document).ready(
+		function() {
+			$("#사진선택").change(
+					function() { //input 태그 바라보기
+						const files = this.files; // 선택된 파일들 가져오기
 
-							// 만약에 이미지를 가져올 경우
-							if (files) {
-								const 파일읽기1 = new FileReader();
-								파일읽기1.onload = function(e) {
-									$("#이미지1번").attr('src', e.target.result)
-											.removeClass('d-none');
-								}
-								파일읽기1.readAsDataURL(files[0]);
-
-								const 파일읽기2 = new FileReader();
-								파일읽기2.onload = function(e) {
-									$("#이미지2번").attr('src', e.target.result)
-											.removeClass('d-none');
-								}
-								파일읽기2.readAsDataURL(files[1]);
-
-								const 파일읽기3 = new FileReader();
-								파일읽기3.onload = function(e) {
-									$("#이미지3번").attr('src', e.target.result)
-											.removeClass('d-none');
-								}
-								파일읽기3.readAsDataURL(files[2]);
-
-								const 파일읽기4 = new FileReader();
-								파일읽기4.onload = function(e) {
-									$("#이미지4번").attr('src', e.target.result)
-											.removeClass('d-none');
-								}
-								파일읽기4.readAsDataURL(files[3]);
-
-								const 파일읽기5 = new FileReader();
-								파일읽기5.onload = function(e) {
-									$("#이미지5번").attr('src', e.target.result)
-											.removeClass('d-none');
-								}
-								파일읽기5.readAsDataURL(files[4]);
+						// 만약에 이미지를 가져올 경우
+						if (files) {
+							const 파일읽기1 = new FileReader();
+							파일읽기1.onload = function(e) {
+								$("#이미지1번").attr('src', e.target.result)
+										.removeClass('d-none');
 							}
+							파일읽기1.readAsDataURL(files[0]);
 
-						})
-			})
+							const 파일읽기2 = new FileReader();
+							파일읽기2.onload = function(e) {
+								$("#이미지2번").attr('src', e.target.result)
+										.removeClass('d-none');
+							}
+							파일읽기2.readAsDataURL(files[1]);
+
+							const 파일읽기3 = new FileReader();
+							파일읽기3.onload = function(e) {
+								$("#이미지3번").attr('src', e.target.result)
+										.removeClass('d-none');
+							}
+							파일읽기3.readAsDataURL(files[2]);
+
+							const 파일읽기4 = new FileReader();
+							파일읽기4.onload = function(e) {
+								$("#이미지4번").attr('src', e.target.result)
+										.removeClass('d-none');
+							}
+							파일읽기4.readAsDataURL(files[3]);
+
+							const 파일읽기5 = new FileReader();
+							파일읽기5.onload = function(e) {
+								$("#이미지5번").attr('src', e.target.result)
+										.removeClass('d-none');
+							}
+							파일읽기5.readAsDataURL(files[4]);
+						}
+
+					})
+		})
 </script>
 <script>
 	document.querySelector('.submit').addEventListener('click', function(e) {
