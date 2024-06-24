@@ -29,4 +29,8 @@ public class IndexController {
 	public String toSpecialDate() {
 		return "specialDate";
 	}
+	@GetMapping("/TeachersGift")
+	public String TeachersGift() {
+		return "TeachersGift";
+	}
 }
