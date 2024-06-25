@@ -1,105 +1,92 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
- 
- /*#2 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+
+    .fc-right {
+        display: none;
+    }/*우상단 기능제한*/
+	.fc-unthemed td.fc-today{
+		background-color:#bed59a;
+	}/*오늘의 일기 관련*/
+	
+	.fc event{
+		background-color:#ebe5d4;
+		border-color:#ebe5d4;
+	}/*오늘의 일기 관련*/
+	
+	.fc-event, .fc-event-dot {
+    background-color: #bed59a; 
+}/*오늘의 일기 관련*/
+
+
+.fc-event {
+    position: relative;
+    display: block;
+    font-size: 0.85em;
+    line-height: 1.4;
+    border-radius: 3px;
+    border: 1px solid #bed59a;
 }
- 
- /*#3 */
-button {
-  /* button 요소에 기본적으로 설정되는 스타일 속성 초기화 */
-  border: none;
-  outline: none;
-  background-color: transparent;
-  padding: 0;
-  cursor: pointer;
+/*오늘의 일기 관련*/
+
+.fc-event:hover{
+    background-color:#857a48;
 }
- 
- /*#4 */
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: #008aff;
+/*오늘의 일기 관련*/
+
+.fc-button-primary{
+	background-color:#bed59a;
+	border-color: #bed59a;
+}/*좌상단 버튼 관련*/
+
+.fc-button-primary:hover{
+	background-color:#857a48;
+	border-color: #857a48;
+}/*좌상단 버튼 관련*/
+
+.fc-button-primary:disabled {
+    color: #fff;
+    background-color: #bed59a;
+    border-color: #bed59a;
+}/*좌상단 버튼 관련*/
+
+body{
+	background-color:#f0f2e1;
+	color: #857a48;
+} /*바탕색*/
+
+a {
+	margin-right:3px;
+    color:#498168;
+    text-decoration: none;
+    background-color: transparent;
 }
 
-	/*#5 */
-.wrapper {
-  width: 450px;
-  background: #fff;
-  border-radius: 10px;
-  padding: 25px;
+a .fc-day-number{
+	/*color: #bed59a;*/
+	color: #808855;
 }
- 
-/*#6*/
-.wrapper .nav {
+
+
+.mainFrame{
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
-}
-.wrapper .nav .current-date {
-  font-size: 24px;
+  flex-flow: row nowrap;
+  width: 100%;
+  margin: 30px auto;
+  /*color: white;
   font-weight: 600;
-}
-.wrapper .nav button {
-  width: 38px;
-  height: 38px;
-  font-size: 30px;
-  color: #878787;
+  font-size: 20px;
+  text-align: center;*/
 }
 
-	.calendar ul {
-  display: flex;
-  list-style: none;
-  flex-wrap: wrap;
-  text-align: center;
-}
-.calendar .weeks li {
-  font-weight: 500;
-}
-.calendar .days {
-  margin-bottom: 20px;
-}
-.calendar ul li {
-  /*#8*/
-  width: calc(100% / 7);
-  /*#9*/
-  position: relative;
-}
-.calendar .days li {
-  /*#10*/
-  z-index: 1;
-  margin-top: 30px;
-  cursor: pointer;
-}
- 
-/*#11*/
-.days li.inactive {
-  color: #aaa;
+.calendarAera{
+	background-color:#bed59a;
+	width:500px;
 }
 
-.days li.active {
-  color: #fff;
+.subAera{
+	background-color:#bed59a;
+	width:300px;
 }
-.calendar .days li::before {
-  position: absolute;
-  content: '';
-  height: 40px;
-  width: 40px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  z-index: -1;
-}
-.days li:hover::before {
-  background: #f2f2f2;
-}
-.days li.active::before {
-  background: #008aff;
+
+footer{
+background-color: #BED59A;
+color: darygray;
 }

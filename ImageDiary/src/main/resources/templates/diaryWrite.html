@@ -4,43 +4,64 @@
 <meta charset="utf-8">
 <title>일기 작성 화면</title>
 <link rel="stylesheet" href="/css/diaryWrite.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-	  rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
-	  crossorigin="anonymous" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous" />
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
-<body>
+<body style="background-color: #F0F2E1">
 	<div class="container">
-		<div class="input-group input-group-lg">
-	  	<span class="input-group-text" id="inputGroup-sizing-lg">TITLE</span>
-	  	<input type="text" class="form-control" aria-label="Sizing example input" 
-	  		   aria-describedby="inputGroup-sizing-lg" placeholder="제목을 입력하세요">
+		<div class="input-group input-group-lg" required>
+			<input type="text" name="title_text" class="form-control"
+				aria-label="Sizing example input"
+				aria-describedby="inputGroup-sizing-lg" placeholder="제목을 입력하세요"
+				id="title">
 		</div>
-		<div>
-		<p>오늘의 날씨</p>
-			<input type="checkbox" id="clear">
-	  		<label for="scales">맑음</label>
-			<input type="checkbox" id="cloudy">
-	  		<label for="scales">흐림</label>
-			<input type="checkbox" id="rainy">
-	  		<label for="scales">비</label>
-			<input type="checkbox" id="snowy">
-	  		<label for="scales">눈</label>
+		<div class="my-checkbox">
+			<div class="weather">
+				<p style="text-align: center">
+					오늘의 날씨
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-cloud-sun" viewBox="0 0 16 16">
+  			<path
+							d="M7 8a3.5 3.5 0 0 1 3.5 3.555.5.5 0 0 0 .624.492A1.503 1.503 0 0 1 13 13.5a1.5 1.5 0 0 1-1.5 1.5H3a2 2 0 1 1 .1-3.998.5.5 0 0 0 .51-.375A3.5 3.5 0 0 1 7 8m4.473 3a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z" />
+  			<path
+							d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+			</svg>
+				</p>
+				<input type="checkbox" id="clear" name="clear"> <label
+					for="scales">맑음</label> <input type="checkbox" id="cloudy"
+					name="cloudy"> <label for="scales">흐림</label> <input
+					type="checkbox" id="rainy" name="rainy"> <label
+					for="scales">비</label> <input type="checkbox" id="snowy"
+					name="snowy"> <label for="scales">눈</label>
+			</div>
+			<div class="feeling">
+				<p style="text-align: center">
+					오늘의 기분
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-emoji-grin" viewBox="0 0 16 16">
+  			<path
+							d="M12.946 11.398A6.002 6.002 0 0 1 2.108 9.14c-.114-.595.426-1.068 1.028-.997C4.405 8.289 6.48 8.5 8 8.5s3.595-.21 4.864-.358c.602-.07 1.142.402 1.028.998a5.95 5.95 0 0 1-.946 2.258m-.078-2.25C11.588 9.295 9.539 9.5 8 9.5s-3.589-.205-4.868-.352c.11.468.286.91.517 1.317A37 37 0 0 0 8 10.75a37 37 0 0 0 4.351-.285c.231-.407.407-.85.517-1.317m-1.36 2.416c-1.02.1-2.255.186-3.508.186s-2.488-.086-3.507-.186A5 5 0 0 0 8 13a5 5 0 0 0 3.507-1.436ZM6.488 7c.114-.294.179-.636.179-1 0-1.105-.597-2-1.334-2C4.597 4 4 4.895 4 6c0 .364.065.706.178 1 .23-.598.662-1 1.155-1 .494 0 .925.402 1.155 1M12 6c0 .364-.065.706-.178 1-.23-.598-.662-1-1.155-1-.494 0-.925.402-1.155 1a2.8 2.8 0 0 1-.179-1c0-1.105.597-2 1.334-2C11.403 4 12 4.895 12 6" />
+  			<path
+							d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m0-1A7 7 0 1 1 8 1a7 7 0 0 1 0 14" />
+			</svg>
+				</p>
+				<input type="checkbox" id="good" name="good"> <label
+					for="scales">좋음</label> <input type="checkbox" id="soso"
+					name="soso"> <label for="scales">보통</label> <input
+					type="checkbox" id="sad" name="sad"> <label for="scales">슬픔</label>
+				<input type="checkbox" id="angry" name="angry"> <label
+					for="scales">화남</label>
+			</div>
 		</div>
-		<p>오늘의 기분</p>
-			<input type="checkbox" id="good">
-	  		<label for="scales">좋음</label>
-			<input type="checkbox" id="soso">
-	  		<label for="scales">보통</label>
-			<input type="checkbox" id="sad">
-	  		<label for="scales">슬픔</label>
-			<input type="checkbox" id="angry">
-	  		<label for="scales">화남</label>
-		</div>
-		
 		<div class="col-1">
-			<label>사진 선택</label>
-			<input type="file" id="사진선택" accept="image/*" multiple> <!--multiple 다중선택-->
+			<label>사진 선택</label> <input type="file" id="사진선택" accept="image/*"
+				multiple>
+			<!--multiple 다중선택-->
+			<br><br>
 		</div>
 		<div class="col-1">
 			<img id="이미지1번" src="#" class="d-none img-fluid">
@@ -57,56 +78,85 @@
 		<div class="col-1">
 			<img id="이미지5번" src="#" class="d-none img-fluid">
 		</div>
-		<script>
-            // 이미지 딱 2장
-            $(document).ready(function(){
-                $("#사진선택").change(function(){ //input 태그 바라보기
-                    const files = this.files; // 선택된 파일들 가져오기
 
-                    // 만약에 이미지를 가져올 경우
-                    if(files){
-                        const 파일읽기1 = new FileReader(); // 파일 읽기
-                        파일읽기1.onload = function(e) {
-                            // 이미지1번 태그 이미지에 1번째로 선택한 이미지 보여주기
-                            $("#이미지1번").attr('src', e.target.result).removeClass('d-none');
-                        }
-                        파일읽기1.readAsDataURL(files[0]);
+		<textarea cols="100" rows="20" id="contents" placeholder="일기를 작성하세요"></textarea>
 
-                        //두번째 파일 가져와서 보여주기
-                        const 파일읽기2 = new FileReader();
-                        파일읽기2.onload = function(e){
-                            $("#이미지2번").attr('src', e.target.result).removeClass('d-none');
-                        }
-                        파일읽기2.readAsDataURL(files[1]);
 
-                        //세번째 파일 가져오기
-                        const 파일읽기3 = new FileReader();
-                        파일읽기3.onload = function(e){
-                            $("#이미지3번").attr('src', e.target.result).removeClass('d-none');
-                        }
-                        파일읽기3.readAsDataURL(files[2]);
-
-                        const 파일읽기4 = new FileReader();
-                        파일읽기4.onload = function(e){
-                            $("#이미지4번").attr('src', e.target.result).removeClass('d-none');
-                        }
-                        파일읽기4.readAsDataURL(files[3]);
-
-                        const 파일읽기5 = new FileReader();
-                        파일읽기5.onload = function(e){
-                            $("#이미지5번").attr('src', e.target.result).removeClass('d-none');
-                        }
-                        파일읽기5.readAsDataURL(files[4]);
-                    }
-
-                })
-            })
-        </script>
-	
-		<form>
-	      <p><textarea cols="100" rows="20" placeholder="일기를 작성하세요"></textarea></p>
-	      <p><input type="submit" value="저장"></p>
-	    </form>
+		<button type="submit" class="btn btn-secondary btn-lg submit"
+			style="margin: 20px">저장</button>
 	</div>
+	<footer>
+		<p>
+			<br> <span>&copy; 2024 CodingCoggies. All Rights
+				Reserved.</span> <br>
+			<br>
+		</p>
+	</footer>
 </body>
+<script>
+	$(document).ready(
+			function() {
+				$("#사진선택").change(
+						function() { //input 태그 바라보기
+							const files = this.files; // 선택된 파일들 가져오기
+
+							// 만약에 이미지를 가져올 경우
+							if (files) {
+								const 파일읽기1 = new FileReader();
+								파일읽기1.onload = function(e) {
+									$("#이미지1번").attr('src', e.target.result)
+											.removeClass('d-none');
+								}
+								파일읽기1.readAsDataURL(files[0]);
+
+								const 파일읽기2 = new FileReader();
+								파일읽기2.onload = function(e) {
+									$("#이미지2번").attr('src', e.target.result)
+											.removeClass('d-none');
+								}
+								파일읽기2.readAsDataURL(files[1]);
+
+								const 파일읽기3 = new FileReader();
+								파일읽기3.onload = function(e) {
+									$("#이미지3번").attr('src', e.target.result)
+											.removeClass('d-none');
+								}
+								파일읽기3.readAsDataURL(files[2]);
+
+								const 파일읽기4 = new FileReader();
+								파일읽기4.onload = function(e) {
+									$("#이미지4번").attr('src', e.target.result)
+											.removeClass('d-none');
+								}
+								파일읽기4.readAsDataURL(files[3]);
+
+								const 파일읽기5 = new FileReader();
+								파일읽기5.onload = function(e) {
+									$("#이미지5번").attr('src', e.target.result)
+											.removeClass('d-none');
+								}
+								파일읽기5.readAsDataURL(files[4]);
+							}
+
+						})
+			})
+</script>
+<script>
+	document.querySelector('.submit').addEventListener('click', function(e) {
+		if (document.querySelector('#title').value == '') {
+			e.preventDefault() // 폼 전송을 막음
+			alert('제목을 입력해주세요')
+		}
+		if (document.querySelector('#contents').value == '') {
+			e.preventDefault() // 폼 전송을 막음
+			alert('일기 내용을 입력해주세요')
+		}
+		if (document.querySelector('#사진선택').value == '') {
+			e.preventDefault() // 폼 전송을 막음
+			alert('사진을 선택해주세요');
+			colsole.log("aa");
+
+		}
+	});
+</script>
 </html>

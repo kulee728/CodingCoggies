@@ -21,7 +21,6 @@ public class IndexController {
 		return "diaryWrite";
 	}
 	
-	
 	@GetMapping("/signUp")
 	public String toSignUp() {
 		return "signUp";
@@ -36,11 +35,5 @@ public class IndexController {
 	public String specialDate() {
 		return "specialDate";
 	}
-	/*
-	@GetMapping("/logIn")
-	public String logIn() {
-		return "logIn";
-	}
-	*/
 
 }
