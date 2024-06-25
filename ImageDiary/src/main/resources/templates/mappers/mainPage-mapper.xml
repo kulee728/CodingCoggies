@@ -2,14 +2,23 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="coddingcoggies.mapper.mainPageMapper">
-<select id="getAllSpecialDate" resultType="coddingcoggies.dto.SpecialDate">
-	SELECT * FROM diary_specialDate
-	ORDER BY specialDate_type, specialDate_date
-	<!--
-	WHERE member_no = #{member_no} 
-	AND TO_CHAR(specialDate_date,'MM') = #{thisMonth}   
-	-->
-</select>
+
+<mapper namespace="coddingcoggies.mapper.MainPageMapper">
+
+	<resultMap type="coddingcoggies.dto.SpecialDate"
+		id="specialDateMap">
+		<id column="specialdate_id" property="specialdate_id" />
+		<result column="specialdate_date" property="specialdate_date" />
+		<result column="specialdate_type" property="specialdate_type" />
+		<result column="specialdate_color" property="specialdate_color" />
+		<result column="specialdate_name" property="specialdate_name" />
+		<result column="member_no" property="member_no" />
+	</resultMap>
+
+	<select id="getAllSpecialDate"
+		resultType="coddingcoggies.dto.SpecialDate">
+		SELECT * FROM diary_specialDate
+		ORDER BY specialDate_type, specialDate_date
+	</select>
 
 </mapper>

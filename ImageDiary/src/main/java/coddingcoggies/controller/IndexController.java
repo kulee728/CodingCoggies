@@ -25,12 +25,7 @@ public class IndexController {
 	public String toSignUp() {
 		return "signUp";
 	}
-<<<<<<< Updated upstream
-	@GetMapping("/specialDate")
-	public String toSpecialDate() {
-		return "specialDate";
-	}
-=======
+
 /*
  * MainPageController로 이양
 >>>>>>> Stashed changes
@@ -45,5 +40,4 @@ public class IndexController {
 	public String specialDate() {
 		return "specialDate";
 	}
->>>>>>> Stashed changes
 }

@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import coddingcoggies.dto.SpecialDate;
 import coddingcoggies.mapper.MainPageMapper;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class MainPageService {
 
@@ -15,6 +17,7 @@ public class MainPageService {
 	private MainPageMapper mainPageMapper;
 	
 	public List<SpecialDate> getAllSpecialDate(){
+		log.info("serivce string : "+ mainPageMapper.getAllSpecialDate().toString());
 		return mainPageMapper.getAllSpecialDate();
 	}
 	
