@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="coddingcoggies.mapper.DiaryMapper">
+<insert id="insertDiary" parameterType="coddingcoggies.dto.Diary">
+	INSERT INTO diary(diary_id, diary_title, diary_feelingCode, diary_date, diary_contents, member_no, diary_weatherCode, diary_fileurl)
+	VALUES (diary_seq.NEXTVAL,#{diary_title}, #{diary_feelingCode}, '20240623',#{diary_contents}, '1',  #{diary_weatherCode}, #{diary_fileurl})
+</insert>
 <select id="getAllDiary" resultType="coddingcoggies.dto.Diary">
 	SELECT * FROM diary
 </select>
@@ -17,4 +21,8 @@
 	WHERE member_no = #{member_no}
 	AND diary_id = #{diary_id}
 </update>
+<delete id="deleteDiary" parameterType="int">
+	DELETE FROM diary
+	WHERE diary_id = #{diary_id}
+</delete>
 </mapper>
