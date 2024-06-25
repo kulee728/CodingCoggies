@@ -14,4 +14,5 @@ public class SpecialDate {
 	private String specialDate_color; //색에 대한 value 저장.
 	private String specialDate_name;
 	private int member_no;
+	private String dateDisplayText; // Dday는 D-날짜 , 기념일은 날짜 형식으로
 }

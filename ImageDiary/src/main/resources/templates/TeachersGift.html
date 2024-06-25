@@ -141,31 +141,13 @@
     <div class="calendar-container">
         <div class="header" id="calendar-header">Gunhee's: July 2024</div>
         <div class="sidebar">
-            <div class="today-info" id="today-info">오늘은</div>
-            <div class="legend" th:each="sd : ${specialDateList}">
-            	<!-- <div class="legend-item"><span th:style="'background-color:'+ ${sd.specialDate_color} "></span> -->
-            	<div class="legend-item"><span style="background-color:lightpink"></span>
-            	<th:block th:text="${sd.specialDate_date} +' '"></th:block>
-            	<th:block th:text="${sd.specialDate_name}"></th:block>
-            	
-            	</div>
-            	
-            	
-            	
-            	
-            	
-               <!--  <di22v class="legend-item"><span class="d-150"></span> D-150 다이어트1</div>
-                <div class="legend-item"><span class="d-200"></span> D-200 다이어트2</div>
-                <div class="legend-item"><span class="d-47"></span> D-47 나니생일</div>
-                <div class="legend-item"><span class="d-47" style="background-color: #99ff99;"></span> 07.28 우기생일</div>
-                <div class="legend-item"><span class="d-47" style="background-color: #9999ff;"></span> 07.29 사수생일</div>
-                <div class="legend-item"><span class="d-47" style="background-color: #ff9999;"></span> 07.30 거사생일</div>
-                --> 
-            </div>
-             <div class="legend" th:each="sd : ${specialDateList}">
-                <div class="legend-item">
+            <div class="today-info" id="today-info">오늘은</div>  	
+
+     
+            <div class="legend" >
+                <div class="legend-item" th:each="sd : ${specialDateList}">
                     <span th:style="'background-color:' + ${sd.specialDate_color}"></span>
-                    <th:block th:text="${sd.specialDate_date} +' '"></th:block>
+                    <th:block th:text="${sd.dateDisplayText} +' '"></th:block>
                     <th:block th:text="${sd.specialDate_name}"></th:block>
                 </div>
             </div>

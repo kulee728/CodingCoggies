@@ -7,11 +7,11 @@
 
 	<resultMap type="coddingcoggies.dto.SpecialDate"
 		id="specialDateMap">
-		<id column="specialdate_id" property="specialdate_id" />
-		<result column="specialdate_date" property="specialdate_date" />
-		<result column="specialdate_type" property="specialdate_type" />
-		<result column="specialdate_color" property="specialdate_color" />
-		<result column="specialdate_name" property="specialdate_name" />
+		<id column="specialdate_id" property="specialDate_id" />
+		<result column="specialdate_date" property="specialDate_date" />
+		<result column="specialdate_type" property="specialDate_type" />
+		<result column="specialdate_color" property="specialDate_color" />
+		<result column="specialdate_name" property="specialDate_name" />
 		<result column="member_no" property="member_no" />
 	</resultMap>
 
