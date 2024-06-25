@@ -29,14 +29,21 @@ public class MainPageController {
 		//List<SpecialDate> specialDateList = mainPageService.getAllSpecialDate();
 		//log.info(specialDateList.toString());
 		//model.addAttribute("specialDateList",specialDateList);
+		
+		//model.addAttribute("mainHeaderText",dd)
+		//나중에는 세션으로 받아서 뿌려야 함
+		
+		
 		getAllSpecialDate(model);
+		//mainCalandar.specialDateAdded(model);
 		return "TeachersGift";
 	}
 	
 	/*
 	 기념일 영역
+	 1) 기념일 select * from specialDate > 목록 표시
+	 2) 기념일.displayText 에 대한 값 계산 (D-95, 혹은 2015-07-30)
 	 */
-	
 	public void getAllSpecialDate(Model model) {
 		List<SpecialDate> specialDateList = mainPageService.getAllSpecialDate();
 		
@@ -46,8 +53,7 @@ public class MainPageController {
 				LocalDate dDay_date = LocalDate.parse(sd.getSpecialDate_date(), formatter);
 				LocalDate today_date = LocalDate.now();
 				sd.setDateDisplayText("D"+DAYS.between(dDay_date, today_date));
-			}
-				
+			}	
 			}
 			else if(sd.getSpecialDate_type()==2) {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -56,7 +62,11 @@ public class MainPageController {
 		}
 		
 		model.addAttribute("specialDateList",specialDateList);
-		
 	}
+	
+	
+	
+	
+	
 	
 }
