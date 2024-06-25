@@ -16,4 +16,5 @@ public class SpecialDate {
 	private int member_no;
 	private String dateDisplayText; // Dday는 D-날짜 , 기념일은 날짜 형식으로
 
+
 }

@@ -38,5 +38,6 @@ public class IndexController {
 	public String specialDate() {
 		return "specialDate";
 	}
+
 }
 

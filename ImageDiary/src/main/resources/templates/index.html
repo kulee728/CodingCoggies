@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
@@ -17,5 +18,19 @@
 	<a href="/specialDate">기념일 만들기 페이지로 이동</a><br>
 
 	<a href="/TeachersGift">선생님의 메인 화면 선물로 이동</a><br>
+
+	
+	<a href="/logIn">로그인으로 이동</a><br>
+	
+	
+    <div th:if="${session.loginSession != null}">
+        <p><span th:text="${session.loginSession.member_diaryname}"></span>의 일기</p>
+        <a href="/logout">로그아웃</a>
+    </div>
+    
+	
+
+	
+
 </body>
 </html>

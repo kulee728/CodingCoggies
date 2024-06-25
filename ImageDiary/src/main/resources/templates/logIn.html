@@ -1,32 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <title>메인화면</title>
-<link rel="stylesheet" href="loginStyles.css">
+<link rel="stylesheet" href="/css/logInStyles.css">
 
 
 </head>
 
 <body>
+
+    
 	<div class="container">
-		<form class="login-form">
+		<form action="/login-form" method="post" class="login-form">
 			<div class="form-group">
-				<label>USERNAME : &nbsp; </label>
-				<input type="text" class="input-text"><br>
+				<label>USERNAME : &nbsp; </label> 
+				<input type="text" class="input-text" th:field="${m.member_id}"><br>
 			</div>
-			
+
 			<div class="form-group">
-				<label>PASSWORD : &nbsp; </label>
-				<input type="text" class="input-text"><br>
+				<label>PASSWORD : &nbsp; </label> <input type="text"
+					class="input-text" th:field="${m.member_pw}"><br>
 			</div>
-	
-				<button type="submit" class="logInButton" onclick="logIn">LOG&nbsp;&nbsp;&nbsp;IN</button>
-				<button type="button" class="signUpButton" onclick="signUp">SIGN UP</button>
-			
+
+			<button type="submit" class="logInButton">LOG&nbsp;&nbsp;&nbsp;IN</button>
+			<button type="button" class="signUpButton" onclick="location.href='/signUp'">SIGN UP</button>
+
 		</form>
+
+
+		<div th:if="${error}">
+			<p th:text="${error}" style="color: red;"></p>
+		</div>
+
 	</div>
 
-
 </body>
-
