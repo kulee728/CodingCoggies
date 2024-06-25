@@ -17,10 +17,11 @@
 			<input type="text" name="title_text" class="form-control"
 				aria-label="Sizing example input"
 				aria-describedby="inputGroup-sizing-lg" placeholder="제목을 입력하세요"
-				id="title">
+				id="title"
+				th:field=${}>
 		</div>
 		<div class="my-checkbox">
-			<div class="weather">
+			<div class="weather" th:field=${}>
 				<p style="text-align: center">
 					오늘의 날씨
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -38,7 +39,7 @@
 					for="scales">비</label> <input type="checkbox" id="snowy"
 					name="snowy"> <label for="scales">눈</label>
 			</div>
-			<div class="feeling">
+			<div class="feeling" th:field=${}>
 				<p style="text-align: center">
 					오늘의 기분
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -59,7 +60,7 @@
 		</div>
 		<div class="col-1">
 			<input type="file" id="사진선택" accept="image/*"
-				multiple>
+				multiple th:field=${}>
 			<!--multiple 다중선택-->
 			<br><br>
 		</div>
@@ -80,7 +81,7 @@
 		</div>
 </form>
 		
-		<textarea cols="100" rows="20" id="contents" placeholder="일기를 작성하세요"></textarea>
+		<textarea cols="100" rows="20" id="contents" placeholder="일기를 작성하세요" th:field=${}></textarea>
 
 
 		<button type="submit" class="btn btn-secondary btn-lg submit"
