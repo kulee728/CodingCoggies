@@ -139,16 +139,15 @@
 </head>
 <body>
     <div class="calendar-container">
-        <div class="header" id="calendar-header">Gunhee's: July 2024</div>
+        <div class="header" id="calendar-header" th:text="${mainHeaderText}"></div> <!-- mainHeaderText 구하기 -->
         <div class="sidebar">
             <div class="today-info" id="today-info">오늘은</div>  	
 
-     
+     <!-- controller 현재날짜 ㄱ -->
             <div class="legend" >
                 <div class="legend-item" th:each="sd : ${specialDateList}">
                     <span th:style="'background-color:' + ${sd.specialDate_color}"></span>
-                    <th:block th:text="${sd.dateDisplayText} +' '"></th:block>
-                    <th:block th:text="${sd.specialDate_name}"></th:block>
+                    <th:block th:text="${sd.dateDisplayText} +' '+${sd.specialDate_name}"></th:block>
                 </div>
             </div>
             <div class="buttons">
@@ -195,7 +194,7 @@
                 const dayDiv = document.createElement('div');
                 dayDiv.classList.add('day');
                 dayDiv.textContent = day;
-
+				
                 if (day === 1 || day === 2 || day === 3) {
                     dayDiv.classList.add('star');
                 }
