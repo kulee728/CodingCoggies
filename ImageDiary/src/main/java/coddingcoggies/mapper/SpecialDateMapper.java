@@ -1,10 +1,10 @@
-package com.coddingcoggies.mapper;
+package coddingcoggies.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.coddingcoggies.dto.SpecialDate;
+import coddingcoggies.dto.SpecialDate;
 @Mapper
 public interface SpecialDateMapper {
 
