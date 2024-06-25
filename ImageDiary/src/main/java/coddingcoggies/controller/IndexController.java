@@ -26,4 +26,21 @@ public class IndexController {
 	public String toSignUp() {
 		return "signUp";
 	}
+
+	@GetMapping("/TeachersGift")
+	public String TeachersGift() {
+		return "TeachersGift";
+	}
+	
+	@GetMapping("/specialDate")
+	public String specialDate() {
+		return "specialDate";
+	}
+	/*
+	@GetMapping("/logIn")
+	public String logIn() {
+		return "logIn";
+	}
+	*/
+
 }
