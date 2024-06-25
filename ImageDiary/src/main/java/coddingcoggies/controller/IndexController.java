@@ -26,11 +26,14 @@ public class IndexController {
 		return "signUp";
 	}
 
+/*
+ * MainPageController로 이양
 	@GetMapping("/TeachersGift")
 	public String TeachersGift() {
 		return "TeachersGift";
 	}
-	
+*/
+
 	@GetMapping("/specialDate")
 	public String specialDate() {
 		return "specialDate";
