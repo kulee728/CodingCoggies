@@ -2,6 +2,7 @@ package coddingcoggies.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import coddingcoggies.dto.DiaryLogin;
 import coddingcoggies.dto.SpecialDate;
 import coddingcoggies.service.MainPageService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -23,20 +26,30 @@ public class MainPageController {
 	
 	
 	
-	@GetMapping("/TeachersGift")
-	public String showMainContents(Model model) {
+	@GetMapping("/diaryMain")
+	public String showMainContents(Model model, HttpSession session) {
 		
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		}
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR); 
+		int month=cal.get(Calendar.MONTH)+1;
+	
+		
+		String todayHeader = year+"년 "+month+"월";
+		model.addAttribute("todayHeader",todayHeader);
 		//List<SpecialDate> specialDateList = mainPageService.getAllSpecialDate();
 		//log.info(specialDateList.toString());
 		//model.addAttribute("specialDateList",specialDateList);
 		
 		//model.addAttribute("mainHeaderText",dd)
 		//나중에는 세션으로 받아서 뿌려야 함
-		
-		
+
 		getAllSpecialDate(model);
 		//mainCalandar.specialDateAdded(model);
-		return "TeachersGift";
+		return "diaryMain";
 	}
 	
 	/*
