@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class CalanderDay {
 	private String yyyyMMdd;
+	private int dayNum;
 	private boolean diaryYN;
-	private boolean specialDayYN;
+	private boolean specialDateYN;
 }

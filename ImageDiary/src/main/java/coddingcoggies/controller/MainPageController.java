@@ -50,7 +50,7 @@ public class MainPageController {
 		String [] dayNameList = {"일","월","화","수","목","금","토"};
 		model.addAttribute("dayNameList",dayNameList);
 		
-		mainCalandarDayDrawer(year,month,session);//이달의 날짜,model,session 넘기고 조회
+		mainCalandarDayDrawer(model,session,year,month);//이달의 날짜,model,session 넘기고 조회
 		
 		
 		//달력 그리기 끝
@@ -61,9 +61,12 @@ public class MainPageController {
 		return "diaryMain";
 	}
 	
-	private void mainCalandarDayDrawer(int year, int month, HttpSession session) {
+	private void mainCalandarDayDrawer(Model model, HttpSession session, int year, int month ) {
 		
 		CalanderDay [] days = new CalanderDay[31]; //나중에 사이즈로 바꿔주자
+		
+		model.addAttribute(days)
+		
 		//if()
 	}
 

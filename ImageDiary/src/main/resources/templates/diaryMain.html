@@ -48,11 +48,12 @@
         		<div class="day" th:text="${dayName}" style="background-color:#000000;color:#ffffff">
         		</div>
         	</div> 
-        	
-        	<div class='day' th:text="${days}" th:text=>
-        	
+        	<div th:each="calDay: ${days}">
+	        	<div class='day' th:text="${calDay.dayNum}">
+	        		<th:block th:if="calDay.diaryYN == true"></th:block>
+	        		<th:block th:if="calDay.specialDateYN == true"></th:block>
+	        	</div>
         	</div>
-        	
         </div>
         
         <div class="image-container">
