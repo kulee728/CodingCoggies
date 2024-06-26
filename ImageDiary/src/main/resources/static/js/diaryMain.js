@@ -9,7 +9,7 @@
 
             //header.textContent = `Gunhee's: ${year} ${today.toLocaleString('default', { month: 'long' })}`;
             //todayInfo.textContent = `오늘은 ${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
-
+/*
             calendar.innerHTML = '';
 
             const firstDay = new Date(year, month, 1).getDay();
@@ -45,7 +45,7 @@
                 }
 
                 calendar.appendChild(dayDiv);
-            }
+            }*/
         }
 
         document.addEventListener('DOMContentLoaded', populateCalendar);

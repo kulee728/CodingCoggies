@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import coddingcoggies.dto.DiaryLogin;
 import coddingcoggies.dto.SpecialDate;
+import coddingcoggies.object.CalanderDay;
 import coddingcoggies.service.MainPageService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -46,8 +47,10 @@ public class MainPageController {
 		//헤더 끝
 		
 		//달력 그리기
-		String [] dayNameList = {"월","화","수","목","금","토","일"};
+		String [] dayNameList = {"일","월","화","수","목","금","토"};
 		model.addAttribute("dayNameList",dayNameList);
+		
+		mainCalandarDayDrawer(year,month,session);//이달의 날짜,model,session 넘기고 조회
 		
 		
 		//달력 그리기 끝
@@ -58,12 +61,18 @@ public class MainPageController {
 		return "diaryMain";
 	}
 	
+	private void mainCalandarDayDrawer(int year, int month, HttpSession session) {
+		
+		CalanderDay [] days = new CalanderDay[31]; //나중에 사이즈로 바꿔주자
+		//if()
+	}
+
 	/*
 	 기념일 영역
 	 1) 기념일 select * from specialDate > 목록 표시
 	 2) 기념일.displayText 에 대한 값 계산 (D-95, 혹은 2015-07-30)
 	 */
-	public void getAllSpecialDate(Model model) {
+	private void getAllSpecialDate(Model model) {
 		List<SpecialDate> specialDateList = mainPageService.getAllSpecialDate();
 		
 		for(SpecialDate sd : specialDateList) {

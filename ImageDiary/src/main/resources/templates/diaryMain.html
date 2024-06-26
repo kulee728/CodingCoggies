@@ -44,12 +44,12 @@
     </div>
     <!-- 달력 뿌려주기(날) -->
         <div class="calendar" id="calendar" >
-        	<div class='day' th:each="dayName: ${dayNameList}">
-        		<div class='day' style="background-color:#000000;color:#ffffff" th:text="${dayName}">
+        	<div th:each="dayName: ${dayNameList}">
+        		<div class="day" th:text="${dayName}" style="background-color:#000000;color:#ffffff">
         		</div>
         	</div> 
         	
-        	<div class='day' th:text="${dayNum}">
+        	<div class='day' th:text="${days}" th:text=>
         	
         	</div>
         	

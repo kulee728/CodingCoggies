@@ -90,9 +90,10 @@
             border: 1px solid #ddd;
             position: relative;
         }
+        /*
         .day:nth-child(1), .day:nth-child(2), .day:nth-child(3), .day:nth-child(4) {
             background-color: #000;
-        }
+        }*/
         .day.star::after {
             content: '⭐';
             font-size: 24px;
