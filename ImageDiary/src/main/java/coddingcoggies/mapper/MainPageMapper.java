@@ -9,6 +9,8 @@ import coddingcoggies.dto.SpecialDate;
 @Mapper
 public interface MainPageMapper {
 
-	List<SpecialDate> getAllSpecialDate();
+
+	List <Diary> getAllDiaryByMemberNo(int member_no);
+	List<SpecialDate> getAllSpecialDateByMemberNo(int member_no);
 	List <Diary> getAllDiaryByMemberNo(int member_no);
 }
