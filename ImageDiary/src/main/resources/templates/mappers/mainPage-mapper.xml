@@ -20,5 +20,16 @@
 		SELECT * FROM diary_specialDate
 		ORDER BY specialDate_type, specialDate_date
 	</select>
-
+	<!--  
+	<select id="getAllDiaryByMemberNo"
+		resultType="coddingcoggies.dto.Diary" parameterType="int">
+		SELECT * FROM diary 
+		WHERE member_no = #{member_no}
+	</select>
+	-->
+<!-- 
+	<select id="getMainCalanderInfo" resultType="coddingcoggies.dto.MainCalander">
+		SELECT * FROM 
+	</select>
+ -->
 </mapper>

@@ -1,36 +1,38 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>메인화면</title>
+<link rel="stylesheet" href="/css/logInStyles.css">
+
+
 </head>
+
 <body>
-	<h1>테스트 용 링크 모음</h1>
-	<a href="/diaryMain">diaryMain.html이동</a><br>
-	
-	<a href="/diaryView">diaryView.html이동</a><br>
-	
-	<a href="/diaryWrite">diaryWrite.html이동</a><br>
-	
-	<a href="/signUp">signUp.html이동</a><br>
-	
-	<a href="/specialDate">기념일 만들기 페이지로 이동</a><br>
 
-	<a href="/TeachersGift">선생님의 메인 화면 선물로 이동</a><br>
-
-	
-	<a href="/logIn">로그인으로 이동</a><br>
-	
-	
-    <div th:if="${session.loginSession != null}">
-        <p><span th:text="${session.loginSession.member_diaryname}"></span>의 일기</p>
-        <a href="/logout">로그아웃</a>
-    </div>
     
-	
+	<div class="container">
+		<form action="/login-form" method="post" class="login-form">
+			<div class="form-group">
+				<label>USERNAME : &nbsp; </label> 
+				<input type="text" class="input-text" th:field="${m.member_id}"><br>
+			</div>
 
-	
+			<div class="form-group">
+				<label>PASSWORD : &nbsp; </label> <input type="text"
+					class="input-text" th:field="${m.member_pw}"><br>
+			</div>
+
+			<button type="submit" class="logInButton">LOG&nbsp;&nbsp;&nbsp;IN</button>
+			<button type="button" class="signUpButton" onclick="location.href='/signUp'">SIGN UP</button>
+
+		</form>
+
+
+		<div th:if="${error}">
+			<p th:text="${error}" style="color: red;"></p>
+		</div>
+
+	</div>
 
 </body>
-</html>
