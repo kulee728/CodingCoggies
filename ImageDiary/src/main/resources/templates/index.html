@@ -30,7 +30,28 @@
     
 	
 
+<<<<<<< Updated upstream
 	
 
 </body>
 </html>
+=======
+			<div class="form-group">
+				<label>PASSWORD : &nbsp; </label> <input type="password"
+					class="input-text" th:field="${m.member_pw}"><br>
+			</div>
+
+			<button type="submit" class="logInButton">LOG&nbsp;&nbsp;&nbsp;IN</button>
+			<button type="button" class="signUpButton" th:onclick="location.href='/signUp'">SIGN UP</button>
+
+		</form>
+
+
+		<div th:if="${error}">
+			<p th:text="${error}" style="color: red;"></p>
+		</div>
+
+	</div>
+
+</body>
+>>>>>>> Stashed changes

@@ -20,11 +20,19 @@ public class IndexController {
 	public String toDiaryWrite() {
 		return "diaryWrite";
 	}
-	
+	/*
 	@GetMapping("/signUp")
 	public String toSignUp() {
 		return "signUp";
 	}
+<<<<<<< Updated upstream
+=======
+	*/
+	@GetMapping("/testLink")
+	public String toTestLink() {
+		return "testLink";
+	}
+>>>>>>> Stashed changes
 
 	@GetMapping("/TeachersGift")
 	public String TeachersGift() {
