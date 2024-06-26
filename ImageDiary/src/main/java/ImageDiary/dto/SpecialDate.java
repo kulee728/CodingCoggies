@@ -1,4 +1,4 @@
-package coddingcoggies.dto;
+package ImageDiary.dto;
 
 public class SpecialDate {
 	private int specialDate_id;

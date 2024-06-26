@@ -1,4 +1,4 @@
-package coddingcoggies.service;
+package ImageDiary.service;
 
 import java.util.List;
 
@@ -6,9 +6,11 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import coddingcoggies.dto.Diary;
-import coddingcoggies.mapper.DiaryMapper;
+import ImageDiary.dto.Diary;
+import ImageDiary.mapper.DiaryMapper;
+import lombok.extern.slf4j.Slf4j;
 @Service
+@Slf4j
 public class DiaryService {
 	
 	@Autowired
@@ -23,8 +25,19 @@ public class DiaryService {
 	*/
 	
 	//일기 작성
+	
 	public void insertDiary(Diary diary) {
 		diaryMapper.insertDiary(diary);	
+	}
+	
+	public void insertDiary(String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode) {
+		Diary diary = new Diary();
+		diary.setDiary_title(diary_title);
+		diary.setDiary_contents(diary_contents);
+		diary.setDiary_feelingCode(diary_feelingCode);
+		diary.setDiary_weatherCode(diary_weatherCode);
+		diaryMapper.insertDiary(diary);
+		log.info(diary.toString());
 	}
 	
 	//일기 수정

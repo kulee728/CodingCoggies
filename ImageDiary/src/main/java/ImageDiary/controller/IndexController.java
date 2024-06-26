@@ -1,10 +1,10 @@
-package coddingcoggies.controller;
+package ImageDiary.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import coddingcoggies.dto.Diary;
+import ImageDiary.dto.Diary;
 
 @Controller
 public class IndexController {
