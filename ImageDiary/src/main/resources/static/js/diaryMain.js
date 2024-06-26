@@ -1,78 +1,57 @@
-      document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
+       function populateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const todayInfo = document.getElementById('today-info');
+            const header = document.getElementById('calendar-header');
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = today.getMonth();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
-      height: 'parent',
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-      },
-      defaultView: 'dayGridMonth',
-      defaultDate: '2024-06-21',
-      navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events: [
-        {
-          title: '[일기제목]',
-          start: '2024-06-03',
-        },
-        {
-          title: 'Long Event',
-          start: '2026-06-07',
-          end: '2026-06-07'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-02-09T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-02-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2020-02-11',
-          end: '2020-02-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-02-12T10:30:00',
-          end: '2020-02-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2020-02-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-02-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2020-02-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2020-02-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2020-02-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2020-02-28'
+            //header.textContent = `Gunhee's: ${year} ${today.toLocaleString('default', { month: 'long' })}`;
+            //todayInfo.textContent = `오늘은 ${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
+/*
+            calendar.innerHTML = '';
+
+            const firstDay = new Date(year, month, 1).getDay();
+
+
+            for (let i = 0; i < firstDay; i++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.classList.add('day');
+                calendar.appendChild(dayDiv);
+            }
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.classList.add('day');
+                dayDiv.textContent = day;
+				
+                if (day === 1 || day === 2 || day === 3) {
+                    dayDiv.classList.add('star');
+                }
+                if (day === 5) {
+                    dayDiv.classList.add('heart');
+                }
+                if (day === 14) {
+                    dayDiv.innerHTML += '<br>Valentine\'s Day!';
+                }
+                if (day === 28) {
+                    dayDiv.innerHTML += '<br><span style="background-color: #99ff99;">우기생일</span>';
+                }
+                if (day === 29) {
+                    dayDiv.innerHTML += '<br><span style="background-color: #9999ff;">사수생일</span>';
+                }
+                if (day === 30) {
+                    dayDiv.innerHTML += '<br><span style="background-color: #ff9999;">거사생일</span>';
+                }
+
+                calendar.appendChild(dayDiv);
+            }*/
         }
-      ]
-    });
 
-<<<<<<< Updated upstream
+        document.addEventListener('DOMContentLoaded', populateCalendar);
+   /**
+ * 
+
     calendar.render();
   });
 /**
@@ -93,7 +72,6 @@ const months = [
   'December',
 ];
 * 
-=======
 function addDiaryIconToDay(id){
 	id.setAttribute
 }
@@ -101,5 +79,4 @@ function addDiaryIconToDay(id){
         document.addEventListener('DOMContentLoaded', populateCalendar);
    /**
  * 
->>>>>>> Stashed changes
  */

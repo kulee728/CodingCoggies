@@ -1,4 +1,3 @@
-
 body {
     background-color: #ebe5d4;
     display: flex;
@@ -6,43 +5,45 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-weight: bold;
 }
 
 .container {
     background-color: #bed59a;
-    padding: 80px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container .login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 }
 
-.container .Dday-form {
+.form-group {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin: 0 auto;
-
+    margin-bottom: 15px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    font-weight: bold;
 }
-
-.save-Btn {
-    background-color: #346a76;
+/*
+.form-group .btn {
+    background-color: #000;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    margin-left: auto;
+    
 }
-
-.save-Btn:hover {
-    background-color: #000000b8;
-}
-
-.delete-Btn {
+*/
+.logInButton  {
     background-color: #346a76;
     color: #fff;
     border: none;
@@ -51,11 +52,36 @@ body {
     cursor: pointer;
     font-size: 16px;
     margin-top: 20px;
+    font-weight: bold;
 }
 
-.delete-Btn:hover {
-    background-color: red;
+.signUpButton {
+    background-color: #346a76;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    font-weight: bold;
 }
+
+.signUpButton:hover {
+    background-color: #d53c3c;
+}
+
+.logInButton:hover {
+    background-color: #00000027;
+}
+
+
+
+
+
+
+
+
 
 footer{
     background-color: #BED59A;

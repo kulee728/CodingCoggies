@@ -8,5 +8,7 @@ import coddingcoggies.dto.SpecialDate;
 @Mapper
 public interface SpecialDateMapper {
 
+
 	List<SpecialDate> getAllSpecialDateByMemberNo(int member_no);
+
 }

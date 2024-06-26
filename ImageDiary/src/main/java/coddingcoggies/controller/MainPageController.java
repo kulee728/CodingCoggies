@@ -2,6 +2,7 @@ package coddingcoggies.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -11,15 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-<<<<<<< Updated upstream
-import coddingcoggies.dto.SpecialDate;
-=======
 import coddingcoggies.dto.Diary;
 import coddingcoggies.dto.DiaryLogin;
 import coddingcoggies.dto.SpecialDate;
 import coddingcoggies.object.CalendarDay;
->>>>>>> Stashed changes
+
 import coddingcoggies.service.MainPageService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -28,29 +27,25 @@ public class MainPageController {
 
 	@Autowired
 	private MainPageService mainPageService;
-<<<<<<< Updated upstream
+
 	
 	
-	
-	@GetMapping("/TeachersGift")
-	public String showMainContents(Model model) {
-=======
+
 		
 	@GetMapping("/diaryMain")
 	public String showMainContents(Model model, HttpSession session) {
->>>>>>> Stashed changes
-		
-		//List<SpecialDate> specialDateList = mainPageService.getAllSpecialDate();
-		//log.info(specialDateList.toString());
-		//model.addAttribute("specialDateList",specialDateList);
-		
-<<<<<<< Updated upstream
-		//model.addAttribute("mainHeaderText",dd)
-		//나중에는 세션으로 받아서 뿌려야 함
+		//getAllSpecialDate(model);
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		}
 		
 		
-		getAllSpecialDate(model);
-=======
+		Calendar cal = Calendar.getInstance(); 
+		int year = cal.get(Calendar.YEAR); 
+		int month = cal.get(Calendar.MONTH) + 1; 
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+	
 		//헤더
 		String todayHeader = year+"년 "+month+"월";
 		model.addAttribute("todayHeader",todayHeader);
@@ -73,13 +68,9 @@ public class MainPageController {
 		
 
 		mainPageGetAllSpecialDate(model,diaryLogin.getMember_no());
->>>>>>> Stashed changes
-		//mainCalandar.specialDateAdded(model);
-		return "TeachersGift";
+		return "diaryMain";
 	}
-	
-<<<<<<< Updated upstream
-=======
+
 	private void mainCalandarDayDrawer(Model model, HttpSession session, int year, int month
 			, List<Diary> diaryList,List<SpecialDate> specialList ) {
 		
@@ -128,19 +119,15 @@ public class MainPageController {
 
 	}
 
->>>>>>> Stashed changes
 	/*
 	 기념일 영역
 	 1) 기념일 select * from specialDate > 목록 표시
 	 2) 기념일.displayText 에 대한 값 계산 (D-95, 혹은 2015-07-30)
 	 */
-<<<<<<< Updated upstream
-	public void getAllSpecialDate(Model model) {
-		List<SpecialDate> specialDateList = mainPageService.getAllSpecialDate();
-=======
+
+
 	private void mainPageGetAllSpecialDate(Model model,int member_no) {
 		List<SpecialDate> specialDateList = mainPageService.getAllSpecialDateByMemberNo(member_no);
->>>>>>> Stashed changes
 		
 		for(SpecialDate sd : specialDateList) {
 			if(sd.getSpecialDate_type()==1){{

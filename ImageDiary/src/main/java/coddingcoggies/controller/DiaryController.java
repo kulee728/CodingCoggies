@@ -25,6 +25,7 @@ public class DiaryController {
 		return "diaryView";
 	}
 	
+
 	@GetMapping("/diaryView/{diary_id}") //0626 오후 5시 신우님 여기부터!
 	public String getAllDiary(Model model) {
 	    List<Diary> diaryView = diaryService.getAllDiary();
