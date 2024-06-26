@@ -15,9 +15,10 @@
 		<result column="member_no" property="member_no" />
 	</resultMap>
 
-	<select id="getAllSpecialDate"
-		resultType="coddingcoggies.dto.SpecialDate">
+	<select id="getAllSpecialDateByMemberNo"
+		resultType="coddingcoggies.dto.SpecialDate" parameterType="int">
 		SELECT * FROM diary_specialDate
+		WHERE member_no = #{member_no}
 		ORDER BY specialDate_type, specialDate_date
 	</select>
 <!-- 

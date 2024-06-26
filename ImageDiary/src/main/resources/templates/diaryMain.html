@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
+<<<<<<< Updated upstream
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -53,6 +54,17 @@ crossorigin="anonymous">
 
 
 
+=======
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Diary Main</title>
+<link rel="stylesheet" href="/css/diaryMain.css">
+<script type="text/javascript" src="/js/diaryMain.js"></script>
+
+<style>
+</style>
+>>>>>>> Stashed changes
 </head>
 
 
@@ -61,6 +73,7 @@ crossorigin="anonymous">
 
 
 <body>
+<<<<<<< Updated upstream
 	<header>
 	
 	<!-- 네비게이션 바 -->
@@ -92,5 +105,65 @@ crossorigin="anonymous">
 </p>
 </footer>
 	
+=======
+	<div class="calendar-container">
+		<div class="header" id="calendar-header"
+			th:text="${session.loginSession.member_diaryname}+ ' 일기장 ' + ${todayHeader}"></div>
+		<!-- mainHeaderText 구하기 -->
+
+		<div class="sidebar">
+			<div class="today-info" id="today-info" th:text="${todayInfo}"></div>
+
+			<!-- controller 현재날짜 ㄱ -->
+			<div class="legend">
+				<div class="legend-item" th:each="sd : ${specialDateList}">
+					<span th:style="'background-color:' + ${sd.specialDate_color}"></span>
+					<th:block
+						th:text="${sd.dateDisplayText} +' '+${sd.specialDate_name}"></th:block>
+				</div>
+			</div>
+			<div class="buttons">
+				<button>기념일 수정</button>
+				<button>기념일 제작</button>
+			</div>
+
+
+			<div class="home-key-icons" th:if="${session.loginSession != null}">
+				<a href="/diaryMain"><img src="/img/home-icon.png" alt="Home"></a>
+				<a href="/logout"><img src="/img/key-icon.png" alt="Key"></a>
+				<a href="/testLink">테스트 링크로 이동하기</a>
+			</div>
+
+
+
+		</div>
+	</div>
+	<!-- 달력 뿌려주기(날) -->
+	<div class="calendar" id="calendar">
+		<div th:each="dayName: ${dayNameList}">
+			<div class="day" th:text="${dayName}"
+				style="background-color: #000000; color: #ffffff"></div>
+		</div>
+		    <div th:each="calDay : ${mainCalendardays}" class="day">
+        <div th:text="${calDay.dayNum}"></div>
+        <th:block th:if="${calDay.diaryYN}">
+            <a href="@{'/diaryView/'+${diary_id}}"class="day-star"></a>
+        </th:block>
+			<th:block th:if="${calDay.specialDateYN}"></th:block>
+		</div>
+	</div>
+
+
+	<div class="image-container">
+		<img src="left-arrow.png" alt="Previous"> <img
+			src="character.png" alt="Character"> <img src="right-arrow.png"
+			alt="Next">
+	</div>
+
+	<script>
+		
+	</script>
+
+>>>>>>> Stashed changes
 </body>
 </html>

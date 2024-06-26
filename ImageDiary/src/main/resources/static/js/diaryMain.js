@@ -72,6 +72,7 @@
       ]
     });
 
+<<<<<<< Updated upstream
     calendar.render();
   });
 /**
@@ -92,4 +93,13 @@ const months = [
   'December',
 ];
 * 
+=======
+function addDiaryIconToDay(id){
+	id.setAttribute
+}
+
+        document.addEventListener('DOMContentLoaded', populateCalendar);
+   /**
+ * 
+>>>>>>> Stashed changes
  */
