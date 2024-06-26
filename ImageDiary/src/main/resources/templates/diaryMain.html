@@ -9,135 +9,7 @@
 	<script type="text/javascript" src="/js/diaryMain.js"></script>
     
     <style>
-        body {
-            background-color: #f9d0ca;
-            margin: 0;
-            padding: 0;
-        }
-        .calendar-container {
-            width: 90%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            text-align: center;
-            padding: 10px 0;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .sidebar {
-            float: right;
-            width: 200px;
-            margin-left: 20px;
-        }
-        .today-info {
-            text-align: left;
-            font-size: 16px;
-            padding: 10px;
-            background-color: white;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-        }
-        .legend {
-            background-color: white;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-top: 20px;
-        }
-        .legend .legend-item {
-            margin: 5px 0;
-        }
-        .legend-item span {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            margin-right: 5px;
-        }
-        .legend-item .d-150 {
-            background-color: #ff9999;
-        }
-        .legend-item .d-200 {
-            background-color: #99ff99;
-        }
-        .legend-item .d-47 {
-            background-color: #9999ff;
-        }
-        .calendar-nav {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-        }
-        .calendar-nav img {
-            width: 50px;
-            height: auto;
-        }
-        .buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-        .buttons button {
-            padding: 5px 10px;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            border: 2px solid #000;
-            border-radius: 10px;
-            overflow: hidden;
-            clear: right;
-        }
-        .day {
-            background-color: white;
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ddd;
-            position: relative;
-        }
-        .day:nth-child(1), .day:nth-child(2), .day:nth-child(3), .day:nth-child(4) {
-            background-color: #000;
-        }
-        .day.star::after {
-            content: '⭐';
-            font-size: 24px;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
-        .day.heart::after {
-            content: '❤️';
-            font-size: 24px;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
-        .home-key-icons {
-            display: flex;
-            justify-content: space-around;
-            background-color: white;
-            padding: 10px;
-            margin-top: 20px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-        }
-        .home-key-icons img {
-            width: 40px;
-            height: auto;
-        }
-        .image-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .image-container img {
-            width: 80px;
-            height: auto;
-        }
+
     </style>
 </head>
 <body>
@@ -145,7 +17,7 @@
         <div class="header" id="calendar-header" th:text="${session.loginSession.member_diaryname}+ ' 일기장 ' + ${todayHeader}"></div> <!-- mainHeaderText 구하기 -->
       
         <div class="sidebar">
-            <div class="today-info" id="today-info">오늘은</div>  	
+            <div class="today-info" id="today-info" th:text="${todayInfo}"></div>  	
 
      <!-- controller 현재날짜 ㄱ -->
             <div class="legend" >
@@ -168,10 +40,21 @@
 
         
 
+    	</div>
     </div>
+    <!-- 달력 뿌려주기(날) -->
+        <div class="calendar" id="calendar" >
+        	<div class='day' th:each="dayName: ${dayNameList}">
+        		<div class='day' style="background-color:#000000;color:#ffffff" th:text="${dayName}">
+        		</div>
+        	</div> 
+        	
+        	<div class='day' th:text="${dayNum}">
+        	
+        	</div>
+        	
         </div>
-        <div class="calendar" id="calendar">
-        </div>
+        
         <div class="image-container">
             <img src="left-arrow.png" alt="Previous">
             <img src="character.png" alt="Character">
@@ -179,58 +62,7 @@
         </div>
 
     <script>
-        function populateCalendar() {
-            const calendar = document.getElementById('calendar');
-            const todayInfo = document.getElementById('today-info');
-            const header = document.getElementById('calendar-header');
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = today.getMonth();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-            //header.textContent = `Gunhee's: ${year} ${today.toLocaleString('default', { month: 'long' })}`;
-            todayInfo.textContent = `오늘은 ${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
-
-            calendar.innerHTML = '';
-
-            const firstDay = new Date(year, month, 1).getDay();
-
-            for (let i = 0; i < firstDay; i++) {
-                const dayDiv = document.createElement('div');
-                dayDiv.classList.add('day');
-                calendar.appendChild(dayDiv);
-            }
-//추후 json으로 변경
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayDiv = document.createElement('div');
-                dayDiv.classList.add('day');
-                dayDiv.textContent = day;
-				
-                if (day === 1 || day === 2 || day === 3) {
-                    dayDiv.classList.add('star');
-                }
-                if (day === 5) {
-                    dayDiv.classList.add('heart');
-                }
-                if (day === 14) {
-                    dayDiv.innerHTML += '<br>Valentine\'s Day!';
-                }
-                if (day === 28) {
-                    dayDiv.innerHTML += '<br><span style="background-color: #99ff99;">우기생일</span>';
-                }
-                if (day === 29) {
-                    dayDiv.innerHTML += '<br><span style="background-color: #9999ff;">사수생일</span>';
-                }
-                if (day === 30) {
-                    dayDiv.innerHTML += '<br><span style="background-color: #ff9999;">거사생일</span>';
-                }
-
-                calendar.appendChild(dayDiv);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', populateCalendar);
-    </script>
+  </script>
     
 </body>
 </html>

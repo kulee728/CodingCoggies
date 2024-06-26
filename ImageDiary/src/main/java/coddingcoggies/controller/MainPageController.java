@@ -36,16 +36,22 @@ public class MainPageController {
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR); 
 		int month=cal.get(Calendar.MONTH)+1;
-	
+		int day = cal.get(Calendar.DATE);
 		
+		//헤더
 		String todayHeader = year+"년 "+month+"월";
 		model.addAttribute("todayHeader",todayHeader);
-		//List<SpecialDate> specialDateList = mainPageService.getAllSpecialDate();
-		//log.info(specialDateList.toString());
-		//model.addAttribute("specialDateList",specialDateList);
+		model.addAttribute("todayInfo",
+				"오늘은 "+year+"-"+String.format("%02d",month)+"-"+String.format("0%2d",day));
+		//헤더 끝
 		
-		//model.addAttribute("mainHeaderText",dd)
-		//나중에는 세션으로 받아서 뿌려야 함
+		//달력 그리기
+		String [] dayNameList = {"월","화","수","목","금","토","일"};
+		model.addAttribute("dayNameList",dayNameList);
+		
+		
+		//달력 그리기 끝
+		
 
 		getAllSpecialDate(model);
 		//mainCalandar.specialDateAdded(model);
