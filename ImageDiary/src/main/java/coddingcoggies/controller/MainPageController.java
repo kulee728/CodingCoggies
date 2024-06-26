@@ -12,12 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
-import coddingcoggies.dto.SpecialDate;
 import coddingcoggies.dto.Diary;
 import coddingcoggies.dto.DiaryLogin;
 import coddingcoggies.dto.SpecialDate;
 import coddingcoggies.object.CalendarDay;
+
 import coddingcoggies.service.MainPageService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -31,33 +30,22 @@ public class MainPageController {
 
 	
 	
-	
+
+		
 	@GetMapping("/diaryMain")
 	public String showMainContents(Model model, HttpSession session) {
-		
+		//getAllSpecialDate(model);
 		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
 		if(diaryLogin==null) {
 			return "redirect:/";
 		}
-		Calendar cal = Calendar.getInstance();
+		
+		
+		Calendar cal = Calendar.getInstance(); 
 		int year = cal.get(Calendar.YEAR); 
-		int month=cal.get(Calendar.MONTH)+1;
-		int day = cal.get(Calendar.DATE);
-		
-		//헤더
-		String todayHeader = year+"년 "+month+"월";
-		model.addAttribute("todayHeader",todayHeader);
-		model.addAttribute("todayInfo",
-				"오늘은 "+year+"-"+String.format("%02d",month)+"-"+String.format("0%2d",day));
-		//헤더 끝
-		
-		//달력 그리기
-		String [] dayNameList = {"일","월","화","수","목","금","토"};
-		model.addAttribute("dayNameList",dayNameList);
-		//달력 그리기 끝
-		
-
-		getAllSpecialDate(model);
+		int month = cal.get(Calendar.MONTH) + 1; 
+		int day = cal.get(Calendar.DAY_OF_MONTH);
+	
 		//헤더
 		String todayHeader = year+"년 "+month+"월";
 		model.addAttribute("todayHeader",todayHeader);
@@ -80,11 +68,8 @@ public class MainPageController {
 		
 
 		mainPageGetAllSpecialDate(model,diaryLogin.getMember_no());
-
-		//mainCalandar.specialDateAdded(model);
 		return "diaryMain";
 	}
-	
 
 	private void mainCalandarDayDrawer(Model model, HttpSession session, int year, int month
 			, List<Diary> diaryList,List<SpecialDate> specialList ) {
@@ -140,7 +125,7 @@ public class MainPageController {
 	 2) 기념일.displayText 에 대한 값 계산 (D-95, 혹은 2015-07-30)
 	 */
 
-	public void getAllSpecialDate(Model model) {
+
 	private void mainPageGetAllSpecialDate(Model model,int member_no) {
 		List<SpecialDate> specialDateList = mainPageService.getAllSpecialDateByMemberNo(member_no);
 		
