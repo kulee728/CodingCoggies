@@ -94,6 +94,11 @@
         .day:nth-child(1), .day:nth-child(2), .day:nth-child(3), .day:nth-child(4) {
             background-color: #000;
         }*/
+        a.noDiaryCalDay{
+            color: #006b6c;
+    		text-decoration: none;
+    		font-weight:bold;
+        }
         .day-star::after {
             content: '⭐';
             font-size: 24px;

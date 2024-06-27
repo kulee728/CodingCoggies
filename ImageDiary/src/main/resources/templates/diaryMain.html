@@ -27,7 +27,7 @@
 		<!-- mainHeaderText 구하기 -->
 
 		<div class="sidebar">
-			<div class="today-info" id="today-info" th:text="${todayInfo}"></div>
+			<div class="today-info" id="today-info" th:text="'오늘은 '+${todayInfo}"></div>
 
 			<!-- controller 현재날짜 ㄱ -->
 			<div class="legend">
@@ -60,10 +60,19 @@
 				style="background-color: #000000; color: #ffffff"></div>
 		</div>
 		    <div th:each="calDay : ${mainCalendardays}" class="day">
-        <div th:text="${calDay.dayNum}"></div>
-        <th:block th:if="${calDay.diaryYN}">
-            <a href="@{'/diaryView/'+${diary_id}}"class="day-star"></a>
-        </th:block>
+       <!--   <a th:href="@{'/diaryView/'+${calDay.diary_id}}" th:text="${calDay.dayNum}" -->
+       <a th:href="@{${calDay.diaryYN}==true? '/diaryView/'+ ${calDay.diary_id} : '/diaryWrite/'+
+       ${session.loginSession.member_id}+'/'+${todayInfo}}"   
+       th:text="${calDay.dayNum}"
+        th:classappend="${calDay.diaryYN==true? 'day-star' : 'noDiaryCalDay'}"></a>
+        
+        
+        <!--<th:block th:if="${calDay.diaryYN}">
+              <}"class="day-star"></a>-->
+              <th:block >
+              
+              </th:block>
+        	
 			<th:block th:if="${calDay.specialDateYN}"></th:block>
 		</div>
 	</div>
