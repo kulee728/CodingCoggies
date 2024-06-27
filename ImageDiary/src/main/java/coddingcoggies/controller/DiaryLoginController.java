@@ -1,5 +1,4 @@
 package coddingcoggies.controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +16,10 @@ public class DiaryLoginController {
 	@Autowired
 	private DiaryLoginService diaryLoginService;
 	
-	@GetMapping("/logIn")
+	@GetMapping("/")
 	public String showLoginForm(Model model) {
 		model.addAttribute("m", new DiaryLogin());
-		return "logIn";
+		return "index";
 	}
 	
 	@PostMapping("/login-form")
@@ -32,11 +31,11 @@ public class DiaryLoginController {
 		System.out.println("login info : " + diaryLogin);
 		if(diaryLogin != null) {
 			session.setAttribute("loginSession", diaryLogin);
-			return "redirect:/"; //성공 시 인덱스페이지로 리다이렉트
+			return "redirect:/diaryMain"; //성공 시 인덱스페이지로 리다이렉트 >> index가 아닌 diaryMain으로 이동 
 		} else {
 			model.addAttribute("error", "일치하는 계정정보가 없습니다.");
 			model.addAttribute("m", new DiaryLogin());
-			return "login";
+			return "redirect:/";
 		}
 	}
 	
