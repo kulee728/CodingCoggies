@@ -1,6 +1,6 @@
-package ImageDiary.dto;
+package coddingcoggies.dto;
 
-import ImageDiary.object.CalanderDay;
+import coddingcoggies.object.CalanderDay;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

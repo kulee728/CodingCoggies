@@ -1,4 +1,4 @@
-package ImageDiary.controller;
+package coddingcoggies.controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ImageDiary.dto.Diary;
-import ImageDiary.service.DiaryService;
+import coddingcoggies.dto.Diary;
+import coddingcoggies.service.DiaryService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -20,6 +20,13 @@ import lombok.extern.slf4j.Slf4j;
 public class DiaryController {
 	@Autowired
 	private DiaryService diaryService;
+	
+	@GetMapping("/diaryWrite")
+	public String toDiaryWrite(Model model) {
+		model.addAttribute("diary", new Diary()); //get = 가져오다. 다이어리 객체에 작성된 빈 공간을
+		return "diaryWrite";
+	}
+	
 	/*
 	@PostMapping("/diaryWrite") //diary/diaryWrite
 	public String insertDiary(Diary diary, Model model) {
@@ -28,8 +35,7 @@ public class DiaryController {
 		model.addAttribute("msg", "오늘의 일기가 등록되었습니다.");
 		return "diaryView";
 	}
-	*/
-	
+		*/
 	@PostMapping("/diaryWrite")
 	public String insertDiary(
 			@RequestParam("diary_title") String diary_title,

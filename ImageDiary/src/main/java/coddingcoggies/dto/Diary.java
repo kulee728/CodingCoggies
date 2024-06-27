@@ -1,4 +1,4 @@
-package ImageDiary.dto;
+package coddingcoggies.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

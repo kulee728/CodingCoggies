@@ -1,11 +1,11 @@
-package ImageDiary.controller;
+package coddingcoggies.controller;
 
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import ImageDiary.dto.Diary;
+import coddingcoggies.dto.Diary;
 
 
 @Controller

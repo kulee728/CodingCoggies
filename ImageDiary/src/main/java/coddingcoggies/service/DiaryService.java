@@ -1,4 +1,4 @@
-package ImageDiary.service;
+package coddingcoggies.service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ImageDiary.dto.Diary;
-import ImageDiary.mapper.DiaryMapper;
+import coddingcoggies.dto.Diary;
+import coddingcoggies.mapper.DiaryMapper;
 import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
@@ -36,6 +36,7 @@ public class DiaryService {
 		diary.setDiary_contents(diary_contents);
 		diary.setDiary_feelingCode(diary_feelingCode);
 		diary.setDiary_weatherCode(diary_weatherCode);
+		diary.setDiary_fileurl("/images/");
 		diaryMapper.insertDiary(diary);
 		log.info(diary.toString());
 	}

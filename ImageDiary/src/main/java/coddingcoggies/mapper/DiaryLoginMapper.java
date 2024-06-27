@@ -1,10 +1,9 @@
-package ImageDiary.mapper;
+package coddingcoggies.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-
-import ImageDiary.dto.DiaryLogin;
+import coddingcoggies.dto.DiaryLogin;
 
 @Mapper
 public interface DiaryLoginMapper {

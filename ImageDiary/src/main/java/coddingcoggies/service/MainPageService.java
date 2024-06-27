@@ -1,13 +1,12 @@
-package ImageDiary.service;
+package coddingcoggies.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ImageDiary.dto.SpecialDate;
-import ImageDiary.mapper.MainPageMapper;
-
+import coddingcoggies.dto.SpecialDate;
+import coddingcoggies.mapper.MainPageMapper;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

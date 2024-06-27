@@ -1,11 +1,11 @@
-package ImageDiary.mapper;
+package coddingcoggies.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import ImageDiary.dto.Diary;
+import coddingcoggies.dto.Diary;
 
 @Mapper
 public interface DiaryMapper {

@@ -1,11 +1,10 @@
-package ImageDiary.service;
+package coddingcoggies.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import ImageDiary.dto.DiaryLogin;
-import ImageDiary.mapper.DiaryLoginMapper;
+import coddingcoggies.dto.DiaryLogin;
+import coddingcoggies.mapper.DiaryLoginMapper;
 
 @Service
 public class DiaryLoginService {

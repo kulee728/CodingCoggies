@@ -1,4 +1,4 @@
-package ImageDiary.controller;
+package coddingcoggies.controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -10,11 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import ImageDiary.dto.DiaryLogin;
-import ImageDiary.dto.SpecialDate;
-import ImageDiary.object.CalanderDay;
-import ImageDiary.service.MainPageService;
-
+import coddingcoggies.object.CalanderDay;
+import coddingcoggies.dto.DiaryLogin;
+import coddingcoggies.dto.SpecialDate;
+import coddingcoggies.service.MainPageService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 

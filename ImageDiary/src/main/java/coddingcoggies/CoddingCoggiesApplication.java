@@ -1,4 +1,4 @@
-package ImageDiary;
+package coddingcoggies;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
