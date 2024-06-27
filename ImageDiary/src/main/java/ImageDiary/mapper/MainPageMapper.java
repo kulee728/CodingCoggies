@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import ImageDiary.dto.Diary;
 import ImageDiary.dto.SpecialDate;
+
 @Mapper
 public interface MainPageMapper {
 

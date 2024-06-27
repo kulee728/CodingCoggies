@@ -1,19 +1,19 @@
 package ImageDiary.controller;
 
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import ImageDiary.dto.Diary;
 
+
 @Controller
 public class IndexController {
 
-	@GetMapping("/diaryMain")
-	public String toDiaryMain() {
-		return "diaryMain";
-	}
+
 	
+
 	
 	@GetMapping("/diaryView")
 	public String toDiaryView() {
@@ -29,18 +29,16 @@ public class IndexController {
 	public String toSignUp() {
 		return "signUp";
 	}
-
-/*
- * MainPageController로 이양
-	@GetMapping("/TeachersGift")
-	public String TeachersGift() {
-		return "TeachersGift";
+	
+	@GetMapping("/testLink")
+	public String toTestLink() {
+		return "testLink";
 	}
-*/
 
 	@GetMapping("/specialDate")
 	public String specialDate() {
 		return "specialDate";
 	}
+
 }
 

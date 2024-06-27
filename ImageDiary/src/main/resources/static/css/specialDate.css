@@ -1,0 +1,63 @@
+
+body {
+    background-color: #ebe5d4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-weight: bold;
+}
+
+.container {
+    background-color: #bed59a;
+    padding: 80px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.container .Dday-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+
+}
+
+.save-Btn {
+    background-color: #346a76;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.save-Btn:hover {
+    background-color: #000000b8;
+}
+
+.delete-Btn {
+    background-color: #346a76;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.delete-Btn:hover {
+    background-color: red;
+}
+
+footer{
+    background-color: #BED59A;
+    color: darygray;
+    }

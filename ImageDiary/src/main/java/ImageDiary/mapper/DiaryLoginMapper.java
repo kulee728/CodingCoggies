@@ -3,6 +3,7 @@ package ImageDiary.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+
 import ImageDiary.dto.DiaryLogin;
 
 @Mapper

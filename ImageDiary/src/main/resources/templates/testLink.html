@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>testPage</title>
+</head>
+<body>
+	<h1>테스트 용 링크 모음</h1>
+	<a href="/diaryMain">diaryMain.html이동</a><br>
+	
+	<a href="/diaryView">diaryView.html이동</a><br>
+	
+	<a href="/diaryWrite">diaryWrite.html이동</a><br>
+	
+	<a href="/signUp">signUp.html이동</a><br>
+	
+	<a href="/specialDate">기념일 만들기 페이지로 이동</a><br>
+
+	<a href="/logIn">로그인으로 이동</a><br>
+	
+    <div th:if="${session.loginSession != null}">
+        <p><span th:text="${session.loginSession.member_diaryname}"></span>의 일기</p>
+        <a href="/logout">로그아웃</a>
+    </div>
+    
+	
+
+	
+
+</body>
+</html>
