@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import coddingcoggies.dto.Diary;
 import coddingcoggies.dto.DiaryLogin;
 import coddingcoggies.dto.SpecialDate;
-import coddingcoggies.object.CalendarDay;
+import coddingcoggies.object.CalanderDay;
 import coddingcoggies.service.MainPageService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +43,9 @@ public class MainPageController {
 		String todayHeader = year+"년 "+month+"월";
 		model.addAttribute("todayHeader",todayHeader);
 		model.addAttribute("todayInfo",
-				"오늘은 "+year+"-"+String.format("%02d",month)+"-"+String.format("%02d",day));
+				year+"-"+String.format("%02d",month)+"-"+String.format("%02d",day));
+		model.addAttribute("todayYYYYMMDD",
+				year+String.format("%02d",month)+String.format("%02d",day));
 		//헤더 끝
 		
 
@@ -66,7 +68,8 @@ public class MainPageController {
 
 	private void mainCalandarDayDrawer(Model model, HttpSession session, int year, int month
 			, List<Diary> diaryList,List<SpecialDate> specialList ) {
-		
+
+
 		
 		Calendar cal = Calendar.getInstance(); //이번달 첫 날 구하기
 		cal.set(Calendar.YEAR, year);
@@ -74,10 +77,10 @@ public class MainPageController {
 		
 		//cal.set(Calendar.DAY_OF_MONTH,1);
 		int dateStartPos = cal.get(Calendar.DAY_OF_WEEK);
-		CalendarDay [] days = new CalendarDay[42]; //나중에 사이즈로 바꿔주자
+		CalanderDay [] days = new CalanderDay[42]; //나중에 사이즈로 바꿔주자
 		int dayNum=1; //1부터 최대 31까지 할당되는 값
 		for(int i=0;i<days.length;i++) {
-			days[i] = new CalendarDay();
+			days[i] = new CalanderDay();
 			//첫 날의 요일위치.토요일은 6이다. log.info("dateStartPos : "+dateStartPos);
 			if(i>=dateStartPos && dayNum<cal.getActualMaximum(Calendar.DAY_OF_MONTH)) { //0이면 일요일부터 시작하는 달, days[0]일요일 days[6]금요일 고정
 				String yyyyMMdd = String.valueOf(year) 
