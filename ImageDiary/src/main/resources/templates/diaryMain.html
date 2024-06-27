@@ -61,10 +61,11 @@
 		</div>
 		    <div th:each="calDay : ${mainCalendardays}" class="day">
        <!--   <a th:href="@{'/diaryView/'+${calDay.diary_id}}" th:text="${calDay.dayNum}" -->
-       <a th:href="@{${calDay.diaryYN}==true? '/diaryView/'+ ${calDay.diary_id} : '/diaryWrite/'+
-       ${session.loginSession.member_id}+'/'+${todayInfo}}"   
+       <a class="calDay" th:href="@{${calDay.diaryYN}==true? '/diaryView/'+ ${calDay.diary_id} : '/diaryWrite/'+
+       ${session.loginSession.member_no}+'/'+${todayYYYYMMDD}}"   
        th:text="${calDay.dayNum}"
-        th:classappend="${calDay.diaryYN==true? 'day-star' : 'noDiaryCalDay'}"></a>
+       th:classappend="${calDay.diaryYN==true? 'day-star' : 'noDiaryCalDay'}">
+       </a>
         
         
         <!--<th:block th:if="${calDay.diaryYN}">

@@ -44,6 +44,8 @@ public class MainPageController {
 		model.addAttribute("todayHeader",todayHeader);
 		model.addAttribute("todayInfo",
 				year+"-"+String.format("%02d",month)+"-"+String.format("%02d",day));
+		model.addAttribute("todayYYYYMMDD",
+				year+String.format("%02d",month)+String.format("%02d",day));
 		//헤더 끝
 		
 

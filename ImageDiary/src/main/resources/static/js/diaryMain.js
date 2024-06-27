@@ -6,7 +6,22 @@
             const year = today.getFullYear();
             const month = today.getMonth();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
-
+			const todayDayNum = today.getDate();
+			
+			const calDays = document.getElementsByClassName("calDay");
+			for(let i=0;i<calDays.length;i++){
+				console.log("calDays[i] : "+calDays[i].textContent);
+				
+					
+				if(calDays[i].textContent==todayDayNum){
+					
+					calDays[i].classList.add('day-heart');
+					console.log("todayNum : "+todayDayNum);
+				}
+				
+			}
+			
+			
             //header.textContent = `Gunhee's: ${year} ${today.toLocaleString('default', { month: 'long' })}`;
             //todayInfo.textContent = `오늘은 ${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
 /*
@@ -26,7 +41,7 @@
                 dayDiv.textContent = day;
 				
                 if (day === 1 || day === 2 || day === 3) {
-                    dayDiv.classList.add('star');
+                    dayDiv.classList.add('today');
                 }
                 if (day === 5) {
                     dayDiv.classList.add('heart');
