@@ -14,12 +14,12 @@
 
             const firstDay = new Date(year, month, 1).getDay();
 
+
             for (let i = 0; i < firstDay; i++) {
                 const dayDiv = document.createElement('div');
                 dayDiv.classList.add('day');
                 calendar.appendChild(dayDiv);
             }
-//추후 json으로 변경
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayDiv = document.createElement('div');
                 dayDiv.classList.add('day');
@@ -47,6 +47,34 @@
                 calendar.appendChild(dayDiv);
             }*/
         }
+
+        document.addEventListener('DOMContentLoaded', populateCalendar);
+   /**
+ * 
+
+    calendar.render();
+  });
+/**
+ 
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+* 
+function addDiaryIconToDay(id){
+	id.setAttribute
+}
 
         document.addEventListener('DOMContentLoaded', populateCalendar);
    /**
