@@ -12,7 +12,8 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body style="background-color: #F0F2E1">
-	<form th:action="@{/diary/diaryWrite}" method="post" th:object="${diary}">
+	<form th:action="@{/diary/diaryWrite}" method="post"
+		th:object="${diary}">
 		<div class="container">
 			<div class="input-group input-group-lg">
 				<input type="text" name="title_text" class="form-control"
@@ -21,7 +22,7 @@
 					id="title" th:field="*{diary_title}" required="required">
 			</div>
 			<div class="my-checkbox">
-				<div class="weather" th:field="*{diary_feelingCode}">
+				<div class="weather" th:field="*{diary_weatherCode}">
 					<p style="text-align: center">
 						오늘의 날씨
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -32,14 +33,16 @@
 								d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
 			</svg>
 					</p>
-					<input type="checkbox" id="clear" name="clear" value="1"> <label
-						for="scales">맑음</label> <input type="checkbox" id="cloudy"
-						name="cloudy" value="2"> <label for="scales">흐림</label> <input
-						type="checkbox" id="rainy" name="rainy" value="3"> <label
-						for="scales">비</label> <input type="checkbox" id="snowy"
-						name="snowy" value="4"> <label for="scales">눈</label>
+					<input type="radio" id="clear" name="weatherCode" value="1">
+					<label for="clear">맑음</label> 
+					<input type="radio" id="cloudy" name="weatherCode" value="2"> 
+					<label for="cloudy">흐림</label>
+					<input type="radio" id="rainy" name="weatherCode" value="3">
+					<label for="rainy">비</label> 
+					<input type="radio" id="snowy" name="weatherCode" value="4"> 
+					<label for="snowy">눈</label>
 				</div>
-				<div class="feeling" th:field="*{diary_weatherCode}">
+				<div class="feeling" th:field="*{diary_feelingCode}">
 					<p style="text-align: center">
 						오늘의 기분
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -50,20 +53,21 @@
 								d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m0-1A7 7 0 1 1 8 1a7 7 0 0 1 0 14" />
 			</svg>
 					</p>
-					<input type="checkbox" id="good" name="good" value="1"> <label
-						for="scales">좋음</label> <input type="checkbox" id="soso"
-						name="soso" value="2"> <label for="scales">보통</label> <input
-						type="checkbox" id="sad" name="sad" value="3"> <label
-						for="scales">슬픔</label> <input type="checkbox" id="angry"
-						name="angry" value="4"> <label for="scales">화남</label>
+					<input type="radio" id="good" name="feelingCode" value="1"> 
+					<label for="scales">좋음</label> 
+					<input type="radio" id="soso" name="feelingCode" value="2"> 
+					<label for="scales">보통</label> 
+					<input type="radio" id="sad" name="feelingCode" value="3"> 
+					<label for="scales">슬픔</label> 
+					<input type="radio" id="angry" name="feelingCode" value="4"> 
+					<label for="scales">화남</label>
 				</div>
 			</div>
 			<div class="col-1">
 				<input type="file" id="사진선택" accept="image/*" multiple
 					th:field="*{diary_fileurl}">
 				<!--multiple 다중선택-->
-				<br>
-				<br>
+				<br> <br>
 			</div>
 			<div class="col-1">
 				<img id="이미지1번" src="#" class="d-none img-fluid">

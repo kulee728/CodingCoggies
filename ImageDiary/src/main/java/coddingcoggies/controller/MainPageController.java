@@ -1,5 +1,4 @@
 package coddingcoggies.controller;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -11,12 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import coddingcoggies.dto.Diary;
 import coddingcoggies.dto.DiaryLogin;
 import coddingcoggies.dto.SpecialDate;
 import coddingcoggies.object.CalendarDay;
-
 import coddingcoggies.service.MainPageService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -28,10 +25,6 @@ public class MainPageController {
 	@Autowired
 	private MainPageService mainPageService;
 
-	
-	
-
-		
 	@GetMapping("/diaryMain")
 	public String showMainContents(Model model, HttpSession session) {
 		//getAllSpecialDate(model);
