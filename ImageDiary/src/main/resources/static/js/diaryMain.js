@@ -11,9 +11,9 @@
 			const calDays = document.getElementsByClassName("calDay");
 			for(let i=0;i<calDays.length;i++){
 				console.log("calDays[i] : "+calDays[i].textContent);
-				
 					
-				if(calDays[i].textContent==todayDayNum){
+				if(calDays[i].textContent==todayDayNum) 
+				){
 					
 					calDays[i].classList.add('day-heart');
 					console.log("todayNum : "+todayDayNum);

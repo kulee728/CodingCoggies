@@ -1,7 +1,11 @@
         body {
-            background-color: #f9d0ca;
+            background-color: #f0f2e1;
             margin: 0;
             padding: 0;
+            display:inline;
+        }
+        .mainframe{
+        
         }
         .calendar-container {
             width: 90%;
@@ -78,7 +82,7 @@
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 5px;
-            border: 2px solid #000;
+            border: 1px solid #ebe5d4;
             border-radius: 10px;
             overflow: hidden;
             clear: right;
@@ -126,11 +130,21 @@
             width: 40px;
             height: auto;
         }
+
         .image-container {
-            text-align: center;
-            margin-top: 20px;
+        	
+            text-align: center;     
+            margin : 20px 30px;
+            
         }
         .image-container img {
-            width: 80px;
+        	margin : 0px 20px;
+            width: 30px;
             height: auto;
         }
+
+        
+   footer{
+	background-color: #BED59A;
+	color: darygray;
+}
