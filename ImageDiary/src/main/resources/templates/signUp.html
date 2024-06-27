@@ -6,11 +6,38 @@
     <title>Sign Up</title>
 
     <link rel="stylesheet" href="/css/signUpStyles.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
-
-    <!-------비밀번호 일치확인------->
+    <script type="text/javascript">
+    function sendNumber() {
+    	$("#mail_number").css("display", "block");
+    	$.ajax({
+    		url:"/mail",
+    		type:"post",
+    		dataType:"json",
+    		data:{"mail" : $("#emailInput").val()},
+    		success: function(data) {
+    			alert("인증번호 발송 성공!");
+    			$("#Confirm").val(data); // 인증번호를 사람 눈에 보이지 않게 저장 input hidden 
+    		
+    		}
+    	})
+    }
+    
+    function confirmNumber() {
+    	var enteredNumber = $("#number").val();
+    	var sentNumber = $("#Confirm").val();
+    	
+    	if (enteredNumber === sentNumber) {
+    		alert("인증번호가 일치합니다!");
+    	} else {
+    		alert("인증번호가 일치하지 않습니다.");
+    	}
+    }
+    </script>
+   
     <script>
+    <!-------비밀번호 일치확인------->
         $(document).ready(function() {
             $("#passwordConfirm").on("input", function() {
                 const passwordInput = $("#passwordInput").val();
@@ -123,16 +150,18 @@
                 <label>E-MAIL</label>
                 <p class="comment" id="emailMsg"></p>
                 <input type="email" class="input-text" id="emailInput" th:field="*{member_email}">
-                <button type="button" class="btn">코드전송</button>
+                
+                <button type="button" id="sentBtn" name ="sendBtn" class="btn" onclick="sendNumber()">코드전송</button>
+                
             </div>
 
             <div class="form-group">
                 <input type="checkbox">
                 <label>인 &nbsp; 증<br>코 &nbsp; 드</label>
-                <input type="text" class="input-text">
-                <button type="button" class="btn">코드확인</button>
+                <input type="text" name="number" id="number" class="input-text" placeholder="인증번호 입력">
+                <button type="button" name="confirmBtn" id="confirmBtn" class="btn" onclick="confirmNumber()">코드확인</button>
             </div>
-
+            <input type="hidden" id="Confirm">
             <button type="submit" class="submit-btn" onclick="signUpSubmit">SIGN UP</button>
         </form>
     </div>
