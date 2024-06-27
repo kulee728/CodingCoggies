@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import coddingcoggies.dto.Diary;
 import coddingcoggies.dto.SpecialDate;
+
 @Mapper
 public interface MainPageMapper {
 
