@@ -60,8 +60,8 @@
 				style="background-color: #000000; color: #ffffff"></div>
 		</div>
 		    <div th:each="calDay : ${mainCalendardays}" class="day">
-       <!--   <a th:href="@{'/diaryView/'+${calDay.diary_id}}" th:text="${calDay.dayNum}" -->
-       <a class="calDay" th:href="@{${calDay.diaryYN}==true? '/diaryView/'+ ${calDay.diary_id} : '/diaryWrite/'+
+       <!--   <a th:href="@{'/diary/diaryView/'+${calDay.diary_id}}" th:text="${calDay.dayNum}" -->
+       <a class="calDay" th:href="@{${calDay.diaryYN}==true? '/diary/diaryView/'+ ${calDay.diary_id} : '/diary/diaryWrite/'+
        ${session.loginSession.member_no}+'/'+${todayYYYYMMDD}}"   
        th:text="${calDay.dayNum}"
        th:classappend="${calDay.diaryYN==true? 'day-star' : 'noDiaryCalDay'}">

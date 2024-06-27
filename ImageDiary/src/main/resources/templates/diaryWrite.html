@@ -12,8 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body style="background-color: #F0F2E1">
-	<form th:action="@{/diary/diaryWrite}" method="post"
-		th:object="${diary}">
+	<form th:action="@{/diary/diaryWrite}" method="post" th:object="${diary}"   enctype="multipart/form-data" >
 		<div class="container">
 			<div class="input-group input-group-lg">
 				<input type="text" name="title_text" class="form-control"
@@ -64,8 +63,7 @@
 				</div>
 			</div>
 			<div class="col-1">
-				<input type="file" id="사진선택" accept="image/*" multiple
-					th:field="*{diary_fileurl}">
+				<input type="file" id="사진선택" accept="image/*" 	th:field="*{diary_fileurl}">
 				<!--multiple 다중선택-->
 				<br> <br>
 			</div>

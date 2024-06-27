@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import coddingcoggies.dto.Diary;
 
 @Mapper
+@Repository
 public interface DiaryMapper {
 
 	/*
@@ -22,5 +24,9 @@ public interface DiaryMapper {
 	void deleteDiary(@Param("diary_id") int diary_id);
 
 	List<Diary> getAllDiary();
+	
+/*********************************************************************************************/	
+	Diary getDiaryById(@Param("diary_id") int diary_id);
+	
 	
 }

@@ -1,10 +1,12 @@
 package coddingcoggies.service;
 
+import java.io.File;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import coddingcoggies.dto.Diary;
 import coddingcoggies.mapper.DiaryMapper;
@@ -30,15 +32,34 @@ public class DiaryService {
 		diaryMapper.insertDiary(diary);	
 	}
 	
-	public void insertDiary(String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode) {
+	public void insertDiary(String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, MultipartFile file) {
+	
+		String originFilename = file.getOriginalFilename(); // origin file name
+		
+		String uploadDir = "C:/Users/user1/Desktop/diary_img/";
+//example	String uploadDir = "C:/Users/user1/Desktop/semi/sinwwo/CodingCoggies/ImageDiary/src/main/resources/static/upload-img/";
+		
+		File imgFolder = new File(uploadDir);
+		File imgFile = new File(imgFolder + "/" + originFilename);
+		
+		if(!imgFolder.exists()) {
+			imgFolder.mkdirs(); //not exists folder -> make folders
+		}
+		try {
+		file.transferTo(imgFile);
+		
 		Diary diary = new Diary();
 		diary.setDiary_title(diary_title);
 		diary.setDiary_contents(diary_contents);
 		diary.setDiary_feelingCode(diary_feelingCode);
 		diary.setDiary_weatherCode(diary_weatherCode);
-		diary.setDiary_fileurl("/images/");
+		diary.setDiary_fileurl(imgFolder + "/" + originFilename);
 		diaryMapper.insertDiary(diary);
 		log.info(diary.toString());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	//일기 수정
@@ -51,8 +72,22 @@ public class DiaryService {
 		diaryMapper.deleteDiary(diary_id);
 	}
 	
+	/*
 	public List<Diary> getAllDiary(){
 		return diaryMapper.getAllDiary();
 	}
+	*/
+	
+	
+/*********************************************************************************************/	
+	// trytrytry
+	public List<Diary> getAllDiary(int diary_id){
+		return diaryMapper.getAllDiary();
+	}
+	
+	public Diary getDiaryById(int diary_id) {
+		return diaryMapper.getDiaryById(diary_id); // DiaryMapper를 통해 특정 다이어리 조회
+	}
 
 }
+
