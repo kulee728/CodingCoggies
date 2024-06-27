@@ -11,10 +11,6 @@ import coddingcoggies.dto.Diary;
 @Controller
 public class IndexController {
 
-
-	
-
-	
 	@GetMapping("/diaryView")
 	public String toDiaryView() {
 		return "diaryView";
@@ -24,11 +20,12 @@ public class IndexController {
 		model.addAttribute("diary", new Diary()); //get = 가져오다. 다이어리 객체에 작성된 빈 공간을
 		return "diaryWrite";
 	}
-	
+	/*
 	@GetMapping("/signUp")
 	public String toSignUp() {
 		return "signUp";
 	}
+	*/
 	
 	@GetMapping("/testLink")
 	public String toTestLink() {

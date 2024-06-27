@@ -5,11 +5,22 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
 public class CalanderDay {
-	private String yyyyMMdd;
-	private int dayNum;
+	private String dd;
+	private String dayNum;
 	private boolean diaryYN;
 	private boolean specialDateYN;
+	private int diary_id;
+	private int specialDate_id;
+	
+	public CalanderDay() {
+		this.dd = "";
+		this.dayNum="";
+		this.diaryYN=false;
+		this.diary_id=-1;
+		this.specialDate_id=-1;
+		this.specialDateYN=false;
+	}
 }
+
