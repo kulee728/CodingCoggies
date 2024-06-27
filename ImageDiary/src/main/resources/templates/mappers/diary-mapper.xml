@@ -11,6 +11,13 @@
 	SELECT * FROM diary
 </select>
 
+<!--  id one select  -->
+<select id="getDiaryById" resultType="coddingcoggies.dto.Diary" parameterType="int">
+	SELECT DIARY_TITLE, DIARY_FEELINGCODE, DIARY_CONTENTS, DIARY_WEATHERCODE, DIARY_FILEURL  
+	FROM diary 
+	WHERE diary_id = #{diary_id}
+</select>
+
 <update id="updateDiary" parameterType="coddingcoggies.dto.Diary">
 	UPDATE diary
 	SET diary_title= #{diary_title},

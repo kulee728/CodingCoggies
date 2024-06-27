@@ -9,20 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 629a0e9aa84670ef98005b44b9ffe1acd2fca88a
 import coddingcoggies.dto.Diary;
 import coddingcoggies.dto.DiaryLogin;
 import coddingcoggies.dto.SpecialDate;
 import coddingcoggies.object.CalendarDay;
-<<<<<<< HEAD
-=======
-
->>>>>>> 629a0e9aa84670ef98005b44b9ffe1acd2fca88a
 import coddingcoggies.service.MainPageService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;

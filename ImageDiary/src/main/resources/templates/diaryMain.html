@@ -62,7 +62,7 @@
 		    <div th:each="calDay : ${mainCalendardays}" class="day">
         <div th:text="${calDay.dayNum}"></div>
         <th:block th:if="${calDay.diaryYN}">
-            <a href="@{'/diaryView/'+${diary_id}}"class="day-star"></a>
+            <a th:href="@{'/diary/diaryView/'+${calDay.diary_id}}"class="day-star"></a>
         </th:block>
 			<th:block th:if="${calDay.specialDateYN}"></th:block>
 		</div>
