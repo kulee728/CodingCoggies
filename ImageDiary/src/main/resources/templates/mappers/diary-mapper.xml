@@ -13,7 +13,7 @@
 
 <!--  id one select  -->
 <select id="getDiaryById" resultType="coddingcoggies.dto.Diary" parameterType="int">
-	SELECT DIARY_TITLE, DIARY_FEELINGCODE, DIARY_CONTENTS, DIARY_WEATHERCODE, DIARY_FILEURL  
+	SELECT diary_id, DIARY_TITLE, DIARY_FEELINGCODE, DIARY_CONTENTS, DIARY_WEATHERCODE, DIARY_FILEURL  
 	FROM diary 
 	WHERE diary_id = #{diary_id}
 </select>

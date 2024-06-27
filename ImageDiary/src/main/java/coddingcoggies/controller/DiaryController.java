@@ -4,14 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import coddingcoggies.dto.Diary;
 import coddingcoggies.service.DiaryService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -66,5 +69,24 @@ public class DiaryController {
 		}
 
 	}
+	//atfer change => HttpSession         Anonymous-customer XXX
+	@GetMapping("/diaryUpdate/{diary_id}")
+	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model) {
+		Diary diary = diaryService.getDiaryById(diary_id);
+		log.info(" update diary : " + diary);
+		model.addAttribute("diary", diary);
+		return "diaryUpdate";
+	}
+	@PostMapping("/diaryUpdate")
+	public String updateDiary(@RequestParam("diary_title") String diary_title,
+			@RequestParam("diary_contents") String diary_contents, @RequestParam("feelingCode") int diary_feelingCode,
+			@RequestParam("weatherCode") int diary_weatherCode, @RequestParam("diary_fileurl") MultipartFile file) {
 
+		diaryService.updateDiary(diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file);
+	    return "redirect:/diary/diaryView"; // 리디렉션할 경로 (예: 다이어리 보기 페이지)
+	}
+	/*
+	@GetMapping("/diaryView/{diary_id}")
+	public String deleteDiary(diary_id)
+	*/
 }
