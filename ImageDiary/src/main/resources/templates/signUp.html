@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="/css/signUpStyles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/signUp.js"></script>
+   
     
     
     <script type="text/javascript">
@@ -169,7 +169,7 @@
                 $("#idMsg")
                 .text("10자리 이내 영/소문자, 숫자")
                 .css("color", "red");
-                return false;
+                //return false;
             }
         });
 
@@ -199,7 +199,7 @@
 </head>
 <body>
     <div class="container">
-        <form th:action="@{/register}" method="post" class="signup-form" th:object="${newMem}" onsubmit="return checkForm()">
+        <form th:action="@{/register}" method="post" class="signup-form" th:object="${newMem}" onsubmit="return signUpSubmit()">
  
             <div class="form-group">
                 <input type="checkbox">
