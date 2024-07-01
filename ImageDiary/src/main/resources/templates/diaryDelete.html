@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>일기 삭제 화면</title>
+<link rel="stylesheet" href="/css/diaryDelete.css">
+</head>
+<body>
+	<form>
+		<div class="container">
+			<h3>일기를 삭제하면 복구가 불가합니다. 정말 삭제하시겠습니까?</h3>
+			<button type="submit" onclick="location.href = '/diaryView.html'"
+				class="btn btn-secondary btn-lg submit" style="margin: 20px">NO</button>
+			<button type="submit" onclick="location.href = '/diaryMain.html'"
+				class="btn btn-secondary btn-lg submit" style="margin: 20px">YES</button>
+		</div>
+	</form>
+</body>
+</html>

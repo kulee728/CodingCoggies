@@ -115,27 +115,5 @@
 			<br>
 		</p>
 	</footer>
-
-	<!-- 달력 뿌려주기(날) -->
-	<div class="calendar" id="calendar">
-		<div th:each="dayName: ${dayNameList}">
-			<div class="day" th:text="${dayName}"
-				style="background-color: #000000; color: #ffffff"></div>
-		</div>
-		    <div th:each="calDay : ${mainCalendardays}" class="day">
-        <div th:text="${calDay.dayNum}"></div>
-        <th:block th:if="${calDay.diaryYN}">
-            <a th:href="@{'/diaryView/'+${diary_id}}"class="day-star"></a>
-        </th:block>
-			<th:block th:if="${calDay.specialDateYN}"></th:block>
-		</div>
-	</div>
-
-
-	<div class="image-container">
-		<img src="left-arrow.png" alt="Previous"> <img
-			src="character.png" alt="Character"> <img src="right-arrow.png"
-			alt="Next">
-	</div>
 </body>
 </html>

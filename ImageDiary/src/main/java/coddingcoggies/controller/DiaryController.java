@@ -4,14 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import coddingcoggies.dto.Diary;
 import coddingcoggies.service.DiaryService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -20,7 +23,24 @@ import lombok.extern.slf4j.Slf4j;
 public class DiaryController {
 	@Autowired
 	private DiaryService diaryService;
+	
+	/* ************************** 해당 날짜 받아오기->왜 안되니 또?******************************** */
+	@GetMapping("/diary/diaryView/{diary_id}/{dayNum}")
+    public String viewDiary(@PathVariable int diary_id, @PathVariable String dayNum, Model model) {
+        model.addAttribute("diary_id", diary_id);
+        model.addAttribute("dayNum", dayNum);
+        return "diaryView";
+    }
 
+    @GetMapping("/diary/diaryWrite/{member_no}/{today}/{dayNum}")
+    public String writeDiary(@PathVariable int member_no, @PathVariable String today, @PathVariable String dayNum, Model model) {
+        model.addAttribute("member_no", member_no);
+        model.addAttribute("today", today);
+        model.addAttribute("dayNum", dayNum);
+        return "diaryWrite";
+    }
+    /* ******************************************************************************** */
+    
 	@GetMapping("/diaryWrite")
 	public String toDiaryWrite(Model model) {
 		model.addAttribute("diary", new Diary()); // get = 가져오다. 다이어리 객체에 작성된 빈 공간을
@@ -66,5 +86,25 @@ public class DiaryController {
 		}
 
 	}
+	//after change => HttpSession         Anonymous-customer XXX
+	@GetMapping("/diaryUpdate/{diary_id}")
+	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model) {
+		Diary diary = diaryService.getDiaryById(diary_id);
+		log.info(" update diary : " + diary);
+		model.addAttribute("diary", diary);
+		return "diaryUpdate";
+	}
+	@PostMapping("/diaryUpdate")
+	public String updateDiary(@RequestParam("diary_title") String diary_title,
+			@RequestParam("diary_contents") String diary_contents, @RequestParam("feelingCode") int diary_feelingCode,
+			@RequestParam("weatherCode") int diary_weatherCode, @RequestParam("diary_fileurl") MultipartFile file) {
 
+		diaryService.updateDiary(diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file);
+	    return "redirect:/diary/diaryView";
+	    }
+	
+	/*
+	@GetMapping("/diaryView/{diary_id}")
+	public String deleteDiary(diary_id)
+	*/
 }

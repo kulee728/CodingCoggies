@@ -37,7 +37,6 @@ public class DiaryService {
 		String originFilename = file.getOriginalFilename(); // origin file name
 		
 		String uploadDir = "C:/Users/user1/Desktop/diary_img/";
-//example	String uploadDir = "C:/Users/user1/Desktop/semi/sinwwo/CodingCoggies/ImageDiary/src/main/resources/static/upload-img/";
 		
 		File imgFolder = new File(uploadDir);
 		File imgFile = new File(imgFolder + "/" + originFilename);
@@ -67,6 +66,33 @@ public class DiaryService {
 		diaryMapper.updateDiary(diary);
 	}
 	
+	public void updateDiary(String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, MultipartFile file) {
+		String originFilename = file.getOriginalFilename(); // origin file name
+		
+		String uploadDir = "C:/Users/user1/Desktop/diary_img/";
+		
+		File imgFolder = new File(uploadDir);
+		File imgFile = new File(imgFolder + "/" + originFilename);
+		
+		if(!imgFolder.exists()) {
+			imgFolder.mkdirs(); //not exists folder -> make folders
+		}
+		try {
+		file.transferTo(imgFile);
+		
+		Diary diary = new Diary();
+		diary.setDiary_title(diary_title);
+		diary.setDiary_contents(diary_contents);
+		diary.setDiary_feelingCode(diary_feelingCode);
+		diary.setDiary_weatherCode(diary_weatherCode);
+		diary.setDiary_fileurl(imgFolder + "/" + originFilename);
+		diaryMapper.insertDiary(diary);
+		log.info(diary.toString());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//일기 삭제
 	public void deleteDiary(int diary_id) {
 		diaryMapper.deleteDiary(diary_id);
@@ -78,9 +104,6 @@ public class DiaryService {
 	}
 	*/
 	
-	
-/*********************************************************************************************/	
-	// trytrytry
 	public List<Diary> getAllDiary(int diary_id){
 		return diaryMapper.getAllDiary();
 	}
