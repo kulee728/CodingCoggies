@@ -23,7 +23,24 @@ import lombok.extern.slf4j.Slf4j;
 public class DiaryController {
 	@Autowired
 	private DiaryService diaryService;
+	
+	/* ************************** 해당 날짜 받아오기->왜 안되니 또?******************************** */
+	@GetMapping("/diary/diaryView/{diary_id}/{dayNum}")
+    public String viewDiary(@PathVariable int diary_id, @PathVariable String dayNum, Model model) {
+        model.addAttribute("diary_id", diary_id);
+        model.addAttribute("dayNum", dayNum);
+        return "diaryView";
+    }
 
+    @GetMapping("/diary/diaryWrite/{member_no}/{today}/{dayNum}")
+    public String writeDiary(@PathVariable int member_no, @PathVariable String today, @PathVariable String dayNum, Model model) {
+        model.addAttribute("member_no", member_no);
+        model.addAttribute("today", today);
+        model.addAttribute("dayNum", dayNum);
+        return "diaryWrite";
+    }
+    /* ******************************************************************************** */
+    
 	@GetMapping("/diaryWrite")
 	public String toDiaryWrite(Model model) {
 		model.addAttribute("diary", new Diary()); // get = 가져오다. 다이어리 객체에 작성된 빈 공간을
@@ -69,7 +86,7 @@ public class DiaryController {
 		}
 
 	}
-	//atfer change => HttpSession         Anonymous-customer XXX
+	//after change => HttpSession         Anonymous-customer XXX
 	@GetMapping("/diaryUpdate/{diary_id}")
 	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model) {
 		Diary diary = diaryService.getDiaryById(diary_id);
@@ -83,8 +100,9 @@ public class DiaryController {
 			@RequestParam("weatherCode") int diary_weatherCode, @RequestParam("diary_fileurl") MultipartFile file) {
 
 		diaryService.updateDiary(diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file);
-	    return "redirect:/diary/diaryView"; // 리디렉션할 경로 (예: 다이어리 보기 페이지)
-	}
+	    return "redirect:/diary/diaryView";
+	    }
+	
 	/*
 	@GetMapping("/diaryView/{diary_id}")
 	public String deleteDiary(diary_id)

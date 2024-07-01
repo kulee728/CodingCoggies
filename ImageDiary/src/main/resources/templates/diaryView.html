@@ -59,9 +59,11 @@ cursor: point;
     <div class="content">
         <textarea cols="100" rows="20" th:text="${diary.diary_contents}"  disabled></textarea>
     </div>
-    <a th:href="@{'/diary/diaryUpdate/'+ ${diary.diary_id}}">수정</a>
-    <a th:href="@{'/diary/diaryDelete/'+ ${diary.diary_id}}">삭제</a>
-</form>    
+    <button type="submit" onclick = "location.href = '/diaryUpdate.html'" class="btn btn-secondary btn-lg submit" style="margin: 20px">수정</button>
+    <!-- <a th:href="@{'/diary/diaryUpdate/'+ ${diary.diary_id}}">수정</a> -->
+    <!-- <a th:href="@{'/diary/diaryDelete/'+ ${diary.diary_id}}">삭제</a> -->
+    <button type="submit" onclick = "location.href = '/diaryDelete.html'" class="btn btn-secondary btn-lg submit" style="margin: 20px">삭제</button>
 </div>
+</form>    
 </body>
 </html>
