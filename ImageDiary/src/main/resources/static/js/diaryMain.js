@@ -1,7 +1,8 @@
        function populateCalendar() {
             const calendar = document.getElementById('calendar');
-            const todayInfo = document.getElementById('today-info');
+            const todayInfo = document.getElementById('today-info').textContent;
             const header = document.getElementById('calendar-header');
+
             const today = new Date();
             const year = today.getFullYear();
             const month = today.getMonth();
@@ -9,10 +10,18 @@
 			const todayDayNum = today.getDate();
 			
 			const calDays = document.getElementsByClassName("calDay");
+			const todayYYYYMM = todayInfo.substring(4,8)+todayInfo.substring(9,11);
+			const YYYYMMarr = header.textContent.split(' ');
+			const YYYYMM = (YYYYMMarr[2]).substring(0,4)+YYYYMMarr[3].split('월')[0];
 			for(let i=0;i<calDays.length;i++){
 				console.log("calDays[i] : "+calDays[i].textContent);
-					
-				if(calDays[i].textContent==todayDayNum) 
+				console.log("todayInfo YYYYMM= "+todayYYYYMM);
+				console.log("year+month = "+year + month);
+
+				
+				if(calDays[i].textContent==todayDayNum && 
+				Number(todayInfo.substring(9,11)) == Number(YYYYMMarr[3].split('월')[0]) &&
+				todayInfo.substring(4,8) == YYYYMMarr[2].substring(0,4)
 				){
 					
 					calDays[i].classList.add('day-heart');
