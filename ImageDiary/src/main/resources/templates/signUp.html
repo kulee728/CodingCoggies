@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" href="/css/signUpStyles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/signUp.js"></script>
+    
     
     <script type="text/javascript">
     function sendNumber() {
@@ -33,28 +35,30 @@
     		alert("인증번호가 일치합니다!");
     	} else {
     		alert("인증번호가 일치하지 않습니다.");
-    		//
+    		
     	}
     }
     
     
-    /* 조건 하나라도 만족 안할시 회원가입 안되게 
+    
+    
+	
+    	
     function signUpSubmit() {
-        var id = $("#idInput").val();
-        var password = $("#passwordInput").val();
-        var confirmPassword = $("#passwordConfirm").val();
-        var diaryName = $("#diaryNameInput").val();
-        var email = $("#emailInput").val();
-        var enteredNumber = $("#number").val();
-        var sentNumber = $("#Confirm").val();
+        const id = $("#idInput").val();
+        const password = $("#passwordInput").val();
+        const confirmPassword = $("#passwordConfirm").val();
+        const diaryName = $("#diaryNameInput").val();
+        const email = $("#emailInput").val();
+        const enteredNumber = $("#number").val();
+        const sentNumber = $("#Confirm").val();
 
-        
         // 아이디 정규식
-        var idRegex = /^[a-z0-9]{1,10}$/;
+        const idRegex = /^[a-z0-9]{1,10}$/;
         // 비밀번호 정규식
-        var passwordRegex = /^[A-Za-z0-9]{10,20}$/;
+        const passwordRegex = /^[A-Za-z0-9]{10,20}$/;
         // 이메일 정규식
-        var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         
         // 유효성 검사
         if (!idRegex.test(id)) {
@@ -73,7 +77,7 @@
         }
         
         if (diaryName.length > 10) {
-            alert("일기 이름은 10글자 이내로 입력해야 합니다.");
+            alert("일기장 이름은 10글자 이내로 입력해야 합니다.");
             return false;
         }
         
@@ -84,12 +88,13 @@
         
         if (!enteredNumber || !sentNumber || enteredNumber !== sentNumber) {
             alert("인증번호를 정확히 입력해야 합니다.");
-            return "/signup";
+            return false;
         }
         
         // 모든 조건 통과 시 폼 제출
         return true;
-    } */
+    }
+    
     
     </script>
    
@@ -111,7 +116,27 @@
                     //
                 }
             });
-
+        
+      /*      
+    //일기이름 정규식
+    	$("#member_diaryName").on("input", function() {
+    		const dn = $(this).val();
+    		const dnType = /^[A-Za-z가-힣0-9]*$/;
+    		
+    		if(diaryNameType.test(diaryName)){
+    			$("#dnTypeMsg")
+    				.text("일기장이름 형식이 올바릅니다.")
+    				.css("color", "green");
+    		} else {
+    			$("#dnTypeMsg")
+    				.text("공백이 포함될 수 없습니다.")
+    				.css("color", "red");
+    		}
+    	});
+         */   
+    	
+    	
+    	
     //비밀번호 정규식
         $("#passwordInput").on("input", function() {
             const pw = $(this).val();
@@ -174,7 +199,7 @@
 </head>
 <body>
     <div class="container">
-        <form th:action="@{/register}" method="post" class="signup-form" th:object="${newMem}">
+        <form th:action="@{/register}" method="post" class="signup-form" th:object="${newMem}" onsubmit="return checkForm()">
  
             <div class="form-group">
                 <input type="checkbox">
@@ -203,7 +228,7 @@
             <div class="form-group">
                 <input type="checkbox">
                 <label>일 &nbsp; 기<br>이 &nbsp; 름</label>
-                <input type="text" class="input-text" th:field="*{member_diaryName}" placeholder="10글자 이내">
+                <input type="text" class="input-text" id="member_diaryName" th:field="*{member_diaryName}" placeholder="10글자 이내, 공백 포함될 수 없음">
             </div>
 
             <div class="form-group">
@@ -223,7 +248,7 @@
                 <button type="button" name="confirmBtn" id="confirmBtn" class="btn" onclick="confirmNumber()">코드확인</button>
             </div>
             <input type="hidden" id="Confirm">
-            <button type="submit" class="submit-btn" onclick="signUpSubmit">SIGN UP</button>
+            <button type="submit" class="submit-btn" onclick="signUpSubmit()">SIGN UP</button>
         </form>
     </div>
 
