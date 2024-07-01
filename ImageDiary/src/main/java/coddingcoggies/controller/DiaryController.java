@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import coddingcoggies.dto.Diary;
+import coddingcoggies.dto.DiaryLogin;
 import coddingcoggies.service.DiaryService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -21,22 +22,32 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/diary")
 public class DiaryController {
+	
+	public static String cur_date;
+	//public static String cur_member_no;
+	
+	
 	@Autowired
 	private DiaryService diaryService;
 	
 	/* ************************** 해당 날짜 받아오기->왜 안되니 또?******************************** */
-	@GetMapping("/diary/diaryView/{diary_id}/{dayNum}")
+	@GetMapping("/diaryView/{diary_id}/{dayNum}")
     public String viewDiary(@PathVariable int diary_id, @PathVariable String dayNum, Model model) {
         model.addAttribute("diary_id", diary_id);
         model.addAttribute("dayNum", dayNum);
         return "diaryView";
     }
 
-    @GetMapping("/diary/diaryWrite/{member_no}/{today}/{dayNum}")
-    public String writeDiary(@PathVariable int member_no, @PathVariable String today, @PathVariable String dayNum, Model model) {
-        model.addAttribute("member_no", member_no);
+    @GetMapping("/diaryWrite/{member_no}/{today}")
+    public String writeDiary(@PathVariable String member_no, @PathVariable String today, Model model) {
+    	//log.info("today :" +today);
+    	
+    	model.addAttribute("diary", new Diary());
+    	model.addAttribute("member_no", member_no);
         model.addAttribute("today", today);
-        model.addAttribute("dayNum", dayNum);
+        cur_date = today;
+        //cur_member_no = member_no;
+        
         return "diaryWrite";
     }
     /* ******************************************************************************** */
@@ -56,8 +67,14 @@ public class DiaryController {
 	@PostMapping("/diaryWrite")
 	public String insertDiary(@RequestParam("diary_title") String diary_title,
 			@RequestParam("diary_contents") String diary_contents, @RequestParam("feelingCode") int diary_feelingCode,
-			@RequestParam("weatherCode") int diary_weatherCode, @RequestParam("diary_fileurl") MultipartFile file) {
-
+			@RequestParam("weatherCode") int diary_weatherCode, @RequestParam("diary_fileurl") MultipartFile file, HttpSession session) {
+		log.info("일기 작성 날짜 : "+cur_date);
+		
+		
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		}
 		diaryService.insertDiary(diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file);
 		return "diaryView";
 	}
@@ -77,7 +94,7 @@ public class DiaryController {
 		System.out.println(" **** id ****" + diary_id);
 
 		Diary diary = diaryService.getDiaryById(diary_id);
-		log.info("=== diary === : " + diary);
+		//log.info("=== diary === : " + diary);
 		if (diary != null) {
 			model.addAttribute("diary", diary);
 			return "diaryView"; // 조회 페이지로 이동
@@ -90,7 +107,8 @@ public class DiaryController {
 	@GetMapping("/diaryUpdate/{diary_id}")
 	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model) {
 		Diary diary = diaryService.getDiaryById(diary_id);
-		log.info(" update diary : " + diary);
+		//log.info(" update diary : " + diary);
+		//log.info("아아아아아아아아ㅏ아아아아ㅓ");
 		model.addAttribute("diary", diary);
 		return "diaryUpdate";
 	}
