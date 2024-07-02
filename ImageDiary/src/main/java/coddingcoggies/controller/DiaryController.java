@@ -89,13 +89,23 @@ public class DiaryController {
 	 * http://localhost:9099/diary/diaryView/null
 	 *************************************************************************/
 	@GetMapping("/diaryView/{diary_id}")
-	public String getDiaryById(@PathVariable("diary_id") int diary_id, Model model) {
-
+	public String getDiaryById(@PathVariable("diary_id") int diary_id, Model model, HttpSession session) {
+		
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		} //로그인 세션 확인
+		
+		
 		System.out.println(" **** id ****" + diary_id);
 
 		Diary diary = diaryService.getDiaryById(diary_id);
 		//log.info("=== diary === : " + diary);
 		if (diary != null) {
+			if(diaryLogin.getMember_no() != diary.getMember_no()) {
+				return "redirect:/";
+			} //만약 사용자가 다른 사용자의 다이어리에 접근하지 않도록 세션과 비교(id로만 접근하기 때문에)
+			
 			model.addAttribute("diary", diary);
 			return "diaryView"; // 조회 페이지로 이동
 		} else {
