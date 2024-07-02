@@ -40,10 +40,6 @@ public class DiaryController {
         return "diaryView";
     }
 
-    @GetMapping("/diary/diaryWrite/{member_no}/{today}/{dayNum}")
-    public String writeDiary(@PathVariable int member_no, @PathVariable String today, @PathVariable String dayNum, Model model) {
-        model.addAttribute("member_no", member_no);
-
 	//++ String member_no -> int member_no
     @GetMapping("/diaryWrite/{member_no}/{today}")
     public String writeDiary(@PathVariable int member_no, @PathVariable String today, Model model) {
