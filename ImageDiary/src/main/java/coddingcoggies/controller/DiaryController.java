@@ -24,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DiaryController {
 	
 	public static String cur_date;
+	public static String original_fileurl;
 	//public static String cur_member_no;
 	
 	
@@ -47,7 +48,7 @@ public class DiaryController {
     	
     	model.addAttribute("diary", new Diary());
     	model.addAttribute("member_no", member_no);
-      model.addAttribute("today", today);
+    	model.addAttribute("today", today);
       cur_date = today;
         
         return "diaryWrite";
@@ -129,18 +130,33 @@ public class DiaryController {
 	@GetMapping("/diaryUpdate/{diary_id}")
 	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model) {
 		Diary diary = diaryService.getDiaryById(diary_id);
-		//log.info(" update diary : " + diary);
+		log.info(" update diary : " + diary);
+		cur_date = diary.getDiary_date();
+		original_fileurl = diary.getDiary_fileurl();
+		
 		//log.info("아아아아아아아아ㅏ아아아아ㅓ");
 		model.addAttribute("diary", diary);
 		return "diaryUpdate";
 	}
-	@PostMapping("/diaryUpdate")
-	public String updateDiary(@RequestParam("diary_title") String diary_title,
+	@PostMapping("/diaryUpdate/{diary_id}")
+	public String updateDiary(
+			@PathVariable("diary_id") int diary_id,
+			@RequestParam("diary_title") String diary_title,
 			@RequestParam("diary_contents") String diary_contents, @RequestParam("feelingCode") int diary_feelingCode,
-			@RequestParam("weatherCode") int diary_weatherCode, @RequestParam("diary_fileurl") MultipartFile file) {
+			@RequestParam("weatherCode") int diary_weatherCode, //@RequestParam("diary_fileurl") String fileurl, 
+			HttpSession session) {
+		
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		} //로그인 세션 확인
+		
+		String diary_date = cur_date;
+		String diary_fileurl = original_fileurl;
+		log.info("ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ : " +diary_title);
 
-		diaryService.updateDiary(diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file);
-	    return "redirect:/diaryView";
+		diaryService.updateDiary(diary_id, diary_title, diary_contents, diary_feelingCode, diary_weatherCode, diary_fileurl);
+	    return "redirect:/diaryMain";
 	    }
 	
 	/*
