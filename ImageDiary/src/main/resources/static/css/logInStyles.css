@@ -43,6 +43,10 @@ body {
     
 }
 */
+p {
+	text-align: center;
+}
+
 .logInButton  {
     background-color: #346a76;
     color: #fff;
@@ -74,8 +78,6 @@ body {
 .logInButton:hover {
     background-color: #00000027;
 }
-
-
 
 
 

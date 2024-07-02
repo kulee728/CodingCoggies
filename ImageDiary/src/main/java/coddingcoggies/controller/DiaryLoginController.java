@@ -35,7 +35,7 @@ public class DiaryLoginController {
 		} else {
 			model.addAttribute("error", "일치하는 계정정보가 없습니다.");
 			model.addAttribute("m", new DiaryLogin());
-			return "redirect:/";
+			return "index";
 		}
 	}
 	
