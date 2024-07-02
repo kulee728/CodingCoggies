@@ -25,6 +25,7 @@ public class DiaryController {
 	
 	public static String cur_date;
 	//public static String cur_member_no;
+	public static String original_fileurl;
 	
 	
 	@Autowired
@@ -129,22 +130,41 @@ public class DiaryController {
 	@GetMapping("/diaryUpdate/{diary_id}")
 	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model) {
 		Diary diary = diaryService.getDiaryById(diary_id);
-		//log.info(" update diary : " + diary);
-		//log.info("아아아아아아아아ㅏ아아아아ㅓ");
+		original_fileurl = diary.getDiary_fileurl();
+		cur_date = diary.getDiary_date();
 		model.addAttribute("diary", diary);
 		return "diaryUpdate";
 	}
-	@PostMapping("/diaryUpdate")
-	public String updateDiary(@RequestParam("diary_title") String diary_title,
+	
+	@PostMapping("/diaryUpdate/{diary_id}")
+	public String updateDiary(
+			@PathVariable("diary_id") int diary_id,
+			@RequestParam("diary_title") String diary_title,
 			@RequestParam("diary_contents") String diary_contents, @RequestParam("feelingCode") int diary_feelingCode,
-			@RequestParam("weatherCode") int diary_weatherCode, @RequestParam("diary_fileurl") MultipartFile file) {
+			@RequestParam("weatherCode") int diary_weatherCode,HttpSession session//,파일 어떻게 하지 MultipartFile file 
+			) {
+		log.info("아아diary title : "+diary_title);
+		log.info("가가 diary id : "+diary_id);
 
-		diaryService.updateDiary(diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file);
-	    return "redirect:/diaryView";
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		}
+		String diary_fileurl = original_fileurl; 
+		String diary_date = cur_date;
+		
+		int member_no = diaryLogin.getMember_no();
+		diaryService.updateDiary(diary_id, diary_date, member_no, diary_title, diary_contents, diary_feelingCode, diary_weatherCode, diary_fileurl);
+		
+	    return "redirect:/diaryMain";
 	    }
 	
 	/*
-	@GetMapping("/diaryView/{diary_id}")
-	public String deleteDiary(diary_id)
-	*/
+	@GetMapping("/diaryDelete/{diary_id}")
+	public String deleteDiary(@PathVariable("diary_id") int diary_id, Model model) {
+		Diary diary = diaryService.deleteDiary(diary_id);
+		
+		model.addAttribute("diary", diary);
+		return "diaryDelete";
+	}*/
 }

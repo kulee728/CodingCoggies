@@ -19,11 +19,17 @@
 	margin: 10px 10px 10px 10px;
 }
 
-.container .feeling {
+.feeling {
 	background-color: #fbd5d5;
 	border-radius: 15px;
 	padding: 10px;
 	margin: 10px 10px 10px 10px;
+}
+.images img{
+	display: flex;
+	justify-content: center;
+	width: 250px;
+	border-radius: 20%;
 }
 textarea {
 	width: 100%;

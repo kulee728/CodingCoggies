@@ -8,8 +8,8 @@
       rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
       crossorigin="anonymous" />
 </head>
-<body>
-<form>
+<body style="background-color: #F0F2E1">
+<form th:action="@{'/diary/diaryUpdate/' + ${diary_id}}" method="post">
 <div class="container">
     <div class="input-group input-group-lg">
 		<input type="text" th:field="${diary.diary_title}" name="title_text" class="form-control"
@@ -42,11 +42,13 @@
         </div>
     </div>
     
-    <div class="images">
-        <img th:src="@{${diary.diary_fileurl}}" />
+    <div class="images">  
+        <img th:src="@{${diary.diary_fileurl}}"/>
+        <!-- <input type="file" id="사진선택" accept="image/*" 	th:field="${diary.diary_fileurl}"> --> 
         <!-- 다른 이미지 출력 부분도 필요에 따라 추가 -->
     </div>
     
+   
     <div class="content">
         <textarea cols="100" rows="20" th:field="${diary.diary_contents}"></textarea>
     </div>

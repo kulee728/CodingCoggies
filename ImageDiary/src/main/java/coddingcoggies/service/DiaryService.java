@@ -75,31 +75,44 @@ public class DiaryService {
 		diaryMapper.updateDiary(diary);
 	}
 	
-	public void updateDiary(String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, MultipartFile file) {
+	public void updateDiary(int diary_id, String today, int member_no, String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode
+			, String diary_fileurl//, MultipartFile file
+			) {
+		/*
 		String originFilename = file.getOriginalFilename(); // origin file name
 		
 		//++
-
+		String absFilePath = (new File("")).getAbsolutePath();
+		absFilePath = absFilePath.replaceAll("//","/");
+		absFilePath += "/src/main/resources/static";
 		
-		String uploadDir = "C:/Users/user1/Desktop/diary_img/";
-		
+		String file_saveDir = "/userImage/" + member_no + "/" + today;
+		String uploadDir = absFilePath+ file_saveDir;
+		 // static/userImage/1/20240702_1 식으로 붙는다. 이때 1은 유저의 member_no
 		File imgFolder = new File(uploadDir);
 		File imgFile = new File(imgFolder + "/" + originFilename);
-		
+
 		if(!imgFolder.exists()) {
 			imgFolder.mkdirs(); //not exists folder -> make folders
 		}
+		*/
 		try {
-		file.transferTo(imgFile);
+		//file.transferTo(imgFile);
 		
 		Diary diary = new Diary();
+		diary.setDiary_id(diary_id);
 		diary.setDiary_title(diary_title);
 		diary.setDiary_contents(diary_contents);
 		diary.setDiary_feelingCode(diary_feelingCode);
 		diary.setDiary_weatherCode(diary_weatherCode);
-		diary.setDiary_fileurl(imgFolder + "/" + originFilename);
-		diaryMapper.insertDiary(diary);
-		log.info(diary.toString());
+		//diary.setDiary_fileurl(imgFolder + "/" + originFilename);
+		diary.setDiary_fileurl(diary_fileurl);
+		log.info("선생님 부르기 직전" + diary.toString());
+		
+		
+		
+		diaryMapper.updateDiary(diary);
+		
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -109,6 +122,7 @@ public class DiaryService {
 	public void deleteDiary(int diary_id) {
 		diaryMapper.deleteDiary(diary_id);
 	}
+	
 	
 	/*
 	public List<Diary> getAllDiary(){
