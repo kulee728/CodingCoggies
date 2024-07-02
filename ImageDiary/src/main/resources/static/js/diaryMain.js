@@ -19,11 +19,16 @@
 				console.log("year+month = "+year + month);
 
 				
+				console.log("spot 1 :"+ todayInfo.substring(9,11));
+				console.log("spot 2 :"+ Number(YYYYMMarr[3].split('월')[0]));
+				console.log("spot 3 :"+ Number(todayInfo.substring(4,8)));
+				console.log("spot 4 :"+ YYYYMMarr[2].substring(0,4));
+				
+				
 				if(calDays[i].textContent==todayDayNum && 
 				Number(todayInfo.substring(9,11)) == Number(YYYYMMarr[3].split('월')[0]) &&
 				todayInfo.substring(4,8) == YYYYMMarr[2].substring(0,4)
-				){
-					
+				){	
 					calDays[i].classList.add('day-heart');
 					console.log("todayNum : "+todayDayNum);
 				}
