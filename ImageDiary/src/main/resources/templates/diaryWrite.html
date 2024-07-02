@@ -14,20 +14,11 @@
 <body style="background-color: #F0F2E1">
 	<form th:action="@{/diary/diaryWrite}" method="post" th:object="${diary}"   enctype="multipart/form-data" >
 		<div class="container">
-<<<<<<< Updated upstream
-=======
+
 		<!-- <input type="hidden" th:value="${today}" th:field="*{diary_date}"/> --><!-- 
 		<input type="text" th:text="${today}" th:field="*{diary_date}" th:value="${today}">
 		 -->
-		 <!-- 
-		 ++ 
-		 <input type="hidden" name="member_no" value="${member_no}">
-    	 <input type="hidden" name="today" value="${today}">
-		 -->
-		<input type="hidden" name="member_no" value="${member_no}">
-    	<input type="hidden" name="today" value="${today}">
 		<h3 th:text="${today}" th:name="today" th:value="${today}"></h3>
->>>>>>> Stashed changes
 			<div class="input-group input-group-lg">
 				<input type="text" name="title_text" class="form-control"
 					aria-label="Sizing example input"

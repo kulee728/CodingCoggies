@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import coddingcoggies.dto.Diary;
+import coddingcoggies.dto.DiaryLogin;
 import coddingcoggies.service.DiaryService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -21,27 +22,28 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/diary")
 public class DiaryController {
+	
+	public static String cur_date;
+	//public static String cur_member_no;
+	
+	
 	@Autowired
 	private DiaryService diaryService;
 	
 	/* ************************** 해당 날짜 받아오기->왜 안되니 또?******************************** */
-<<<<<<< Updated upstream
-	@GetMapping("/diary/diaryView/{diary_id}/{dayNum}")
-    public String viewDiary(@PathVariable int diary_id, @PathVariable String dayNum, Model model) {
-=======
+
+
 	@GetMapping("/diaryView/{diary_id}/{today}")
     public String viewDiary(@PathVariable int diary_id, @PathVariable String today, Model model) {
->>>>>>> Stashed changes
         model.addAttribute("diary_id", diary_id);
         model.addAttribute("today", today);
         return "diaryView";
     }
 
-<<<<<<< Updated upstream
     @GetMapping("/diary/diaryWrite/{member_no}/{today}/{dayNum}")
     public String writeDiary(@PathVariable int member_no, @PathVariable String today, @PathVariable String dayNum, Model model) {
         model.addAttribute("member_no", member_no);
-=======
+
 	//++ String member_no -> int member_no
     @GetMapping("/diaryWrite/{member_no}/{today}")
     public String writeDiary(@PathVariable int member_no, @PathVariable String today, Model model) {
@@ -49,9 +51,9 @@ public class DiaryController {
     	
     	model.addAttribute("diary", new Diary());
     	model.addAttribute("member_no", member_no);
->>>>>>> Stashed changes
-        model.addAttribute("today", today);
-        model.addAttribute("dayNum", dayNum);
+      model.addAttribute("today", today);
+      cur_date = today;
+        
         return "diaryWrite";
     }
     /* ******************************************************************************** */
@@ -73,15 +75,8 @@ public class DiaryController {
 	@PostMapping("/diaryWrite")
 	public String insertDiary(@RequestParam("diary_title") String diary_title,
 			@RequestParam("diary_contents") String diary_contents, @RequestParam("feelingCode") int diary_feelingCode,
-<<<<<<< Updated upstream
-			@RequestParam("weatherCode") int diary_weatherCode, @RequestParam("diary_fileurl") MultipartFile file) {
-
-		diaryService.insertDiary(diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file);
-		return "diaryView";
-=======
 			@RequestParam("weatherCode") int diary_weatherCode, @RequestParam("diary_fileurl") MultipartFile file, HttpSession session) {
 		log.info("일기 작성 날짜 : "+cur_date);
-		
 		
 		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
 		if(diaryLogin==null) {
@@ -96,7 +91,6 @@ public class DiaryController {
 		diaryService.insertDiary(diary_date, member_no, diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file);
 		
 		return "redirect:/diaryMain";
->>>>>>> Stashed changes
 	}
 
 	/*
@@ -109,13 +103,23 @@ public class DiaryController {
 	 * http://localhost:9099/diary/diaryView/null
 	 *************************************************************************/
 	@GetMapping("/diaryView/{diary_id}")
-	public String getDiaryById(@PathVariable("diary_id") int diary_id, Model model) {
-
+	public String getDiaryById(@PathVariable("diary_id") int diary_id, Model model, HttpSession session) {
+		
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		} //로그인 세션 확인
+		
+		
 		System.out.println(" **** id ****" + diary_id);
 
 		Diary diary = diaryService.getDiaryById(diary_id);
-		log.info("=== diary === : " + diary);
+		//log.info("=== diary === : " + diary);
 		if (diary != null) {
+			if(diaryLogin.getMember_no() != diary.getMember_no()) {
+				return "redirect:/";
+			} //만약 사용자가 다른 사용자의 다이어리에 접근하지 않도록 세션과 비교(id로만 접근하기 때문에)
+			
 			model.addAttribute("diary", diary);
 			return "diaryView"; // 조회 페이지로 이동
 		} else {
@@ -127,7 +131,8 @@ public class DiaryController {
 	@GetMapping("/diaryUpdate/{diary_id}")
 	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model) {
 		Diary diary = diaryService.getDiaryById(diary_id);
-		log.info(" update diary : " + diary);
+		//log.info(" update diary : " + diary);
+		//log.info("아아아아아아아아ㅏ아아아아ㅓ");
 		model.addAttribute("diary", diary);
 		return "diaryUpdate";
 	}

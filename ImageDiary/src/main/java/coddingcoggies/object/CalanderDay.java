@@ -13,6 +13,7 @@ public class CalanderDay {
 	private boolean specialDateYN;
 	private int diary_id;
 	private int specialDate_id;
+	private String yyyyMMdd;
 	
 	public CalanderDay() {
 		this.dd = "";

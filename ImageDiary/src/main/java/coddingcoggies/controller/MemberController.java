@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import coddingcoggies.dto.Member;
 import coddingcoggies.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MemberController {
@@ -25,7 +26,7 @@ public class MemberController {
 	public String signUpComplete(Member member, Model model) {
 		memberService.insertMember(member);
 		model.addAttribute("msg", "회원가입 완료!");
-		return "diaryMain";
+		return "redirect:/";
 	}
 	
 }
