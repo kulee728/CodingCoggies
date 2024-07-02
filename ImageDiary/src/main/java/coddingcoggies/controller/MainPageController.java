@@ -5,6 +5,10 @@ import java.util.Calendar;
 import java.util.List;
 import static java.time.temporal.ChronoUnit.DAYS;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -96,6 +100,11 @@ public class MainPageController {
 
 	private void mainCalandarDayDrawer(Model model, HttpSession session, int year, int month
 			, DiaryLogin diaryLogin) {
+		
+		//Path directoryPath = Paths.get("src", "main", "resources","static", "img", "user", String.valueOf(user_id));
+		String absFilePath = (new File("")).getAbsolutePath();
+		absFilePath = absFilePath.replaceAll("\\\\","/");
+		log.info("프로젝트경로2 :"+absFilePath);
 		setTodayInfo(model);
 		//member_no에 일치하는 diaryList, specialDateList 가져오기
 		List<Diary> diaryList = mainPageService.getAllDiaryByMemberNo(diaryLogin.getMember_no());
