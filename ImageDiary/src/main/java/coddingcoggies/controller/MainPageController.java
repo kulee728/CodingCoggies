@@ -102,9 +102,10 @@ public class MainPageController {
 			, DiaryLogin diaryLogin) {
 		
 		//Path directoryPath = Paths.get("src", "main", "resources","static", "img", "user", String.valueOf(user_id));
-		String absFilePath = (new File("")).getAbsolutePath();
-		absFilePath = absFilePath.replaceAll("\\\\","/");
-		log.info("프로젝트경로2 :"+absFilePath);
+		
+		//log.info("프로젝트경로2 :"+absFilePath);
+		
+		
 		setTodayInfo(model);
 		//member_no에 일치하는 diaryList, specialDateList 가져오기
 		List<Diary> diaryList = mainPageService.getAllDiaryByMemberNo(diaryLogin.getMember_no());
