@@ -5,7 +5,7 @@
 <mapper namespace="coddingcoggies.mapper.DiaryMapper">
 <insert id="insertDiary" parameterType="coddingcoggies.dto.Diary">
 	INSERT INTO diary(diary_id, diary_title, diary_feelingCode, diary_date, diary_contents, member_no, diary_weatherCode, diary_fileurl)
-	VALUES (diary_seq.NEXTVAL,#{diary_title}, #{diary_feelingCode}, '#{diary_date}',#{diary_contents}, '#{member_no}',  #{diary_weatherCode}, #{diary_fileurl})
+	VALUES (diary_seq.NEXTVAL,#{diary_title}, #{diary_feelingCode}, #{diary_date},#{diary_contents}, #{member_no},  #{diary_weatherCode}, #{diary_fileurl})
 </insert>
 <select id="getAllDiary" resultType="coddingcoggies.dto.Diary">
 	SELECT * FROM diary
