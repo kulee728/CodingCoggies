@@ -70,11 +70,40 @@
         
         <!--<th:block th:if="${calDay.diaryYN}">
               <}"class="day-star"></a>-->
+<<<<<<< Updated upstream
               <th:block >
               
               </th:block>
         	
 			<th:block th:if="${calDay.specialDateYN}"></th:block>
+=======
+				<th:block>
+
+				</th:block>
+
+				<th:block th:if="${calDay.specialDateYN}"></th:block>
+			</div>
+		</div>
+
+
+		<div class="image-container">
+			<form th:action="@{${yyyyMMprev}}" method="post">
+				<button class="btn">
+					<img class="icons" src="/img/left-icon.png" alt="Previous">
+				</button>
+			</form>	
+			<form th:action="@{${todayYYYYMM}}" method="post">
+				<button class="btn btn-secondary">Today</button>	
+			</form>
+			<form th:action="@{${yyyyMMnext}}" method="post">
+				<button class="btn">
+					<img class="icons" src="/img/right-icon.png" alt="Next">
+					
+				</button>
+			</form>
+
+			
+>>>>>>> Stashed changes
 		</div>
 	</div>
 
