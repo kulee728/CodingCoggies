@@ -113,7 +113,9 @@ public class DiaryController {
 		//log.info("=== diary === : " + diary);
 		if (diary != null) {
 			if(diaryLogin.getMember_no() != diary.getMember_no()) {
-				return "redirect:/";
+				log.info("다이어리 주인 :"+diary.getMember_no());
+				log.info("로그인 주인 :"+diaryLogin.getMember_no());
+				return "redirect:/diaryMain";
 			} //만약 사용자가 다른 사용자의 다이어리에 접근하지 않도록 세션과 비교(id로만 접근하기 때문에)
 			
 			model.addAttribute("diary", diary);
