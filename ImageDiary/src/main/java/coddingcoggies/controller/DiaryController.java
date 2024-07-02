@@ -24,8 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 public class DiaryController {
 	
 	public static String cur_date;
-	//public static String cur_member_no;
 	public static String original_fileurl;
+	//public static String cur_member_no;
 	
 	
 	@Autowired
@@ -48,7 +48,7 @@ public class DiaryController {
     	
     	model.addAttribute("diary", new Diary());
     	model.addAttribute("member_no", member_no);
-      model.addAttribute("today", today);
+    	model.addAttribute("today", today);
       cur_date = today;
         
         return "diaryWrite";
@@ -130,8 +130,12 @@ public class DiaryController {
 	@GetMapping("/diaryUpdate/{diary_id}")
 	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model) {
 		Diary diary = diaryService.getDiaryById(diary_id);
-		original_fileurl = diary.getDiary_fileurl();
+		
+		log.info(" update diary : " + diary);
 		cur_date = diary.getDiary_date();
+		original_fileurl = diary.getDiary_fileurl();
+		
+		//log.info("아아아아아아아아ㅏ아아아아ㅓ");
 		model.addAttribute("diary", diary);
 		return "diaryUpdate";
 	}
@@ -155,7 +159,6 @@ public class DiaryController {
 		
 		int member_no = diaryLogin.getMember_no();
 		diaryService.updateDiary(diary_id, diary_date, member_no, diary_title, diary_contents, diary_feelingCode, diary_weatherCode, diary_fileurl);
-		
 	    return "redirect:/diaryMain";
 	    }
 	

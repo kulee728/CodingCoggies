@@ -85,6 +85,15 @@ public class DiaryService {
 		String absFilePath = (new File("")).getAbsolutePath();
 		absFilePath = absFilePath.replaceAll("//","/");
 		absFilePath += "/src/main/resources/static";
+=======
+	public void updateDiary(int diary_id, String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, String diary_fileurl) {
+		//String originFilename = file.getOriginalFilename(); // origin file name
+		
+		//++
+
+		/*
+		String uploadDir = "C:/Users/user1/Desktop/diary_img/";
+>>>>>>> shinwoo
 		
 		String file_saveDir = "/userImage/" + member_no + "/" + today;
 		String uploadDir = absFilePath+ file_saveDir;
@@ -94,8 +103,10 @@ public class DiaryService {
 
 		if(!imgFolder.exists()) {
 			imgFolder.mkdirs(); //not exists folder -> make folders
+<<<<<<< HEAD
 		}
 		*/
+		
 		try {
 		//file.transferTo(imgFile);
 		
@@ -105,6 +116,7 @@ public class DiaryService {
 		diary.setDiary_contents(diary_contents);
 		diary.setDiary_feelingCode(diary_feelingCode);
 		diary.setDiary_weatherCode(diary_weatherCode);
+
 		//diary.setDiary_fileurl(imgFolder + "/" + originFilename);
 		diary.setDiary_fileurl(diary_fileurl);
 		log.info("선생님 부르기 직전" + diary.toString());
@@ -113,6 +125,12 @@ public class DiaryService {
 		
 		diaryMapper.updateDiary(diary);
 		
+
+		diary.setDiary_fileurl(diary_fileurl);
+		//diary.setDiary_fileurl(imgFolder + "/" + originFilename);
+		diaryMapper.updateDiary(diary);
+		log.info(diary.toString());
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

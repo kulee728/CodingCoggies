@@ -10,6 +10,7 @@
 </head>
 <body style="background-color: #F0F2E1">
 <form th:action="@{'/diary/diaryUpdate/' + ${diary_id}}" method="post">
+
 <div class="container">
     <div class="input-group input-group-lg">
 		<input type="text" th:field="${diary.diary_title}" name="title_text" class="form-control"
