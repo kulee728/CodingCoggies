@@ -32,10 +32,5 @@ public class IndexController {
 		return "testLink";
 	}
 
-	@GetMapping("/specialDate")
-	public String specialDate() {
-		return "specialDate";
-	}
-
 }
 

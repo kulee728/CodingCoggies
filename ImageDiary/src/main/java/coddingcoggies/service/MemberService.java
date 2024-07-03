@@ -15,6 +15,19 @@ public class MemberService {
 	public void insertMember(Member member) {
 		memberMapper.insertMember(member);
 	}
+	/*
+	public Member getId() { 
+		return memberMapper.getId();
+	}
+	*/
 	
+	
+	public boolean getId(String member_id) {
+		Integer count = memberMapper.getId(member_id);
+		System.out.println("service : "+count);
+		//return count > 0;
+		
+		return count != null && count == 0;
+	}
 	
 }
