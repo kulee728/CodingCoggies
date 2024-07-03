@@ -5,6 +5,10 @@ import java.util.Calendar;
 import java.util.List;
 import static java.time.temporal.ChronoUnit.DAYS;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -96,6 +100,12 @@ public class MainPageController {
 
 	private void mainCalandarDayDrawer(Model model, HttpSession session, int year, int month
 			, DiaryLogin diaryLogin) {
+		
+		//Path directoryPath = Paths.get("src", "main", "resources","static", "img", "user", String.valueOf(user_id));
+		
+		//log.info("프로젝트경로2 :"+absFilePath);
+		
+		
 		setTodayInfo(model);
 		//member_no에 일치하는 diaryList, specialDateList 가져오기
 		List<Diary> diaryList = mainPageService.getAllDiaryByMemberNo(diaryLogin.getMember_no());
@@ -106,25 +116,25 @@ public class MainPageController {
 	
 		
 		Calendar cal = Calendar.getInstance(); //이번달 첫 날 구하기
-		cal.set(Calendar.YEAR, year);
-		cal.set(Calendar.MONTH, month);  //추후 날짜가 바뀔 것을 대비..
-		log.info("xxx\ncalandar year,month "+year+""+month+cal.toString()+"xxx\n");
+		//cal.set(Calendar.YEAR, year);
+		//cal.set(Calendar.MONTH, month);  //추후 날짜가 바뀔 것을 대비..
+		//log.info("xxx\ncalandar year,month "+year+""+month+cal.toString()+"xxx\n");
 		//cal.set(Calendar.DAY_OF_MONTH,1);
-		
+		cal.set(year, month-1, 1);
 		CalanderDay [] days = new CalanderDay[42]; //나중에 사이즈로 바꿔주자
 		int dayNum=1; //1부터 최대 31까지 할당되는 값
 		
-		cal.set(Calendar.DAY_OF_MONTH,1); //DAY_OF_MONTH를 1로 설정 (월의 첫날)
+		//cal.set(Calendar.DAY_OF_MONTH,1); //DAY_OF_MONTH를 1로 설정 (월의 첫날)
 		int dateStartPos = cal.get(Calendar.DAY_OF_WEEK); //그 주의 요일 반환 (일:1 ~ 토:7)
-		
-		
+		log.info("dateStartPos : "+dateStartPos);
+		log.info("getActualMaximum : "+cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 		String [] dayNameList = {"일","월","화","수","목","금","토"};
 		model.addAttribute("dayNameList",dayNameList);
 		
 		for(int i=0;i<days.length;i++) {
 			days[i] = new CalanderDay();
-			//첫 날의 요일위치.토요일은 6이다. log.info("dateStartPos : "+dateStartPos);
-			if(i>=dateStartPos && dayNum<cal.getActualMaximum(Calendar.DAY_OF_MONTH)) { //0이면 일요일부터 시작하는 달, days[0]일요일 days[6]금요일 고정
+			//첫 날의 요일위치.토요일은 7이다. log.info("dateStartPos : "+dateStartPos);
+			if(i>=dateStartPos-1 && dayNum<=cal.getActualMaximum(Calendar.DAY_OF_MONTH)) { //0이면 일요일부터 시작하는 달, days[0]일요일 days[6]금요일 고정
 				String yyyyMMdd = String.valueOf(year) 
 						+ String.format("%02d",month)+String.format("%02d",dayNum);
 				days[i].setYyyyMMdd(yyyyMMdd);
@@ -132,9 +142,9 @@ public class MainPageController {
 					if((d.getDiary_date()).equals(yyyyMMdd)) {
 						days[i].setDiaryYN(true);
 						days[i].setDiary_id(d.getDiary_id());
-						log.info("다이어리 true : "+d.toString());
-						log.info("days true : "+days[i].toString());
-						 log.info("*****diaryYN  date: " + yyyyMMdd);
+						//log.info("다이어리 true : "+d.toString());
+						//log.info("days true : "+days[i].toString());
+						 //log.info("*****diaryYN  date: " + yyyyMMdd);
 						break;
 					}
 				}

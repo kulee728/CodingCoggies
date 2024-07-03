@@ -32,12 +32,18 @@ public class DiaryService {
 		diaryMapper.insertDiary(diary);	
 	}
 	
-	public void insertDiary(String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, MultipartFile file) {
-	
+	//String today, int member_no, ++
+	public void insertDiary(String today, int member_no, String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, MultipartFile file) {
+		
 		String originFilename = file.getOriginalFilename(); // origin file name
 		
-		String uploadDir = "C:/Users/user1/Desktop/diary_img/";
+		String absFilePath = (new File("")).getAbsolutePath();
+		absFilePath = absFilePath.replaceAll("//","/");
+		absFilePath += "/src/main/resources/static";
 		
+		String file_saveDir = "/userImage/" + member_no + "/" + today;
+		String uploadDir = absFilePath+ file_saveDir;
+		 // static/userImage/1/20240702_1 식으로 붙는다. 이때 1은 유저의 member_no
 		File imgFolder = new File(uploadDir);
 		File imgFile = new File(imgFolder + "/" + originFilename);
 		
@@ -48,11 +54,14 @@ public class DiaryService {
 		file.transferTo(imgFile);
 		
 		Diary diary = new Diary();
+		diary.setDiary_date(today); // ++
+		diary.setMember_no(member_no); // ++
 		diary.setDiary_title(diary_title);
 		diary.setDiary_contents(diary_contents);
 		diary.setDiary_feelingCode(diary_feelingCode);
 		diary.setDiary_weatherCode(diary_weatherCode);
-		diary.setDiary_fileurl(imgFolder + "/" + originFilename);
+		diary.setDiary_fileurl(file_saveDir+ "/" + originFilename);
+		
 		diaryMapper.insertDiary(diary);
 		log.info(diary.toString());
 		} catch(Exception e) {
@@ -66,28 +75,62 @@ public class DiaryService {
 		diaryMapper.updateDiary(diary);
 	}
 	
-	public void updateDiary(String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, MultipartFile file) {
+	public void updateDiary(int diary_id, String today, int member_no, String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode
+			, String diary_fileurl//, MultipartFile file
+			) {
+		/*
 		String originFilename = file.getOriginalFilename(); // origin file name
 		
-		String uploadDir = "C:/Users/user1/Desktop/diary_img/";
+		//++
+		String absFilePath = (new File("")).getAbsolutePath();
+		absFilePath = absFilePath.replaceAll("//","/");
+		absFilePath += "/src/main/resources/static";
+=======
+	public void updateDiary(int diary_id, String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, String diary_fileurl) {
+		//String originFilename = file.getOriginalFilename(); // origin file name
 		
+		//++
+
+		/*
+		String uploadDir = "C:/Users/user1/Desktop/diary_img/";
+>>>>>>> shinwoo
+		
+		String file_saveDir = "/userImage/" + member_no + "/" + today;
+		String uploadDir = absFilePath+ file_saveDir;
+		 // static/userImage/1/20240702_1 식으로 붙는다. 이때 1은 유저의 member_no
 		File imgFolder = new File(uploadDir);
 		File imgFile = new File(imgFolder + "/" + originFilename);
-		
+
 		if(!imgFolder.exists()) {
 			imgFolder.mkdirs(); //not exists folder -> make folders
+<<<<<<< HEAD
 		}
+		*/
+		
 		try {
-		file.transferTo(imgFile);
+		//file.transferTo(imgFile);
 		
 		Diary diary = new Diary();
+		diary.setDiary_id(diary_id);
 		diary.setDiary_title(diary_title);
 		diary.setDiary_contents(diary_contents);
 		diary.setDiary_feelingCode(diary_feelingCode);
 		diary.setDiary_weatherCode(diary_weatherCode);
-		diary.setDiary_fileurl(imgFolder + "/" + originFilename);
-		diaryMapper.insertDiary(diary);
+
+		//diary.setDiary_fileurl(imgFolder + "/" + originFilename);
+		diary.setDiary_fileurl(diary_fileurl);
+		log.info("선생님 부르기 직전" + diary.toString());
+		
+		
+		
+		diaryMapper.updateDiary(diary);
+		
+
+		diary.setDiary_fileurl(diary_fileurl);
+		//diary.setDiary_fileurl(imgFolder + "/" + originFilename);
+		diaryMapper.updateDiary(diary);
 		log.info(diary.toString());
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -97,6 +140,7 @@ public class DiaryService {
 	public void deleteDiary(int diary_id) {
 		diaryMapper.deleteDiary(diary_id);
 	}
+	
 	
 	/*
 	public List<Diary> getAllDiary(){

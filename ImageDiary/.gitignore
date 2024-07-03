@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+/ImageDiary/src/main/resources/static/userImage/*
