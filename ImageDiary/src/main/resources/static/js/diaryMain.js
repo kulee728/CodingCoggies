@@ -23,6 +23,7 @@
 				console.log("spot 3 :"+ Number(todayInfo.substring(4,8)));
 				console.log("spot 4 :"+ YYYYMMarr[2].substring(0,4));
 				
+
 				
 				if(calDays[i].textContent==todayDayNum && 
 				Number(todayInfo.substring(9,11)) == Number(YYYYMMarr[3].split('월')[0]) &&
@@ -30,6 +31,20 @@
 				){	
 					calDays[i].classList.add('day-heart');
 					console.log("todayNum : "+todayDayNum);
+				}
+				
+				if(Number(todayInfo.substring(4,8)) < Number(YYYYMMarr[2].substring(0,4))){ //달력 년도가 현재보다 미래
+					calDays[i].classList.add('disableLink');
+				}
+				else if( Number(todayInfo.substring(4,8)) == Number(YYYYMMarr[2].substring(0,4)) &&
+					Number(todayInfo.substring(9,11)) < Number(YYYYMMarr[3].split('월')[0]) //같은 해, 월이 현재보다 미래
+					){
+						calDays[i].classList.add('disableLink');
+					} 
+				else if(Number(todayInfo.substring(4,8)) == Number(YYYYMMarr[2].substring(0,4)) &&
+					Number(todayInfo.substring(9,11)) == Number(YYYYMMarr[3].split('월')[0]) &&
+					Number(calDays[i].textContent)>Number(todayDayNum)){
+					calDays[i].classList.add('disableLink');
 				}
 				
 			}
@@ -75,8 +90,9 @@
                 calendar.appendChild(dayDiv);
             }*/
         }
-
+		
         document.addEventListener('DOMContentLoaded', populateCalendar);
+        
    /**
  * 
 

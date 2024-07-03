@@ -144,22 +144,39 @@ public class DiaryController {
 	public String updateDiary(
 			@PathVariable("diary_id") int diary_id,
 			@RequestParam("diary_title") String diary_title,
-			@RequestParam("diary_contents") String diary_contents, @RequestParam("feelingCode") int diary_feelingCode,
-			@RequestParam("weatherCode") int diary_weatherCode,HttpSession session//,파일 어떻게 하지 MultipartFile file 
+			@RequestParam("diary_contents") String diary_contents, 
+			@RequestParam("feelingCode") int diary_feelingCode,
+			@RequestParam("weatherCode") int diary_weatherCode,
+			  @RequestParam("update_image_url") MultipartFile file,
+			HttpSession session//,파일 어떻게 하지 MultipartFile file 
 			) {
 		log.info("아아diary title : "+diary_title);
 		log.info("가가 diary id : "+diary_id);
-
+		System.out.println("file : " + file);
 		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
 		if(diaryLogin==null) {
 			return "redirect:/";
 		}
-		String diary_fileurl = original_fileurl; 
 		String diary_date = cur_date;
 		
 		int member_no = diaryLogin.getMember_no();
-		diaryService.updateDiary(diary_id, diary_date, member_no, diary_title, diary_contents, diary_feelingCode, diary_weatherCode, diary_fileurl);
+		diaryService.updateDiary(diary_id, diary_date, member_no, diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file);
 	    return "redirect:/diaryMain";
+	    }
+	
+	 @GetMapping("/diaryDelete/{diary_id}")
+	    public String deleteDiary(@PathVariable("diary_id") int diary_id, HttpSession session) {
+	        DiaryLogin diaryLogin = (DiaryLogin) session.getAttribute("loginSession");
+	        if (diaryLogin == null) {
+	            return "redirect:/";
+	        }
+	        
+	        Diary diary = diaryService.getDiaryById(diary_id);
+	        if (diary != null && diaryLogin.getMember_no() == diary.getMember_no()) {
+	            diaryService.deleteDiary(diary_id);
+	        }
+	        
+	        return "redirect:/diaryMain";
 	    }
 	
 	/*

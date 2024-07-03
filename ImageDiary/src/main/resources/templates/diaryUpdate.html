@@ -9,7 +9,7 @@
       crossorigin="anonymous" />
 </head>
 <body style="background-color: #F0F2E1">
-<form th:action="@{'/diary/diaryUpdate/' + ${diary_id}}" method="post">
+<form th:action="@{'/diary/diaryUpdate/' + ${diary_id}}" method="post" enctype="multipart/form-data">
 
 <div class="container">
     <div class="input-group input-group-lg">
@@ -47,6 +47,7 @@
         <img th:src="@{${diary.diary_fileurl}}"/>
         <!-- <input type="file" id="사진선택" accept="image/*" 	th:field="${diary.diary_fileurl}"> --> 
         <!-- 다른 이미지 출력 부분도 필요에 따라 추가 -->
+        <input type="file" id="사진선택" accept="image/*" 	name="update_image_url">
     </div>
     
    

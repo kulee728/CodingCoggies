@@ -58,13 +58,13 @@
 			</svg>
 					</p>
 					<input type="radio" id="good" name="feelingCode" value="1"> 
-					<label for="scales">좋음</label> 
+					<label for="good">좋음</label> 
 					<input type="radio" id="soso" name="feelingCode" value="2"> 
-					<label for="scales">보통</label> 
+					<label for="soso">보통</label> 
 					<input type="radio" id="sad" name="feelingCode" value="3"> 
-					<label for="scales">슬픔</label> 
+					<label for="sad">슬픔</label> 
 					<input type="radio" id="angry" name="feelingCode" value="4"> 
-					<label for="scales">화남</label>
+					<label for="angry">화남</label>
 				</div>
 			</div>
 			<div class="col-1">
@@ -156,18 +156,25 @@
 <script>
 	document.querySelector('.submit').addEventListener('click', function(e) {
 		if (document.querySelector('#title').value == '') {
-			e.preventDefault() // 폼 전송을 막음
+			e.preventDefault()
 			alert('제목을 입력해주세요')
 		}
 		if (document.querySelector('#contents').value == '') {
-			e.preventDefault() // 폼 전송을 막음
+			e.preventDefault()
 			alert('일기 내용을 입력해주세요')
 		}
 		if (document.querySelector('#사진선택').value == '') {
-			e.preventDefault() // 폼 전송을 막음
+			e.preventDefault()
 			alert('사진을 선택해주세요');
-			colsole.log("aa");
-
+			console.log("aa");
+		}
+		if (!document.querySelector('input[name="weatherCode"]:checked')) {
+			e.preventDefault()
+			alert('날씨를 선택해주세요');
+		}
+		if (!document.querySelector('input[name="feelingCode"]:checked')) {
+			e.preventDefault()
+			alert('기분을 선택해주세요');
 		}
 	});
 </script>
