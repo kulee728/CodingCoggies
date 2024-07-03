@@ -24,15 +24,23 @@
 				console.log("spot 4 :"+ YYYYMMarr[2].substring(0,4));
 				
 
-				
+				/* 오늘 날짜 하트 그리기 시작 */
 				if(calDays[i].textContent==todayDayNum && 
 				Number(todayInfo.substring(9,11)) == Number(YYYYMMarr[3].split('월')[0]) &&
 				todayInfo.substring(4,8) == YYYYMMarr[2].substring(0,4)
 				){	
+					const dayDiv = document.createElement('div');
+					//dayDiv.innerHTML += '<br>Valentine\'s Day!';
+					//dayDiv.classList.add('day-heart');
 					calDays[i].classList.add('day-heart');
+					//calDays[i].classList.add('day-star');
+					//calDays[i].appendChild(dayDiv);
 					console.log("todayNum : "+todayDayNum);
 				}
+				/* 오늘 날짜 하트 그리기 끝 */
 				
+				
+				/* 달력 날짜 이후인 날들은 일기 못쓰게 하기 시작*/
 				if(Number(todayInfo.substring(4,8)) < Number(YYYYMMarr[2].substring(0,4))){ //달력 년도가 현재보다 미래
 					calDays[i].classList.add('disableLink');
 				}
@@ -46,6 +54,11 @@
 					Number(calDays[i].textContent)>Number(todayDayNum)){
 					calDays[i].classList.add('disableLink');
 				}
+				/* 달력 날짜 이후인 날들은 일기 못쓰게 하기 끝*/
+				
+				
+				//달력상의 년월 : YYYYMM
+				//달력상 일 calDays[i].textContent 
 				
 			}
 			

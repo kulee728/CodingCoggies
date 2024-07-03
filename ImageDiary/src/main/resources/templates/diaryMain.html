@@ -50,7 +50,10 @@
                     </div>
                     <div th:each="calDay : ${mainCalendardays}" class="day">
                         <a class="calDay" th:href="@{${calDay.diaryYN}==true? '/diary/diaryView/'+ ${calDay.diary_id} : '/diary/diaryWrite/'+ ${session.loginSession.member_no}+'/'+${calDay.yyyyMMdd}}"
-                            th:text="${calDay.dayNum}" th:classappend="${calDay.diaryYN==true? 'day-star' : 'noDiaryCalDay'}">
+                            th:text="${calDay.dayNum}" 
+                            th:classappend="${(calDay.diaryYN==true? 'day-star' : 'noDiaryCalDay')
+                            + (calDay.specialDateYN==true? '' : '')
+                            }">
                         </a>
                         <th:block></th:block>
                         <th:block th:if="${calDay.specialDateYN}"></th:block>
@@ -102,7 +105,7 @@
             </div>
         </div>
     </div>
-    <footer style="color:#f0f2e1;background-color: #BED59A;font-weight:bold; height:60px; line-height:20px">
+    <footer style="color:#f0f2e1;background-color: #BED59A;font-weight:bold; height:60px; line-height:20px; text-align:center">
         <p>
             <br> <span>&copy; 2024 CodingCoggies. All Rights
                 Reserved.</span> <br>
