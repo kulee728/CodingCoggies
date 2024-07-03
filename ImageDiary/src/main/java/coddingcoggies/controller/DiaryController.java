@@ -135,14 +135,10 @@ public class DiaryController {
 		}
 
 	}
-	//after change => HttpSession         Anonymous-customer XXX
 	@GetMapping("/diaryUpdate/{diary_id}")
-	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model, HttpSession session) {
-		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
-		if(diaryLogin==null) {
-			return "redirect:/";
-		} //로그인 세션 확인
+	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model) {
 		Diary diary = diaryService.getDiaryById(diary_id);
+		
 		log.info(" update diary : " + diary);
 		cur_date = diary.getDiary_date();
 		original_fileurl = diary.getDiary_fileurl();
@@ -151,24 +147,28 @@ public class DiaryController {
 		model.addAttribute("diary", diary);
 		return "diaryUpdate";
 	}
+	
 	@PostMapping("/diaryUpdate/{diary_id}")
 	public String updateDiary(
 			@PathVariable("diary_id") int diary_id,
 			@RequestParam("diary_title") String diary_title,
-			@RequestParam("diary_contents") String diary_contents, @RequestParam("feelingCode") int diary_feelingCode,
-			@RequestParam("weatherCode") int diary_weatherCode, //@RequestParam("diary_fileurl") String fileurl, 
-			HttpSession session) {
-		
+			@RequestParam("diary_contents") String diary_contents, 
+			@RequestParam("feelingCode") int diary_feelingCode,
+			@RequestParam("weatherCode") int diary_weatherCode,
+			  @RequestParam("update_image_url") MultipartFile file,
+			HttpSession session//,파일 어떻게 하지 MultipartFile file 
+			) {
+		log.info("아아diary title : "+diary_title);
+		log.info("가가 diary id : "+diary_id);
+		System.out.println("file : " + file);
 		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
 		if(diaryLogin==null) {
 			return "redirect:/";
-		} //로그인 세션 확인
-		
+		}
 		String diary_date = cur_date;
-		String diary_fileurl = original_fileurl;
-		log.info("ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ : " +diary_title);
-
-		diaryService.updateDiary(diary_id, diary_title, diary_contents, diary_feelingCode, diary_weatherCode, diary_fileurl);
+		
+		int member_no = diaryLogin.getMember_no();
+		diaryService.updateDiary(diary_id, diary_date, member_no, diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file);
 	    return "redirect:/diaryMain";
 	    }
 	
@@ -176,4 +176,20 @@ public class DiaryController {
 	@GetMapping("/diaryView/{diary_id}")
 	public String deleteDiary(diary_id)
 	*/
+	
+	 @GetMapping("/diaryDelete/{diary_id}")
+	    public String deleteDiary(@PathVariable("diary_id") int diary_id, HttpSession session) {
+	        DiaryLogin diaryLogin = (DiaryLogin) session.getAttribute("loginSession");
+	        if (diaryLogin == null) {
+	            return "redirect:/";
+	        }
+
+	        Diary diary = diaryService.getDiaryById(diary_id);
+	        if (diary != null && diaryLogin.getMember_no() == diary.getMember_no()) {
+	            diaryService.deleteDiary(diary_id);
+	        }
+
+	        return "redirect:/diaryMain";
+	    }
+
 }
