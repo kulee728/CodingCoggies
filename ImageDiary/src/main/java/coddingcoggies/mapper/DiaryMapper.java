@@ -24,8 +24,6 @@ public interface DiaryMapper {
 	void deleteDiary(@Param("diary_id") int diary_id);
 
 	List<Diary> getAllDiary();
-	
-/*********************************************************************************************/	
 	Diary getDiaryById(@Param("diary_id") int diary_id);
 	
 	

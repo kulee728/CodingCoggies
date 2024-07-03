@@ -15,11 +15,11 @@ public class IndexController {
 	public String toDiaryView() {
 		return "diaryView";
 	}
-	@GetMapping("/diaryWrite")
+/*	@GetMapping("/diaryWrite")
 	public String toDiaryWrite(Model model) {
 		model.addAttribute("diary", new Diary()); //get = 가져오다. 다이어리 객체에 작성된 빈 공간을
 		return "diaryWrite";
-	}
+	}*/
 	/*
 	@GetMapping("/signUp")
 	public String toSignUp() {
