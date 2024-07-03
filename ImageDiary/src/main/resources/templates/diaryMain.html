@@ -59,15 +59,15 @@
         <!-- 달력 뿌려주기(날) -->
         <div class="image-container">
             <div class="form-group d-flex justify-content-center gap-3">
-                <form th:action="@{${yyyyMMprev}}" method="post" class="d-inline">
+                <form th:action="@{'/main/'+ ${yyyyMMprev}}" method="post" class="d-inline">
                     <button class="btn">
                         <img class="icons" src="/img/left-icon.png" alt="Previous">
                     </button>
                 </form>
-                <form th:action="@{${todayYYYYMM}}" method="post" class="d-inline">
+                <form th:action="@{'/main/'+${todayYYYYMM}}" method="post" class="d-inline">
                     <button class="btn btn-secondary">Today</button>
                 </form>
-                <form th:action="@{${yyyyMMnext}}" method="post" class="d-inline">
+                <form th:action="@{'/main/'+${yyyyMMnext}}" method="post" class="d-inline">
                     <button class="btn">
                         <img class="icons" src="/img/right-icon.png" alt="Next">
                     </button>

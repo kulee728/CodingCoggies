@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <title>디데이입력 화면</title>
@@ -9,27 +9,30 @@
 </head>
 <body>
 	<div class="container">
-        <form class="Dday-form" method="post" action="/specialDate">
-			<div class="Dday-Anniv">
-				<input type="radio" class="selectType">D-day &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" class="selectType">기념일
+        <form class="Dday-form" method="post" action="/insertSpecialDate" th:object="${specialDate}">
+        <!-- 
+			<div class="Dday-Anniv" th:field="*{specialDate_type}">
+				<input type="radio" id="dDayRadio" name="DateType" class="selectType" value="1">
+				<label for="dDayRadio"> D-day &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</label>
+				<input type="radio" id="anniversaryRadio" name="DateType"  class="selectType" value="2"><label for="anniversaryRadio">기념일</label>
 			</div>
 			<br>
-		
+		 -->
 			<div class="selectDate">
 				<label>날짜선택 : </label>
-				<input type="date" class="DdaySelect">
+				<input type="date" class="DdaySelect" th:field="*{specialDate_date}">
 			</div>
 			<br>
 		
 			<div class="contentArea">
 			<label>내용 : </label>
-			<input type="text" class="DdayContent">
+			<input type="text" class="DdayContent" th:field="*{specialDate_name}">
 			</div>
 			<br>
 		
 			<button type="submit" class="save-Btn" onclick="">저   장</button>
-			<button type="submit" class="delete-Btn" onclick="">삭   제</button>
+			<!-- <button type="submit" class="delete-Btn" onclick="">삭   제</button> -->
         </form>
 
 	</div>
