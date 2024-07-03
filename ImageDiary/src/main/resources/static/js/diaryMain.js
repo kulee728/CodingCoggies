@@ -17,7 +17,6 @@
 				console.log("calDays[i] : "+calDays[i].textContent);
 				console.log("todayInfo YYYYMM= "+todayYYYYMM);
 				console.log("year+month = "+year + month);
-
 				
 				console.log("spot 1 :"+ todayInfo.substring(9,11));
 				console.log("spot 2 :"+ Number(YYYYMMarr[3].split('월')[0]));
