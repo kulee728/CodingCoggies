@@ -18,7 +18,9 @@ public interface SpecialDateMapper {
 	*/ 
 	void insertSpecialDate(SpecialDate specialDate);
 	
-	
+	SpecialDate getSpecialDateById(int specialDate_id);
+
+	void updateSpecialDate(SpecialDate specialDate);
 	
 }
 

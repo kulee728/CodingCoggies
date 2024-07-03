@@ -1,5 +1,7 @@
 package coddingcoggies.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,4 +18,18 @@ public class SpecialDateService {
 		specialDateMapper.insertSpecialDate(specialDate);
 	}
 
+	public List<SpecialDate> getAllSpecialDateByMemberNo(int member_id) {
+		
+		return specialDateMapper.getAllSpecialDateByMemberNo(member_id);
+	}
+	
+	public SpecialDate getSpecialDateById(int specialDate_id) {
+		return specialDateMapper.getSpecialDateById(specialDate_id);
+	}
+	
+	public void updateSpecialDate(SpecialDate specialDate) {
+	
+		specialDateMapper.updateSpecialDate(specialDate);
+	}
+	
 }

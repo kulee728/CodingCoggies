@@ -1,5 +1,7 @@
 package coddingcoggies.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import coddingcoggies.dto.DiaryLogin;
 import coddingcoggies.dto.SpecialDate;
+import coddingcoggies.mapper.MainPageMapper;
 import coddingcoggies.service.SpecialDateService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +22,7 @@ public class SpecialDateController {
 	
 	@Autowired
 	private SpecialDateService specialDateService;
+	public static int updateTargetId;
 	
 	@GetMapping("/insertSpecialDate")
 	public String specialDate(Model model, HttpSession session) {
@@ -27,7 +31,7 @@ public class SpecialDateController {
 			return "redirect:/";
 		}
 		model.addAttribute("specialDate",new SpecialDate());
-		return "SpecialDate";
+		return "specialDate";
 	}
 	
 	@PostMapping("/insertSpecialDate")
@@ -63,6 +67,63 @@ public class SpecialDateController {
 		log.info("건휘야 기념일만들자~"+specialDate.toString());
 		
 		specialDateService.insertSpecialDate(specialDate);
+		return "redirect:/diaryMain";
+	}
+	
+	
+	
+	@GetMapping("/updateSpecialDate")
+	public String specialDateUpdate(Model model, HttpSession session) {
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		int selectedSpecialDate_id = 0;
+		if(diaryLogin==null) {
+			return "redirect:/";
+		}
+		//model.addAttribute("selectedSpecialDate_id",selectedSpecialDate_id);
+
+		List<SpecialDate> specialDateList = specialDateService.getAllSpecialDateByMemberNo(diaryLogin.getMember_no());
+		model.addAttribute("specialDateList",specialDateList);
+		log.info("히히 못가" + specialDateList.toString());
+		return "specialDateUpdate";
+	}
+	
+	@PostMapping("/updateSpecialDate")
+	public String specialDateUpdateSubmission(Model model, HttpSession session
+			, @RequestParam("selectedSpecialDate_id") int specialDate_id) {
+		
+		updateTargetId = specialDate_id;
+		
+		SpecialDate specialDate = specialDateService.getSpecialDateById(specialDate_id);
+		String dateText = specialDate.getSpecialDate_date();
+		dateText = dateText.substring(0,4)+"-"+dateText.substring(4,6)+"-"+dateText.substring(6,8);
+		specialDate.setDateDisplayText(dateText);
+		model.addAttribute("specialDate",specialDate);
+		return "specialDateUpdate2";
+	}
+	
+	@PostMapping("/updateSpecialDate2")
+	public String specialDateUpdate2(Model model, HttpSession session
+			,@RequestParam("specialDate_date") String specialDate_date,
+			@RequestParam("specialDate_type") int specialDate_type,
+			@RequestParam("specialDate_name") String specialDate_name) {
+
+			DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+			if(diaryLogin==null) {
+				return "redirect:/";
+			}
+			int member_no = diaryLogin.getMember_no();
+			int specialDateId = updateTargetId;
+			
+			SpecialDate specialDate = new SpecialDate();
+			specialDate_date = specialDate_date.replaceAll("-","");
+			
+			specialDate.setSpecialDate_date(specialDate_date);
+			specialDate.setSpecialDate_type(specialDate_type);
+			specialDate.setSpecialDate_name(specialDate_name);
+			specialDate.setSpecialDate_id(specialDateId);
+			
+		specialDateService.updateSpecialDate(specialDate);
+		
 		return "redirect:/diaryMain";
 	}
 	
