@@ -1,12 +1,16 @@
 
-body {
-    background-color: #ebe5d4;
+.bodyframe {
+    background-color: #f0f2e1 ;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     margin: 0;
     font-weight: bold;
+}
+
+body{
+	background-color:#f0f2e1;
 }
 
 .container {
@@ -19,6 +23,9 @@ body {
     align-items: center;
     
 }
+    .container, .container-sm {
+        max-width: 540px;
+    }
 
 .container .Dday-form {
     display: flex;
@@ -60,4 +67,16 @@ body {
 footer{
     background-color: #BED59A;
     color: darygray;
+    }
+
+        .icons{
+    	opacity:0.3;
+    	width:40px;
+    	height:40px;
+    }
+    
+   .icons:hover{
+   		opacity:1.0;
+    	width:50px;
+    	height:50px;
     }

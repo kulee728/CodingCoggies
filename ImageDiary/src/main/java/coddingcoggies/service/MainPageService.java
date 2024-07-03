@@ -2,6 +2,7 @@ package coddingcoggies.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,9 @@ public class MainPageService {
 	@Autowired
 	private MainPageMapper mainPageMapper;
 	
-	public List<SpecialDate> getAllSpecialDateByMemberNo(int member_no){
-		log.info("serivce string : "+ mainPageMapper.getAllSpecialDateByMemberNo(member_no).toString());
-		return mainPageMapper.getAllSpecialDateByMemberNo(member_no);
+	public List<SpecialDate> getAllSpecialDateByMemberNo(int member_no, String yyyyMM, String todayDate){
+		log.info("serivce string : "+ mainPageMapper.getAllSpecialDateByMemberNo(member_no,yyyyMM,todayDate).toString());
+		return mainPageMapper.getAllSpecialDateByMemberNo(member_no,yyyyMM,todayDate);
 	}
 
 	public List <Diary> getAllDiaryByMemberNo(int member_no){

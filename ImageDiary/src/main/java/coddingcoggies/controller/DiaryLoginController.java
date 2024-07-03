@@ -17,9 +17,15 @@ public class DiaryLoginController {
 	private DiaryLoginService diaryLoginService;
 	
 	@GetMapping("/")
-	public String showLoginForm(Model model) {
+	public String showLoginForm(Model model, HttpSession session) {
+		
 		model.addAttribute("m", new DiaryLogin());
-		return "index";
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "index";
+		}
+		
+		return "redirect:/diaryMain";
 	}
 	
 	@PostMapping("/login-form")

@@ -30,6 +30,8 @@ public class MainPageController {
 
 	@Autowired
 	private MainPageService mainPageService;
+	
+	public static String todayYYYYMMDD;
 
 	@PostMapping("/main/{yyyyMM}")
 	public String changeMainContents(@PathVariable("yyyyMM") String yyyyMM,Model model, HttpSession session) {
@@ -41,7 +43,7 @@ public class MainPageController {
 		int month = Integer.valueOf(yyyyMM.substring(4));
 
 		mainCalandarDayDrawer(model,session,year,month,diaryLogin);
-		mainPageGetAllSpecialDate(model,diaryLogin.getMember_no()); //기념일 목록 뽑아오기
+		mainPageGetAllSpecialDate(model,diaryLogin.getMember_no(),year+String.format("%02d",month),todayYYYYMMDD); //기념일 목록 뽑아오기
 		return "/diaryMain";
 	}
 	public String yyyyMMtoPrev(String yyyyMM) {
@@ -91,7 +93,7 @@ public class MainPageController {
 		//달력 그리기
 
 		mainCalandarDayDrawer(model,session,year,month,diaryLogin);//이달의 날짜,model,session 넘기고 조회
-		mainPageGetAllSpecialDate(model,diaryLogin.getMember_no()); //기념일 목록 뽑아오기
+		mainPageGetAllSpecialDate(model,diaryLogin.getMember_no(),year+String.format("%02d",month),todayYYYYMMDD);
 		log.info("prev to yyyyMM is "+String.valueOf(model.getAttribute("yyyyMM")));
 		//log.info("yyyyMM is "+String.valueOf(model.getAttribute("yyyyMM")));
 		//달력 그리기 끝
@@ -109,7 +111,7 @@ public class MainPageController {
 		setTodayInfo(model);
 		//member_no에 일치하는 diaryList, specialDateList 가져오기
 		List<Diary> diaryList = mainPageService.getAllDiaryByMemberNo(diaryLogin.getMember_no());
-		List<SpecialDate> specialDateList = mainPageService.getAllSpecialDateByMemberNo(diaryLogin.getMember_no());
+		List<SpecialDate> specialDateList = mainPageService.getAllSpecialDateByMemberNo(diaryLogin.getMember_no(),year+String.format("%02d",month),todayYYYYMMDD);
 		
 		String todayHeader = year+"년 "+month+"월";
 		model.addAttribute("todayHeader",todayHeader);
@@ -167,6 +169,8 @@ public class MainPageController {
 		model.addAttribute("yyyyMMprev",yyyyMMtoPrev(year+String.format("%02d",month)));
 		model.addAttribute("yyyyMMnext",yyyyMMtoNext(year+String.format("%02d",month)));
 		model.addAttribute("mainCalendardays",days);
+		
+		//기념일 목록 뽑아오기
 	}
 
 
@@ -177,8 +181,8 @@ public class MainPageController {
 	 */
 
 
-	private void mainPageGetAllSpecialDate(Model model,int member_no) {
-		List<SpecialDate> specialDateList = mainPageService.getAllSpecialDateByMemberNo(member_no);
+	private void mainPageGetAllSpecialDate(Model model,int member_no,String yyyyMM, String todayDate) {
+		List<SpecialDate> specialDateList = mainPageService.getAllSpecialDateByMemberNo(member_no,yyyyMM,todayDate);
 		
 		for(SpecialDate sd : specialDateList) {
 			if(sd.getSpecialDate_type()==1){{
@@ -203,6 +207,7 @@ public class MainPageController {
 		int year = cal.get(Calendar.YEAR); 
 		int month = cal.get(Calendar.MONTH) + 1; 
 		int day = cal.get(Calendar.DAY_OF_MONTH);
+		todayYYYYMMDD = year+String.format("%02d",month)+String.format("%02d",day);
 		model.addAttribute("todayYYYYMM",year+String.format("%02d",month));
 		//헤더
 		model.addAttribute("todayInfo",

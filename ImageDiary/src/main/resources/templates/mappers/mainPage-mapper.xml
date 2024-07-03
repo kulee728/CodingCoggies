@@ -16,9 +16,14 @@
 	</resultMap>
 
 	<select id="getAllSpecialDateByMemberNo"
-		resultType="coddingcoggies.dto.SpecialDate" parameterType="int">
+		resultType="coddingcoggies.dto.SpecialDate" parameterType="java.util.Map">
 		SELECT * FROM diary_specialDate
 		WHERE member_no = #{member_no}
+		AND (
+		specialDate_type = '2' AND SUBSTR(specialDate_date,1,6) = #{yyyyMM}
+		OR
+		specialDate_type = '1' AND specialDate_date >= #{todayDate}
+		)
 		ORDER BY specialDate_type, specialDate_date
 	</select>
 	  

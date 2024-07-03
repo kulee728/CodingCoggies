@@ -35,7 +35,12 @@ public class DiaryController {
 
 
 	@GetMapping("/diaryView/{diary_id}/{today}")
-    public String viewDiary(@PathVariable int diary_id, @PathVariable String today, Model model) {
+    public String viewDiary(@PathVariable int diary_id, @PathVariable String today, Model model,HttpSession session) {
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		}
+		
         model.addAttribute("diary_id", diary_id);
         model.addAttribute("today", today);
         return "diaryView";
@@ -43,8 +48,13 @@ public class DiaryController {
 
 	//++ String member_no -> int member_no
     @GetMapping("/diaryWrite/{member_no}/{today}")
-    public String writeDiary(@PathVariable int member_no, @PathVariable String today, Model model) {
+    public String writeDiary(@PathVariable int member_no, @PathVariable String today, Model model, HttpSession session) {
     	//log.info("today :" +today);
+    	
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		}
     	
     	model.addAttribute("diary", new Diary());
     	model.addAttribute("member_no", member_no);
@@ -56,7 +66,12 @@ public class DiaryController {
     /* ******************************************************************************** */
     
 	@GetMapping("/diaryWrite")
-	public String toDiaryWrite(Model model) {
+	public String toDiaryWrite(Model model, HttpSession session) {
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		}
+		
 		model.addAttribute("diary", new Diary()); // get = 가져오다. 다이어리 객체에 작성된 빈 공간을
 		return "diaryWrite";
 	}
@@ -128,7 +143,14 @@ public class DiaryController {
 	}
 	//after change => HttpSession         Anonymous-customer XXX
 	@GetMapping("/diaryUpdate/{diary_id}")
-	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model) {
+	public String updateDiary(@PathVariable("diary_id") int diary_id, Model model, HttpSession session) {
+		
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		}
+		
+		
 		Diary diary = diaryService.getDiaryById(diary_id);
 		
 		log.info(" update diary : " + diary);

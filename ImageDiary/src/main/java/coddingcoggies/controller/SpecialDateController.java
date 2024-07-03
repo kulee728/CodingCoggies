@@ -21,7 +21,11 @@ public class SpecialDateController {
 	private SpecialDateService specialDateService;
 	
 	@GetMapping("/insertSpecialDate")
-	public String specialDate(Model model) {
+	public String specialDate(Model model, HttpSession session) {
+		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+		if(diaryLogin==null) {
+			return "redirect:/";
+		}
 		model.addAttribute("specialDate",new SpecialDate());
 		return "SpecialDate";
 	}
@@ -29,10 +33,10 @@ public class SpecialDateController {
 	@PostMapping("/insertSpecialDate")
 	public String specialDateSave(Model model, 
 			@RequestParam("specialDate_date") String specialDate_date,
-			//@RequestParam("specialDate_type") int specialDate_type,
+			@RequestParam("specialDate_type") int specialDate_type,
 			@RequestParam("specialDate_name") String specialDate_name,
 			HttpSession session) {
-		int specialDate_type = 1;
+		//int specialDate_type = 1;
 		
 		specialDate_date = specialDate_date.replaceAll("-","");
 		
@@ -47,7 +51,7 @@ public class SpecialDateController {
 		String [] randomColors = {"#FBD5D5", "#DFBCA9", "#B6A884", "#83956E",
 					"#498168", "#006B6C", "#C6E998", "#FFCF90", "#E9985D", "#AE652C"};
 		
-		String specialDate_color = randomColors[(int)Math.random()*10];
+		String specialDate_color = randomColors[(int)(Math.random()*10)];
 		
 		SpecialDate specialDate = new SpecialDate();
 		specialDate.setSpecialDate_date(specialDate_date);
