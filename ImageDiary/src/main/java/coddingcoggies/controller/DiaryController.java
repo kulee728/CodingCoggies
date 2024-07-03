@@ -162,6 +162,21 @@ public class DiaryController {
 	    return "redirect:/diaryMain";
 	    }
 	
+	 @GetMapping("/diaryDelete/{diary_id}")
+	    public String deleteDiary(@PathVariable("diary_id") int diary_id, HttpSession session) {
+	        DiaryLogin diaryLogin = (DiaryLogin) session.getAttribute("loginSession");
+	        if (diaryLogin == null) {
+	            return "redirect:/";
+	        }
+	        
+	        Diary diary = diaryService.getDiaryById(diary_id);
+	        if (diary != null && diaryLogin.getMember_no() == diary.getMember_no()) {
+	            diaryService.deleteDiary(diary_id);
+	        }
+	        
+	        return "redirect:/diaryMain";
+	    }
+	
 	/*
 	@GetMapping("/diaryDelete/{diary_id}")
 	public String deleteDiary(@PathVariable("diary_id") int diary_id, Model model) {

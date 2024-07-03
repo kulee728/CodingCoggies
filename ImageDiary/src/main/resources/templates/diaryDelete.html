@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="/css/diaryDelete.css">
 </head>
 <body>
-	<form>
+	<form th:action="@{'/diary/diaryDelete/' + ${diary_id}}" method="get">
 		<div class="container">
 			<h3>일기를 삭제하면 복구가 불가합니다. 정말 삭제하시겠습니까?</h3>
 			<button type="submit" onclick="location.href = '/diaryView.html'"
