@@ -46,7 +46,9 @@
                     </div>
                     <div class="buttons">
                         <button>기념일 수정</button>
+                       <form method="post" action="/insertSpecialDate">
                         <button>기념일 제작</button>
+                       </form>
                     </div>
                     <div class="home-key-icons" th:if="${session.loginSession != null}">
                         <a href="/diaryMain"><img src="/img/home-icon.png" alt="Home"></a>

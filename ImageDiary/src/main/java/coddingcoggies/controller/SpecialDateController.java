@@ -15,12 +15,12 @@ public class SpecialDateController {
 	@Autowired
 	private SpecialDateService specialDateService;
 	
-	@GetMapping("/specialDate")
+	@GetMapping("/insertSpecialDate")
 	public String specialDate() {
-		return "specialDate";
+		return "SpecialDate";
 	}
 	
-	@PostMapping("/specialDate")
+	@PostMapping("/insertSpecialDate")
 	public String specialDateSave(Model model, String specialDate_date,
 			int specialDate_type,
 			String specialDate_color,
