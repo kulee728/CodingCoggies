@@ -70,48 +70,48 @@ public class DiaryService {
 		
 	}
 	
-	/*
+	//일기 수정
 	public void updateDiary(Diary diary) {
 		diaryMapper.updateDiary(diary);
 	}
-	*/
-	public void updateDiary(int diary_id, String today, int member_no, String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, MultipartFile file) {
-	    String originFilename = file.getOriginalFilename();
-	        String absFilePath = (new File("")).getAbsolutePath().replaceAll("//","/");
-	        absFilePath += "/src/main/resources/static";
-	        
-	        String file_saveDir = "/userImage/" + member_no + "/" + today;
-	        String uploadDir = absFilePath + file_saveDir;
-	        File imgFolder = new File(uploadDir);
-	        File imgFile = new File(imgFolder, originFilename);
-	        
-	        if (!imgFolder.exists()) {
-	            imgFolder.mkdirs();
-	        }
-	        try {
-	            file.transferTo(imgFile);
-	            Diary diary = new Diary();
-	            diary.setDiary_id(diary_id);
-	            diary.setDiary_date(today);
-	            diary.setMember_no(member_no);
-	            diary.setDiary_title(diary_title);
-	            diary.setDiary_contents(diary_contents);
-	            diary.setDiary_feelingCode(diary_feelingCode);
-	            diary.setDiary_weatherCode(diary_weatherCode);
-	            diary.setDiary_fileurl(file_saveDir + "/" + originFilename);
-	            
-	            diaryMapper.updateDiary(diary);
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
- 
-	}
+	
+	public void updateDiary(int diary_id, String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, String diary_fileurl) {
+		//String originFilename = file.getOriginalFilename(); // origin file name
+		
+		//++
 
+		/*
+		String uploadDir = "C:/Users/user1/Desktop/diary_img/";
+		
+		File imgFolder = new File(uploadDir);
+		File imgFile = new File(imgFolder + "/" + originFilename);
+		
+		if(!imgFolder.exists()) {
+			imgFolder.mkdirs(); //not exists folder -> make folders
+		}*/
+		
+		try {
+		//file.transferTo(imgFile);
+		
+		Diary diary = new Diary();
+		diary.setDiary_id(diary_id);
+		diary.setDiary_title(diary_title);
+		diary.setDiary_contents(diary_contents);
+		diary.setDiary_feelingCode(diary_feelingCode);
+		diary.setDiary_weatherCode(diary_weatherCode);
+		diary.setDiary_fileurl(diary_fileurl);
+		//diary.setDiary_fileurl(imgFolder + "/" + originFilename);
+		diaryMapper.updateDiary(diary);
+		log.info(diary.toString());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//일기 삭제
 	public void deleteDiary(int diary_id) {
 		diaryMapper.deleteDiary(diary_id);
 	}
-	
 	
 	/*
 	public List<Diary> getAllDiary(){
@@ -128,4 +128,3 @@ public class DiaryService {
 	}
 
 }
-
