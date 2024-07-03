@@ -31,7 +31,7 @@ public class MainPageController {
 	@Autowired
 	private MainPageService mainPageService;
 
-	@PostMapping("/{yyyyMM}")
+	@PostMapping("/main/{yyyyMM}")
 	public String changeMainContents(@PathVariable("yyyyMM") String yyyyMM,Model model, HttpSession session) {
 		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
 		if(diaryLogin==null) {
