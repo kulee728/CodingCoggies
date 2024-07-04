@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign Up</title>
 
+
 <link rel="stylesheet" href="/css/signUpStyles.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -221,9 +222,19 @@
 
 
 
+
+
 </head>
 <body>
-<div class="bodys">
+
+	<nav class="navbar navbar-expand-lg" style="background-color:#f0f2e1" >
+  <a class="navbar-brand" href="#"></a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+        <a class="nav-link" href="/diaryMain"><img class="icons" src="/img/home-icon.png" style="width:40px;height:40px" ></a>
+  </div>
+</nav>
+
+<div class="bodys"  style="height: 70vh">
 	<div class="container">
 		<form th:action="@{/register}" method="post" class="signup-form"
 			th:object="${newMem}" onsubmit="return signUpSubmit()">

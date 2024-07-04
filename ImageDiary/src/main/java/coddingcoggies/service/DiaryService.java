@@ -76,7 +76,7 @@ public class DiaryService {
 		diaryMapper.updateDiary(diary);
 	}*/
 	
-	public void updateDiary(int diary_id, String today, int member_no, String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, MultipartFile file) {
+	public void updateDiary(int diary_id, String today, int member_no, String diary_title, String diary_contents, int diary_feelingCode, int diary_weatherCode, MultipartFile file,String original_fileurl) {
 	    String originFilename = file.getOriginalFilename();
 	        String absFilePath = (new File("")).getAbsolutePath().replaceAll("//","/");
 	        absFilePath += "/src/main/resources/static";
@@ -89,23 +89,26 @@ public class DiaryService {
 	        if (!imgFolder.exists()) {
 	            imgFolder.mkdirs();
 	        }
+	        Diary diary = new Diary();
 	        try {
 	            file.transferTo(imgFile);
-	            Diary diary = new Diary();
-	            diary.setDiary_id(diary_id);
-	            diary.setDiary_date(today);
-	            diary.setMember_no(member_no);
-	            diary.setDiary_title(diary_title);
-	            diary.setDiary_contents(diary_contents);
-	            diary.setDiary_feelingCode(diary_feelingCode);
-	            diary.setDiary_weatherCode(diary_weatherCode);
 	            diary.setDiary_fileurl(file_saveDir + "/" + originFilename);
-	            
-	            diaryMapper.updateDiary(diary);
+
 	        } catch (Exception e) {
 	            e.printStackTrace();
+	            diary.setDiary_fileurl(original_fileurl);
 	        }
- 
+           
+            diary.setDiary_id(diary_id);
+            diary.setDiary_date(today);
+            diary.setMember_no(member_no);
+            diary.setDiary_title(diary_title);
+            diary.setDiary_contents(diary_contents);
+            diary.setDiary_feelingCode(diary_feelingCode);
+            diary.setDiary_weatherCode(diary_weatherCode);
+            
+            
+            diaryMapper.updateDiary(diary);
 	}
 	
 	//일기 삭제

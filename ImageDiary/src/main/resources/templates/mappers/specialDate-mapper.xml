@@ -34,5 +34,9 @@
 		WHERE
 			specialDate_id = #{specialDate_id}
 	</update>
+	<delete id="deleteSpecialDate" parameterType="int">
+		DELETE FROM diary_specialDate
+		WHERE specialDate_id = #{specialDate_id}
+	</delete>
 	
 </mapper>

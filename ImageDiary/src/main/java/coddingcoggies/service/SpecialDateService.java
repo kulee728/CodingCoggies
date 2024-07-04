@@ -31,5 +31,7 @@ public class SpecialDateService {
 	
 		specialDateMapper.updateSpecialDate(specialDate);
 	}
-	
+	public void deleteSpecialDate(int specialDate_id) {
+		specialDateMapper.deleteSpecialDate(specialDate_id);
+	}
 }

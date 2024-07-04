@@ -127,5 +127,19 @@ public class SpecialDateController {
 		return "redirect:/diaryMain";
 	}
 	
+	@PostMapping("/updateSpecialDate2Delete")
+	public String specialDateUpdate2(Model model, HttpSession session) {
+
+			DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
+			if(diaryLogin==null) {
+				return "redirect:/";
+			}
+		
+			int specialDateId = updateTargetId;
+		specialDateService.deleteSpecialDate(specialDateId);
+		
+		return "redirect:/diaryMain";
+	}
+	
 }
 

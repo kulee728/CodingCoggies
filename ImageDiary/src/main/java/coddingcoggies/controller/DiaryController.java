@@ -51,7 +51,7 @@ public class DiaryController {
     	//log.info("today :" +today);
     	
 		DiaryLogin diaryLogin = (DiaryLogin)session.getAttribute("loginSession");
-		if(diaryLogin==null) {
+		if(diaryLogin==null || diaryLogin.getMember_no() != member_no) {
 			return "redirect:/";
 		} //로그인 세션 확인
     	
@@ -120,6 +120,10 @@ public class DiaryController {
 		System.out.println(" **** id ****" + diary_id);
 
 		Diary diary = diaryService.getDiaryById(diary_id);
+		if(diary.getMember_no() != diaryLogin.getMember_no()) {
+			
+		}
+		
 		//log.info("=== diary === : " + diary);
 		if (diary != null) {
 			if(diaryLogin.getMember_no() != diary.getMember_no()) {
@@ -127,12 +131,14 @@ public class DiaryController {
 				log.info("로그인 주인 :"+diaryLogin.getMember_no());
 				return "redirect:/diaryMain";
 			} //만약 사용자가 다른 사용자의 다이어리에 접근하지 않도록 세션과 비교(id로만 접근하기 때문에)
+			cur_date = diary.getDiary_date();
+			model.addAttribute("today", cur_date);
 			
 			model.addAttribute("diary", diary);
 			return "diaryView"; // 조회 페이지로 이동
-		} else {
-			return "redirect:/diaryWrite"; // 작성 페이지로 이동
-		}
+		} 
+		
+		return "redirect:/diaryWrite"; // 작성 페이지로 이동
 
 	}
 	@GetMapping("/diaryUpdate/{diary_id}")
@@ -168,7 +174,7 @@ public class DiaryController {
 		String diary_date = cur_date;
 		
 		int member_no = diaryLogin.getMember_no();
-		diaryService.updateDiary(diary_id, diary_date, member_no, diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file);
+		diaryService.updateDiary(diary_id, diary_date, member_no, diary_title, diary_contents, diary_feelingCode, diary_weatherCode, file,original_fileurl);
 	    return "redirect:/diaryMain";
 	    }
 	

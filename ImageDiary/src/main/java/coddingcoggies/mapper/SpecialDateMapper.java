@@ -22,6 +22,7 @@ public interface SpecialDateMapper {
 
 	void updateSpecialDate(SpecialDate specialDate);
 	
+	void deleteSpecialDate(int specialDate_id);
 }
 
 
